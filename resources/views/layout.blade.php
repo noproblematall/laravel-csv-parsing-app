@@ -233,7 +233,9 @@
                 <input type="checkbox" name="remember_me" id="remember_me" /> <label for="remember_me">Remember me</label>
                 <br />
                 <br />
-                <button class="btn btn-lg btn-primary btn-block signup-btn mb20" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block signup-btn mb20" type="submit">
+                    Sign in &nbsp;&nbsp;&nbsp;&nbsp;<div class="spinner-border alert-white"></div>
+                </button>
                 <p class="text-center mb10">Don't have an account? <a href="#" id="to-signup">Sign up here</a>.</p>
               </form>
             </div>
