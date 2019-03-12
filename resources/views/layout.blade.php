@@ -7,6 +7,7 @@
   <title>App title &mdash; Homepage</title>
   <meta name="description" content="web app to upload and parse any csv" />
   <meta name="keywords" content="upload csv,parse csv" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-free-5.7.2-web/css/all.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/styles-merged.css') }}" />
@@ -42,9 +43,30 @@
           <li><a href="#" data-nav-section="pricing">Pricing</a></li>
           <li><a href="#" data-nav-section="reviews">Reviews</a></li>
           <li><a href="#" data-nav-section="contact">Contact</a></li>
-          <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-          <li><a href="#" id="signin">Sign in</a></li>
-          <li><a href="#" id="signup">Sign up</a></li>
+          @guest
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li><a href="#" id="signin">Sign in</a></li>
+            <li><a href="#" id="signup">Sign up</a></li>
+          @else
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li class="dropdown" id="avatar" data-toggle="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="{{asset('assets/img/person_3.jpg')}}" alt="Avatar" class="img-responsive img-circle probootstrap-author-photo" />
+                </a>
+                <ul class="dropdown-menu">
+                    <a href="/user/preferences"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
+                    <li class="divider"></li>
+                    <a href="/user/preferences"><li><i class="fas fa-cog"></i>&nbsp;&nbsp;Profile</li></a>
+                    <a href="/help/support"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
+                    <li class="divider"></li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"><li><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </ul>
+            </li>
+          @endguest
         </ul>
       </div>
     </div>
@@ -79,18 +101,19 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-12">
-              <form action="r" method="post" accept-charset="utf-8" class="myform form" role="form">
+              <form  method="POST" action="{{ route('register') }}" accept-charset="utf-8" class="myform form" role="form">
+                @csrf
                 <div class="row">
                   <div class="col-xs-6 col-md-6">
-                    <input type="text" name="firstname" value="" class="form-control input-lg" placeholder="First Name" />
+                    <input type="text" name="f_name" id="f_name" value="" class="form-control input-lg" placeholder="First Name" />
                   </div>
                   <div class="col-xs-6 col-md-6">
-                    <input type="text" name="lastname" value="" class="form-control input-lg" placeholder="Last Name" />
+                    <input type="text" name="l_name" id="l_name" value="" class="form-control input-lg" placeholder="Last Name" />
                   </div>
                 </div>
-                <input type="text" name="email" value="" class="form-control input-lg" placeholder="Your Email" />
-                <input type="password" name="password" value="" class="form-control input-lg" placeholder="Password" />
-                <input type="password" name="confirm_password" value="" class="form-control input-lg" placeholder="Confirm Password" />
+                <input type="text" name="email" id="email" value="" class="form-control input-lg" placeholder="Your Email" />
+                <input type="password" name="password" id="password" value="" class="form-control input-lg" placeholder="Password" />
+                <input type="password" name="password_confirmation" id="password-confirm" value="" class="form-control input-lg" placeholder="Confirm Password" />
                 <label>Birth Date</label>
                 <div class="row">
                   <div class="col-xs-4 col-md-4">
@@ -111,15 +134,15 @@
                   </div>
                   <div class="col-xs-4 col-md-4">
                     <select name="day" class="form-control input-lg">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
+                      <option value="01">1</option>
+                      <option value="02">2</option>
+                      <option value="03">3</option>
+                      <option value="04">4</option>
+                      <option value="05">5</option>
+                      <option value="06">6</option>
+                      <option value="07">7</option>
+                      <option value="08">8</option>
+                      <option value="09">9</option>
                       <option value="10">10</option>
                       <option value="11">11</option>
                       <option value="12">12</option>
@@ -181,7 +204,7 @@
   
     </div>
   </div>
-
+  
   <div id="signin-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -193,9 +216,20 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-12">
-              <form action="r" method="post" accept-charset="utf-8" class="myform form" role="form">
-                <input type="text" name="email" value="" class="form-control input-lg" placeholder="Your Email" />
-                <input type="password" name="password" value="" class="form-control input-lg mb20" placeholder="Password" />
+              <form  method="POST" action="{{ route('login') }}" accept-charset="utf-8" class="myform form" role="form">
+                @csrf
+                <input type="text" name="email" id="email" class="form-control input-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your Email" value="{{ old('email') }}" required autofocus />
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback pb20" role="alert">
+                        {{ $errors->first('email') }}
+                    </span>
+                @endif
+                <input type="password" name="password" id="password" value="" class="form-control input-lg mb20{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" required />
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback pb20" role="alert">
+                        {{ $errors->first('email') }}
+                    </span>
+                @endif
                 <input type="checkbox" name="remember_me" id="remember_me" /> <label for="remember_me">Remember me</label>
                 <br />
                 <br />

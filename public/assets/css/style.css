@@ -4,6 +4,9 @@ body {
 .hide {
     display: none;
 }
+.pb20 {
+    padding-bottom: 20px !important;
+}
 .probootstrap-footer {
     padding: 1em 0;
     position: relative;
@@ -281,9 +284,7 @@ legend{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-#avatar:hover {
-    background-color: #f1f1f1;
-}
+
 #avatar a {
     padding: 0;
 }
@@ -315,7 +316,7 @@ legend{
     margin-left: -10px;
 }
 .navbar-nav>li>.dropdown-menu {
-    margin-top: 10px;
+    margin-top: 2px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
@@ -329,7 +330,14 @@ legend{
     white-space: normal;
     word-wrap: break-word;
 }
-
+.invalid-feedback {
+    color: #981a36;
+    font-weight: 200;
+    display: block;
+}
+.must_show {
+    display: block !important;
+}
 @media (min-width:768px) {
 	#home{
 		margin-top:50px;

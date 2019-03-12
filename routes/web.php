@@ -14,3 +14,7 @@
 Route::get('/', 'IndexController@index');
 
 Route::get('/working_area', 'IndexController@upload');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
