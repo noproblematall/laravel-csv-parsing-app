@@ -5,6 +5,8 @@ $(document).ready(function() {
     // console.log(sub_h);
     // $('section#working-area').height(sub_h);
 
+    let page = $("#_page").val();
+
     
     $(".signin-btn").click(function() {
         let elem =  $(this);
@@ -22,14 +24,19 @@ $(document).ready(function() {
             dataType: 'json',
             data: $('#signin-form').serialize(),
             success : function(data) {
-                if(data.auth) {
-                    $('.ajax-username').text(data.user.f_name+' '+data.user.l_name);
-                    $('#signin-modal').modal('hide');
-                    $(".ajax-avatar").addClass('show');
-                    $(".guest").hide();
+                if(page == 'login') {
+                    window.location = '/working_area';
                 }
-                else if(data.message == 'The given data was invalid.') {
-                    alert(data.message);
+                else {
+                    if(data.auth) {
+                        $('.ajax-username').text(data.user.f_name+' '+data.user.l_name);
+                        $('#signin-modal').modal('hide');
+                        $(".ajax-avatar").addClass('show');
+                        $(".guest").hide();
+                    }
+                    else if(data.message == 'The given data was invalid.') {
+                        alert(data.message);
+                    }
                 }
             },
             error: function(data) {

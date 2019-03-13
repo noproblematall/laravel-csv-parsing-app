@@ -5,9 +5,12 @@
 
 @section('content')
 <section class="probootstrap-section" id="working-area" data-section="working-area">
+    <input type="hidden" name="_page" id="_page" value="login" />
+    <br />
+    <br />
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
                 <form  method="POST" action="{{ route('login') }}" id="signin-form" accept-charset="utf-8" class="myform form" role="form">
                 <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}" />
                 <input type="text" name="email" id="email" class="form-control input-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your Email" value="{{ old('email') }}" required autofocus />
