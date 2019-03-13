@@ -105,10 +105,10 @@
                 @csrf
                 <div class="row">
                   <div class="col-xs-6 col-md-6">
-                    <input type="text" name="f_name" id="f_name" value="" class="form-control input-lg" placeholder="First Name" />
+                    <input type="text" name="f_name" id="f_name" value="" class="form-control input-lg" placeholder="First Name" required autofocus />
                   </div>
                   <div class="col-xs-6 col-md-6">
-                    <input type="text" name="l_name" id="l_name" value="" class="form-control input-lg" placeholder="Last Name" />
+                    <input type="text" name="l_name" id="l_name" value="" class="form-control input-lg" placeholder="Last Name" required />
                   </div>
                 </div>
                 <input type="text" name="email" id="email" value="" class="form-control input-lg" placeholder="Your Email" />
@@ -194,7 +194,9 @@
                 <br />
                 <span class="help-block">By clicking Create my account, you agree to our Terms and that you have read our Data Use
                   Policy, including our Cookie Use.</span>
-                <button class="btn btn-lg btn-primary btn-block signup-btn mb20" type="submit">Create my account</button>
+                <button class="btn btn-lg btn-primary btn-block signup-btn mb20" type="submit">
+                    <span class="btn-text">Create my account</span><div class="spinner-border alert-white hide"></div>
+                </button>
                 <p class="text-center mb10">Already have an account? <a href="#" id="to-signin">Sign in here</a>.</p>
               </form>
             </div>
@@ -204,7 +206,7 @@
   
     </div>
   </div>
-  
+  <input type="hidden" name="signin_show" id="signin_show" value="{{ $errors->has('email') ? 'show' : 'hide' }}" />
   <div id="signin-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -216,8 +218,8 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-12">
-              <form  method="POST" action="{{ route('login') }}" accept-charset="utf-8" class="myform form" role="form">
-                @csrf
+              <form  method="POST" action="{{ route('login') }}" id="signin-form" accept-charset="utf-8" class="myform form" role="form">
+                <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}" />
                 <input type="text" name="email" id="email" class="form-control input-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your Email" value="{{ old('email') }}" required autofocus />
                 @if ($errors->has('email'))
                     <span class="invalid-feedback pb20" role="alert">
@@ -227,14 +229,14 @@
                 <input type="password" name="password" id="password" value="" class="form-control input-lg mb20{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" required />
                 @if ($errors->has('password'))
                     <span class="invalid-feedback pb20" role="alert">
-                        {{ $errors->first('email') }}
+                        {{ $errors->first('password') }}
                     </span>
                 @endif
                 <input type="checkbox" name="remember_me" id="remember_me" /> <label for="remember_me">Remember me</label>
                 <br />
                 <br />
-                <button class="btn btn-lg btn-primary btn-block signup-btn mb20" type="submit">
-                    Sign in &nbsp;&nbsp;&nbsp;&nbsp;<div class="spinner-border alert-white"></div>
+                <button class="btn btn-lg btn-primary btn-block signin-btn mb20" type="button">
+                    <span class="signin-btn-text">Sign in</span><div class="spinner-border alert-white hide center" id="signin-spinner"></div>
                 </button>
                 <p class="text-center mb10">Don't have an account? <a href="#" id="to-signup">Sign up here</a>.</p>
               </form>

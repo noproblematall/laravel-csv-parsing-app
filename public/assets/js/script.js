@@ -4,7 +4,25 @@ $(document).ready(function() {
     // let sub_h = h - 59 - 224;
     // console.log(sub_h);
     // $('section#working-area').height(sub_h);
+
     
+    $(".signin-btn").click(function() {
+        if( $(this).hasClass('btn-disable') ) {
+            return false;
+        }
+        $('.signin-btn-text').hide();
+        $('#signin-spinner').addClass('show');
+        $(this).addClass('btn-disable');
+        $.ajax({
+            url: '/login',
+            type: 'post',
+            data: $('#signin-form').serialize(),
+            success : function(data) {
+                console.log(data);
+            }
+        })
+    })
+
     $("#avatar").mouseover(function() {
         $(".dropdown-menu").show();
     })
