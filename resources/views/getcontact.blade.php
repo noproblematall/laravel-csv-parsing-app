@@ -10,23 +10,25 @@
         <div class="col-md-8 probootstrap-section-heading">
                 <div class="form-group color">
                     <h3 class="text-left mytext-dark-blue underline">2. Get contact information</h3>
-                    <div class="spinner-border text-primary center" id="dbStore-spinner"></div>
+                    <div class="spinner-border text-primary center hide" id="dbStore-spinner"></div>
                 </div>
                 <div class="col-md-12" id="get-contact-info">
                     <div class="row">
                         <div class="col-md-6">
                             <form action="" class="probootstrap-form" id="process-form">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email">
+                                <div class="form-group text-left">
+                                    <label for="total_rows">Total rows:</label>
+                                    <input type="text" name="total_rows" id="total_rows" class="form-control" value="5600" placeholder="Total rows" disabled>
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email">
+                                <div class="form-group text-left">
+                                    <label for="rows-to-process">Number of rows to process:</label>
+                                    <input type="text" class="form-control" id="rows-to-process" value="5600" placeholder="Number of rows to process" reqired>
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email">
+                                <div class="form-group text-left">
+                                    <input type="text" class="form-control" placeholder="Notification email" title="You will receive the notification of completion on this email address.">
                                 </div>
         
-                                <button type="button" id="upload-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
+                                <button type="button" id="process-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
                                     <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Process
                                 </button>
                                 <button type="button" id="tostep2-btn" class="btn btn-lg btn-success btn-block signup-btn mb20 hide">
@@ -52,7 +54,7 @@
                             <br>
                             <br>
                             <h4 class="mytext-dark-blue underline">If you want to process more rows than your current membership plan, upgrade now!</h4>
-                            <button type="button" id="upload-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
+                            <button type="button" id="upgrade-membership-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
                                 <span class="btn-label">Upgrade membership
                             </button>
                         </div>
