@@ -40,6 +40,9 @@ body {
 .dark-red {
     background-color: #6d1226 !important;
 }
+.mytext-dark-blue {
+    color: #161e2c !important;
+}
 .btn-disable {
     cursor: not-allowed !important;
 }

@@ -11,7 +11,7 @@
             <form method="POST" action="#">
                 @csrf
                 <div class="form-group files color">
-                    <h3>Upload Your File </h3>
+                    <h3 class="text-left mytext-dark-blue">1. Upload Your File </h3>
                     <div id="resumable-drop" class="hide">
                         <input type="hidden" name="_token" value="{{csrf_token()}}" />
                         <p>
@@ -48,6 +48,9 @@
                 <div class="col-md-12">
                     <button type="button" id="upload-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
                         <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
+                    </button>
+                    <button type="button" id="tostep2-btn" class="btn btn-lg btn-success btn-block signup-btn mb20 hide">
+                        <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Continue
                     </button>
                     <button type="button" id="cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
                         <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel

@@ -44,12 +44,18 @@ if ($fileUpload.length > 0 && $fileUploadDrop.length > 0) {
             file_selected = false;
             $progress.removeClass('show');
             resumable.cancel();
+            $("#upload-btn").show();
+            $("#tostep2-btn").addClass('hide');
+            $('.myalert').removeClass('show');
         });
         $("#close").click(function(e) {
             file_selected = false;
             e.preventDefault();
             resumable.cancel();
             $("#progress").removeClass('show');
+            $("#upload-btn").show();
+            $("#tostep2-btn").addClass('hide');
+            $('.myalert').removeClass('show');
         })
         // Show a place for dropping/selecting files
 
@@ -96,6 +102,8 @@ if ($fileUpload.length > 0 && $fileUploadDrop.length > 0) {
         });
         resumable.on('fileSuccess', function (file, message) {
             $("#success-alert").addClass('show');
+            $("#upload-btn").hide();
+            $("#tostep2-btn").removeClass('hide');
             file = {};
         });
         resumable.on('fileError', function (file, message) {
