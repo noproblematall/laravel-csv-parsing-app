@@ -44,14 +44,14 @@
           <li><a href="#" data-nav-section="reviews">Reviews</a></li>
           <li><a href="#" data-nav-section="contact">Contact</a></li>
           @guest
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            <li><a href="#" id="signin">Sign in</a></li>
-            <li><a href="#" id="signup">Sign up</a></li>
+            <li class="guest">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li class="guest"><a href="#" id="signin">Sign in</a></li>
+            <li class="guest"><a href="#" id="signup">Sign up</a></li>
           @else
             <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
             <li class="dropdown" id="avatar" data-toggle="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{asset('assets/img/person_3.jpg')}}" alt="Avatar" class="img-responsive img-circle probootstrap-author-photo" />
+                <img src="{{asset('assets/img/default.png')}}" alt="Avatar" class="img-responsive img-circle probootstrap-author-photo" />
                 </a>
                 <ul class="dropdown-menu">
                     <a href="/user/preferences"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
@@ -67,6 +67,24 @@
                 </ul>
             </li>
           @endguest
+          <li class="ajax-avatar hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li class="dropdown ajax-avatar hide" id="avatar" data-toggle="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="{{asset('assets/img/default.png')}}" alt="Avatar" class="img-responsive img-circle probootstrap-author-photo" />
+              </a>
+              <ul class="dropdown-menu">
+                  <a href="/user/preferences"><li><i class="fas fa-user"></i>&nbsp;&nbsp;<span class="ajax-username"></span></li></a>
+                  <li class="divider"></li>
+                  <a href="/user/preferences"><li><i class="fas fa-cog"></i>&nbsp;&nbsp;Profile</li></a>
+                  <a href="/help/support"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
+                  <li class="divider"></li>
+                  <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();"><li><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li></a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+              </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -221,6 +239,7 @@
               <form  method="POST" action="{{ route('login') }}" id="signin-form" accept-charset="utf-8" class="myform form" role="form">
                 <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}" />
                 <input type="text" name="email" id="email" class="form-control input-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your Email" value="{{ old('email') }}" required autofocus />
+                <span class="invalid-feedback pb20" role="alert"></span>
                 @if ($errors->has('email'))
                     <span class="invalid-feedback pb20" role="alert">
                         {{ $errors->first('email') }}

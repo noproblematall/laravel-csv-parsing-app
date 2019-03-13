@@ -16,9 +16,25 @@ $(document).ready(function() {
         $.ajax({
             url: '/login',
             type: 'post',
+            dataType: 'json',
             data: $('#signin-form').serialize(),
             success : function(data) {
+                if(data.auth) {
+                    $('.ajax-username').text(data.user.f_name+' '+data.user.l_name);
+                    $('#signin-modal').modal('hide');
+                    $(".ajax-avatar").addClass('show');
+                    $(".guest").hide();
+                }
+                else if(data.message == 'The given data was invalid.') {
+                    alert(data.message);
+                }
+            },
+            error: function(data) {
                 console.log(data);
+                console.log(data.responseJSON);
+                if(data.responseJSON.message == 'The given data was invalid.') {
+                    alert(data.responseJSON.errors.email[0]);
+                }
             }
         })
     })
