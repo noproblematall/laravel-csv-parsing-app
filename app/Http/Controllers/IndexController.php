@@ -15,10 +15,4 @@ class IndexController extends Controller
         $menu = '';
         return view('index', compact('index','menu'));
     }
-
-    public function upload() {
-        $index = "index-1";
-        $menu = 'working_area';
-        return view('upload', compact('index','menu'));
-    }
 }

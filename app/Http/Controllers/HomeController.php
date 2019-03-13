@@ -21,8 +21,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    public function upload() {
+        $index = "index-1";
+        $menu = 'working_area';
+        return view('upload', compact('index','menu'));
     }
 }

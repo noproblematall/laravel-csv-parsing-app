@@ -13,10 +13,8 @@
 
 Route::get('/', 'IndexController@index');
 
-Route::get('/working_area', 'IndexController@upload')->name('working_area');
+Route::get('/working_area', 'HomeController@upload')->name('working_area');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('file-upload', 'FileController@fileUploadPost')->name('fileUploadPost');
