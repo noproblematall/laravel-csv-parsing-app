@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/fonts/icomoon/style.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-  @yield('scripts')
+  @yield('styles')
   <!--[if lt IE 9]>
       <script src="js/vendor/html5shiv.min.js"></script>
       <script src="js/vendor/respond.min.js"></script>
@@ -34,12 +34,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html" title="Logo">Logo</a>
+        <a class="navbar-brand" href="/" title="Logo">Logo</a>
       </div>
 
       <div id="navbar-collapse" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#" data-nav-section="home">Home</a></li>
+          <li><a href="#" data-nav-section="home">Home</a></li>
           <li><a href="#" data-nav-section="pricing">Pricing</a></li>
           <li><a href="#" data-nav-section="reviews">Reviews</a></li>
           <li><a href="#" data-nav-section="contact">Contact</a></li>
@@ -48,6 +48,7 @@
             <li class="guest"><a href="#" id="signin">Sign in</a></li>
             <li class="guest"><a href="#" id="signup">Sign up</a></li>
           @else
+            <li class="<?php if($menu == 'working_area'){ echo 'active'; }?>"><a href="{{ route('working_area') }}" id="working_area">Working area</a></li>
             <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
             <li class="dropdown" id="avatar" data-toggle="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -67,6 +68,7 @@
                 </ul>
             </li>
           @endguest
+          <li class="ajax-avatar hide"><a href="{{ route('working_area') }}" id="working_area">Working area</a></li>
           <li class="ajax-avatar hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
           <li class="dropdown ajax-avatar hide" id="avatar" data-toggle="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -275,7 +277,6 @@
 
   <script src="{{ asset('assets/js/scripts.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/bootstrap-4.3.1-dist/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('assets/js/custom.js') }}"></script>
   <script src="{{ asset('assets/js/script.js') }}"></script>
   @yield('scripts')
 </body>

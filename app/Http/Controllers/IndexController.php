@@ -12,11 +12,13 @@ class IndexController extends Controller
 
     public function index() {
         $index = "index";
-        return view('index', compact('index'));
+        $menu = '';
+        return view('index', compact('index','menu'));
     }
 
     public function upload() {
         $index = "index-1";
-        return view('upload', compact('index'));
+        $menu = 'working_area';
+        return view('upload', compact('index','menu'));
     }
 }

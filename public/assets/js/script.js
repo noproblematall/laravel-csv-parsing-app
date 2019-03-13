@@ -11,6 +11,7 @@ $(document).ready(function() {
         if( elem.hasClass('btn-disable') ) {
             return false;
         }
+        $('.invalid-feedback').removeClass('show');
         $('.signin-btn-text').hide();
         $('#signin-spinner').addClass('show');
         elem.addClass('btn-disable');
@@ -105,6 +106,11 @@ $(document).ready(function() {
         }
     })
 
+    $('#working_area').click(function() {
+        $('ul.navbar-nav li').removeClass('active');
+        $('#working_area').parent().addClass('active');
+        window.location = '/working_area';
+    })
 
     $("#avatar").mouseover(function() {
         $(".dropdown-menu").show();

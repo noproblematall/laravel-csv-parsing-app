@@ -13,7 +13,7 @@
 
 Route::get('/', 'IndexController@index');
 
-Route::get('/working_area', 'IndexController@upload');
+Route::get('/working_area', 'IndexController@upload')->name('working_area');
 
 Auth::routes();
 

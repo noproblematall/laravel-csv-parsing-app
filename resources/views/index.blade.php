@@ -1,5 +1,5 @@
 @extends('layout')
-@section('scripts')
+@section('styles')
 
 @endsection
 
@@ -299,4 +299,5 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
 @endsection
 
 @section('scripts')
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 @endsection
