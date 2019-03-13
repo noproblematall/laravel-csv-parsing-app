@@ -55,6 +55,8 @@ $(document).ready(function() {
 
     $("#signup-form").submit(function() {
         let elem = $(".signup-btn");
+        let success_flag = false;
+        $('.invalid-feedback').removeClass('show');
         if( elem.hasClass('btn-disable') ) {
             return false;
         }
@@ -69,29 +71,38 @@ $(document).ready(function() {
             dataType: 'json',
             data: $('#signup-form').serialize(),
             success : function(data) {
-                console.log(data);
+                success_flag = true;
             },
             error: function(data) {
                 console.log(data);
                 console.log(data.responseJSON);
-                if(data.responseJSON.message == 'The given data was invalid.') {
-                    $('.signup-btn-text').show();
-                    $('#signup-spinner').removeClass('show');
-                    elem.removeClass('btn-disable');
-                    elem.removeClass('dark-red');
-                    if(data.responseJSON.errors.email) {
-                        $('#up-email-alert').addClass('show');
-                        $('#up-email-alert').text(data.responseJSON.errors.email[0]);
-                        $('#signup-modal #email').focus();
-                    }
-                    else if(data.responseJSON.errors.password) {
-                        $('#up-pwd-alert').addClass('show');
-                        $('#up-pwd-alert').text(data.responseJSON.errors.password[0]);
+                if(data.responseJSON) {
+                    if(data.responseJSON.message == 'The given data was invalid.') {
+                        $('.signup-btn-text').show();
+                        $('#signup-spinner').removeClass('show');
+                        elem.removeClass('btn-disable');
+                        elem.removeClass('dark-red');
+                        if(data.responseJSON.errors.email) {
+                            $('#up-email-alert').addClass('show');
+                            $('#up-email-alert').text(data.responseJSON.errors.email[0]);
+                            $('#signup-modal #email').focus();
+                        }
+                        else if(data.responseJSON.errors.password) {
+                            $('#up-pwd-alert').addClass('show');
+                            $('#up-pwd-alert').text(data.responseJSON.errors.password[0]);
+                        }
                     }
                 }
-                return false;
+                else {
+                    window.location = '/';
+                }
+                success_flag = false;
             }
-        })
+        });
+
+        if(!success_flag) {
+            return false;
+        }
     })
 
 
