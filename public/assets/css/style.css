@@ -21,6 +21,9 @@ body {
 .center {
     margin: auto;
 }
+.dark-red {
+    background-color: #6d1226 !important;
+}
 .btn-disable {
     cursor: not-allowed;
 }

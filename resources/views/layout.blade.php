@@ -78,9 +78,9 @@
                   <a href="/user/preferences"><li><i class="fas fa-cog"></i>&nbsp;&nbsp;Profile</li></a>
                   <a href="/help/support"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
                   <li class="divider"></li>
-                  <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();"><li><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li></a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  <a href="#" onclick="event.preventDefault();
+                  document.getElementById('ajax-logout-form').submit();"><li><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li></a>
+                  <form id="ajax-logout-form" action="{{ route('logout') }}" method="POST">
                       @csrf
                   </form>
               </ul>
@@ -119,7 +119,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-12">
-              <form  method="POST" action="{{ route('register') }}" accept-charset="utf-8" class="myform form" role="form">
+              <form  method="POST" id="signup-form" action="{{ route('register') }}" accept-charset="utf-8" class="myform form" role="form">
                 @csrf
                 <div class="row">
                   <div class="col-xs-6 col-md-6">
@@ -129,13 +129,26 @@
                     <input type="text" name="l_name" id="l_name" value="" class="form-control input-lg" placeholder="Last Name" required />
                   </div>
                 </div>
-                <input type="text" name="email" id="email" value="" class="form-control input-lg" placeholder="Your Email" />
-                <input type="password" name="password" id="password" value="" class="form-control input-lg" placeholder="Password" />
-                <input type="password" name="password_confirmation" id="password-confirm" value="" class="form-control input-lg" placeholder="Confirm Password" />
+                <input type="text" name="email" id="email" value="" class="form-control input-lg" placeholder="Your Email" required />
+                <span class="invalid-feedback pb20 hide" role="alert" id="up-email-alert"></span>
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback pb20" role="alert">
+                        {{ $errors->first('email') }}
+                    </span>
+                @endif
+                <input type="password" name="password" id="password" value="" class="form-control input-lg" placeholder="Password" required />
+                <input type="password" name="password_confirmation" id="password-confirm" value="" class="form-control input-lg" placeholder="Confirm Password" required />
+                <span class="invalid-feedback pb20 hide" role="alert" id="up-pwd-alert"></span>
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback pb20" role="alert">
+                        {{ $errors->first('password') }}
+                    </span>
+                @endif
                 <label>Birth Date</label>
                 <div class="row">
                   <div class="col-xs-4 col-md-4">
                     <select name="month" class="form-control input-lg">
+                      <option value="">Month</option>
                       <option value="01">Jan</option>
                       <option value="02">Feb</option>
                       <option value="03">Mar</option>
@@ -152,6 +165,7 @@
                   </div>
                   <div class="col-xs-4 col-md-4">
                     <select name="day" class="form-control input-lg">
+                      <option value="">Day</option>
                       <option value="01">1</option>
                       <option value="02">2</option>
                       <option value="03">3</option>
@@ -186,19 +200,10 @@
                   </div>
                   <div class="col-xs-4 col-md-4">
                     <select name="year" class="form-control input-lg">
-                      <option value="2001">2001</option>
-                      <option value="2002">2002</option>
-                      <option value="2003">2003</option>
-                      <option value="2004">2004</option>
-                      <option value="2005">2005</option>
-                      <option value="2006">2006</option>
-                      <option value="2007">2007</option>
-                      <option value="2008">2008</option>
-                      <option value="2009">2009</option>
-                      <option value="2010">2010</option>
-                      <option value="2011">2011</option>
-                      <option value="2012">2012</option>
-                      <option value="2013">2013</option>
+                      <option value="">Year</option>
+                      @for($i=1950; $i < 2019; $i++)
+                        <option value="{{$i}}">{{$i}}</option>
+                      @endfor
                     </select>
                   </div>
                 </div>
@@ -213,7 +218,7 @@
                 <span class="help-block">By clicking Create my account, you agree to our Terms and that you have read our Data Use
                   Policy, including our Cookie Use.</span>
                 <button class="btn btn-lg btn-primary btn-block signup-btn mb20" type="submit">
-                    <span class="btn-text">Create my account</span><div class="spinner-border alert-white hide"></div>
+                    <span class="signup-btn-text">Create my account</span><div class="spinner-border alert-white center hide" id="signup-spinner"></div>
                 </button>
                 <p class="text-center mb10">Already have an account? <a href="#" id="to-signin">Sign in here</a>.</p>
               </form>
@@ -239,13 +244,14 @@
               <form  method="POST" action="{{ route('login') }}" id="signin-form" accept-charset="utf-8" class="myform form" role="form">
                 <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}" />
                 <input type="text" name="email" id="email" class="form-control input-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your Email" value="{{ old('email') }}" required autofocus />
-                <span class="invalid-feedback pb20" role="alert"></span>
+                <span class="invalid-feedback pb20 hide" role="alert" id="in-email-alert"></span>
                 @if ($errors->has('email'))
                     <span class="invalid-feedback pb20" role="alert">
                         {{ $errors->first('email') }}
                     </span>
                 @endif
                 <input type="password" name="password" id="password" value="" class="form-control input-lg mb20{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" required />
+                <span class="invalid-feedback pb20 hide" role="alert" id="in-pwd-alert"></span>
                 @if ($errors->has('password'))
                     <span class="invalid-feedback pb20" role="alert">
                         {{ $errors->first('password') }}

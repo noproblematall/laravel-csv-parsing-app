@@ -7,12 +7,14 @@ $(document).ready(function() {
 
     
     $(".signin-btn").click(function() {
-        if( $(this).hasClass('btn-disable') ) {
+        let elem =  $(this);
+        if( elem.hasClass('btn-disable') ) {
             return false;
         }
         $('.signin-btn-text').hide();
         $('#signin-spinner').addClass('show');
-        $(this).addClass('btn-disable');
+        elem.addClass('btn-disable');
+        elem.addClass('dark-red');
         $.ajax({
             url: '/login',
             type: 'post',
@@ -33,11 +35,65 @@ $(document).ready(function() {
                 console.log(data);
                 console.log(data.responseJSON);
                 if(data.responseJSON.message == 'The given data was invalid.') {
-                    alert(data.responseJSON.errors.email[0]);
+                    $('.signin-btn-text').show();
+                    $('#signin-spinner').removeClass('show');
+                    elem.removeClass('btn-disable');
+                    elem.removeClass('dark-red');
+                    if(data.responseJSON.errors.email) {
+                        $('#in-email-alert').addClass('show');
+                        $('#in-email-alert').text(data.responseJSON.errors.email[0]);
+                        $('#signin-modal #email').focus();
+                    }
+                    else if(data.responseJSON.errors.password) {
+                        $('#in-pwd-alert').addClass('show');
+                        $('#in-pwd-alert').text(data.responseJSON.errors.password[0]);
+                    }
                 }
             }
         })
+    });
+
+    $("#signup-form").submit(function() {
+        let elem = $(".signup-btn");
+        if( elem.hasClass('btn-disable') ) {
+            return false;
+        }
+        $('.signup-btn-text').hide();
+        $('#signup-spinner').addClass('show');
+        elem.addClass('btn-disable');
+        elem.addClass('dark-red');
+
+        $.ajax({
+            url: '/register',
+            type: 'post',
+            dataType: 'json',
+            data: $('#signup-form').serialize(),
+            success : function(data) {
+                console.log(data);
+            },
+            error: function(data) {
+                console.log(data);
+                console.log(data.responseJSON);
+                if(data.responseJSON.message == 'The given data was invalid.') {
+                    $('.signup-btn-text').show();
+                    $('#signup-spinner').removeClass('show');
+                    elem.removeClass('btn-disable');
+                    elem.removeClass('dark-red');
+                    if(data.responseJSON.errors.email) {
+                        $('#up-email-alert').addClass('show');
+                        $('#up-email-alert').text(data.responseJSON.errors.email[0]);
+                        $('#signup-modal #email').focus();
+                    }
+                    else if(data.responseJSON.errors.password) {
+                        $('#up-pwd-alert').addClass('show');
+                        $('#up-pwd-alert').text(data.responseJSON.errors.password[0]);
+                    }
+                }
+                return false;
+            }
+        })
     })
+
 
     $("#avatar").mouseover(function() {
         $(".dropdown-menu").show();
