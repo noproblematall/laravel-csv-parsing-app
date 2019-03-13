@@ -406,8 +406,21 @@ legend{
     margin-bottom: 50px;
     box-shadow: none;
 }
-
-
+.left {
+    display: block;
+    float: left;
+}
+.right {
+    display: block;
+    float: right;
+}
+.clear {
+    clear: both;
+}
+.file-info {
+    width: 300px;
+    margin: 0 auto;
+}
 @media (min-width:768px) {
 	#home{
 		margin-top:50px;

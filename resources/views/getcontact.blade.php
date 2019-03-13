@@ -38,7 +38,23 @@
                             </form>
                         </div>
                         <div class="col-md-6">
-                            <h4 class="mytext-dark-blue">You selected a file. File info is following :</h4>
+                            <h4 class="mytext-dark-blue underline">You selected a file. File info is following :</h4>
+                            <div class="file-info">
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">Total rows:</div>
+                                    <div class="col-xs-6 text-left">5600</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">Processable rows:</div>
+                                    <div class="col-xs-6 text-left">10000</div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <h4 class="mytext-dark-blue underline">If you want to process more rows than your current membership plan, upgrade now!</h4>
+                            <button type="button" id="upload-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
+                                <span class="btn-label">Upgrade membership
+                            </button>
                         </div>
                     </div>
 
