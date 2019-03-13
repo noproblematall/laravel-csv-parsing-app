@@ -113,7 +113,7 @@ class UploadController extends Controller
      */
     protected function createFilename(UploadedFile $file)
     {
-        $extension = 'zip';
+        $extension = 'csv';
 
         $filename = time() . "." . $extension;
 

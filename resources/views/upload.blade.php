@@ -35,13 +35,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="alert alert-success alert-dismissible hide" id="success-alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="myalert alert-success alert-dismissible hide" id="success-alert">
+                        <a href="#" class="myclose" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Success!</strong> <span>Uploaded Successfully.</span>
                     </div>
                     <br />
-                    <div class="alert alert-danger alert-dismissible hide" id="warning-alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="myalert alert-danger alert-dismissible hide" id="warning-alert">
+                        <a href="#" class="myclose" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Warning!</strong> <span>Please select a file.</span>
                     </div>
                 </div>
