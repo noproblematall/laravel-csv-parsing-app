@@ -43,6 +43,13 @@ body {
 .mytext-dark-blue {
     color: #161e2c !important;
 }
+.underline {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+.text-primary {
+    color: #981a36 !important;
+}
 .btn-disable {
     cursor: not-allowed !important;
 }
@@ -389,6 +396,18 @@ legend{
 .must_show {
     display: block !important;
 }
+#dbStore-spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+#process-form {
+    padding: 10px 0;
+    background: #fff;
+    margin-bottom: 50px;
+    box-shadow: none;
+}
+
+
 @media (min-width:768px) {
 	#home{
 		margin-top:50px;

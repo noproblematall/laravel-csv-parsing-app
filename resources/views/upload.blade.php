@@ -11,7 +11,7 @@
                 <form method="POST" action="#">
                     @csrf
                     <div class="form-group files color">
-                        <h3 class="text-left mytext-dark-blue">1. Upload Your File </h3>
+                        <h3 class="text-left mytext-dark-blue underline">1. Upload Your File </h3>
                         <div id="resumable-drop" class="hide">
                             <input type="hidden" name="_token" value="{{csrf_token()}}" />
                             <p>
