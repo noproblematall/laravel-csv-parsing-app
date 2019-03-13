@@ -256,7 +256,7 @@ legend{
 }
 
 /* file upload */
-.files input {
+.files #resumable-browse {
     outline: 2px dashed #981a36;
     outline-offset: -10px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -267,7 +267,13 @@ legend{
     width: 100% !important;
     cursor: pointer;
 }
-.files input:focus{     outline: 2px dashed #981a36;  outline-offset: -10px;
+.files #resumable-browse:focus{     outline: 2px dashed #981a36;  outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #981a36;
+ }
+ .files #resumable-browse:hover {
+    background-color: #ccc;
+    outline: 2px dashed #981a36;  outline-offset: -10px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
     transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #981a36;
  }
@@ -289,7 +295,7 @@ legend{
 .color input{ background-color:#f1f1f1;}
 .files:before {
     position: absolute;
-    bottom: 0;
+    top: 210px;
     left: 0;  pointer-events: none;
     width: 100%;
     right: 0;
@@ -395,4 +401,44 @@ legend{
         width: 100%;
         padding-left: 10px;
     }
+}
+
+
+
+.v-center {
+    height: 50%;
+    vertical-align: middle;
+}
+#poster {
+    height: 42px;
+}
+#progress {
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#progress p {
+    padding: 0;
+    margin: 0;
+}
+#progress .row {
+    margin: 0;
+}
+#myProgress {
+    width: 100%;
+    background-color: #a3df81;
+}
+#myBar {
+    width: 1%;
+    height: 8px;
+    background-color: #3ea200;
+}
+#close {
+    float: right;
+    cursor: pointer;
+    font-size: 25px;
+    color: #3ea200;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
 }

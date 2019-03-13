@@ -1,0 +1,40 @@
+.v-center {
+    height: 50%;
+    vertical-align: middle;
+}
+.hide {
+    display: none;
+}
+#poster {
+    height: 42px;
+}
+#progress {
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#progress p {
+    padding: 0;
+    margin: 0;
+}
+#progress .row {
+    margin: 0;
+}
+#myProgress {
+    width: 100%;
+    background-color: #a3df81;
+}
+#myBar {
+    width: 1%;
+    height: 8px;
+    background-color: #3ea200;
+}
+#close {
+    float: right;
+    cursor: pointer;
+    font-size: 25px;
+    color: #3ea200;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
