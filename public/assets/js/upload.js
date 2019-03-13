@@ -26,6 +26,7 @@ if ($fileUpload.length > 0 && $fileUploadDrop.length > 0) {
         $('#resumable-error').addClass('show');
     } else {
         // Show a place for dropping/selecting files
+        file = {};
         $fileUploadDrop.addClass('show');
         resumable.assignDrop($fileUpload[0]);
         resumable.assignBrowse($fileUploadDrop[0]);
@@ -40,8 +41,9 @@ if ($fileUpload.length > 0 && $fileUploadDrop.length > 0) {
             $("#success-alert").hide();
             $("#warning-alert").hide();
             console.log(file);
-            
-            resumable.upload();
+            $('#upload-btn').click(function() {
+                resumable.upload();
+            });
         });
         resumable.on('fileSuccess', function (file, message) {
             $("#success-alert").addClass('show');
@@ -56,6 +58,10 @@ if ($fileUpload.length > 0 && $fileUploadDrop.length > 0) {
         resumable.on('fileProgress', function (file) {
             bar.width(Math.floor(resumable.progress() * 100) + '%')
         });
+        $('#cancel-btn').click(function() {
+            file = {};
+            console.log(file);
+        })
     }
 
 }

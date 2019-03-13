@@ -12,10 +12,8 @@ use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 class FileController extends UploadController
 {
     public function __construct() {
-        ini_set('max_execution_time', 30000);
-        ini_set('upload_max_filesize', '5120M');
-        ini_set('post_max_size', '5120M');
-        ini_set('max_input_time', 3000000);
+        ini_set('max_execution_time', 3000);
+        ini_set('max_input_time', 3000);
     }
 
     public function index() {

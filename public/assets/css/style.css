@@ -280,7 +280,7 @@ legend{
 .files{ position:relative}
 .files:after {  pointer-events: none;
     position: absolute;
-    top: 90px;
+    top: 100px;
     left: 0;
     width: 50px;
     right: 0;
@@ -295,7 +295,7 @@ legend{
 .color input{ background-color:#f1f1f1;}
 .files:before {
     position: absolute;
-    top: 210px;
+    top: 190px;
     left: 0;  pointer-events: none;
     width: 100%;
     right: 0;
@@ -429,7 +429,7 @@ legend{
     background-color: #a3df81;
 }
 #myBar {
-    width: 1%;
+    width: 0%;
     height: 8px;
     background-color: #3ea200;
 }

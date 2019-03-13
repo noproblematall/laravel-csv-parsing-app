@@ -24,8 +24,8 @@
                                 <i class="fas fa-file" style="margin-top: 20px;"></i>
                             </div>
                             <div class="col-md-9 col-sm-9">
-                                <p><b id="file-name">&nbsp;</b></p>
-                                <p id="file-size">&nbsp;</p>
+                                <p class="text-left"><b id="file-name">&nbsp;</b></p>
+                                <p class="text-left" id="file-size">&nbsp;</p>
                                 <div id="myProgress">
                                     <div class="bar" id="myBar"></div>
                                 </div>
@@ -46,8 +46,11 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-lg btn-primary btn-block signup-btn mb20">
-                    <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
+                    <button type="button" id="upload-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
+                        <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
+                    </button>
+                    <button type="button" id="cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
+                        <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
                     </button>
                 </div>
             </form>
