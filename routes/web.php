@@ -14,7 +14,10 @@
 Route::get('/', 'IndexController@index');
 
 Route::get('/working_area', 'HomeController@upload')->name('working_area');
+Route::get('/main_process', 'HomeController@process')->name('main_process')->middleware('fileUploaded');
 
 Auth::routes();
 
 Route::post('file-upload', 'FileController@fileUploadPost')->name('fileUploadPost');
+
+Route::post('upload', 'FileController@fileUploadPost')->name('fileUploadPost');

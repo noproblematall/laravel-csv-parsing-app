@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,14 @@ class HomeController extends Controller
     public function upload() {
         $index = "index-1";
         $menu = 'working_area';
+        
         return view('upload', compact('index','menu'));
+    }
+    public function process(Request $request) {
+        $file = session('file');
+        
+        $index = "index-1";
+        $menu = 'working_area';
+        return view('getcontact', compact('index','menu'));
     }
 }

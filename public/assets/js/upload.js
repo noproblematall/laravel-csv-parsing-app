@@ -8,6 +8,10 @@ var file_size = $("#file-size");
 var bar = $('.bar');
 var file_selected = false;
 var elem =  $('#upload-btn');
+
+elem.addClass('btn-disable');
+elem.addClass('dark-red');
+
 $("#resumable-browse").click(function() {
     if(file_selected) {
         $(this).addClass('btn-disable');
@@ -98,6 +102,8 @@ if ($fileUpload.length > 0 && $fileUploadDrop.length > 0) {
             else {
                 $("#warning-alert span").text('Plese select a correct csv file!');
                 $("#warning-alert").addClass('show');
+                elem.addClass('btn-disable');
+                elem.addClass('dark-red');
             }
         });
         resumable.on('fileSuccess', function (file, message) {
@@ -122,6 +128,10 @@ if ($fileUpload.length > 0 && $fileUploadDrop.length > 0) {
 $(".myclose").click(function(e) {
     e.preventDefault();
     $(this).parent().removeClass('show');
+})
+
+$("#tostep2-btn").click(function() {
+    window.location = '/main_process';
 })
 
 function getExtension(path) {

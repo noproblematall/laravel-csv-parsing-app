@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Storage;
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Pion\Laravel\ChunkUpload\Exceptions\UploadMissingFileException;
@@ -116,7 +117,7 @@ class UploadController extends Controller
         $extension = 'csv';
 
         $filename = time() . "." . $extension;
-
+        session(['file' => $filename]);
         return $filename;
     }
 }
