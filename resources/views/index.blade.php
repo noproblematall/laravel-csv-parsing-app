@@ -250,7 +250,7 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
 <section class="probootstrap-section probootstrap-bg-light" data-section="contact">
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-xs-12">
       <form action="" class="probootstrap-form">
         <h2 class="text-black mt0">Get In Touch</h2>
         <div class="form-group">
@@ -270,7 +270,7 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
         </div>
       </form>
     </div>
-    <div class="col-md-3 col-md-push-1">
+    <div class="col-md-3 col-xs-12 col-md-push-1">
       <ul class="probootstrap-contact-details">
         <li>
           <span class="text-uppercase">Email</span>
