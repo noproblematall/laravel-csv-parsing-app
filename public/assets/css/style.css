@@ -464,6 +464,11 @@ legend{
         width: 100%;
         padding-left: 10px;
     }
+    .probootstrap-navbar .navbar-brand {
+        color: #981a36;
+        line-height: 0;
+        padding-left: 0;
+    }
 }
 
 
