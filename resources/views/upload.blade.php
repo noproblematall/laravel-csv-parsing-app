@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-xs-12">
                             <button type="button" id="upload-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
                                 <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
                             </button>
