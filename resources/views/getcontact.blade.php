@@ -21,7 +21,7 @@
                             <form action="" class="probootstrap-form" id="process-form">
                                 <div class="form-group text-left">
                                     <label for="total_rows">Total rows:</label>
-                                    <input type="text" name="total_rows" id="total_rows" class="form-control" value="5600" placeholder="Total rows" disabled>
+                                    <input type="text" name="total_rows" id="total_rows" class="form-control" value="" placeholder="Total rows" disabled>
                                 </div>
                                 <div class="form-group text-left">
                                     <label for="rows-to-process">Number of rows to process:</label>
@@ -47,7 +47,7 @@
                             <div class="file-info">
                                 <div class="row">
                                     <div class="col-xs-6 text-left">Total rows:</div>
-                                    <div class="col-xs-6 text-left">5600</div>
+                                    <div class="col-xs-6 text-left total_rows">5600</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 text-left">Processable rows:</div>
@@ -63,6 +63,17 @@
                         </div>
                     </div>
 
+                </div>
+                <div class="col-md-12 hide" id="processing">
+                    <h4 class="text-center underline">Processing ...</h4>
+                    <h6 class="text-center"> - You will receive the notification of completion on your or given email address. - </h6>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <button type="button" id="processing-cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
+                                <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
+                            </button>
+                        </div>
+                    </div>
                 </div>
         </div>
         </div>

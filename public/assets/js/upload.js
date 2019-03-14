@@ -153,9 +153,11 @@ function get_file_info() {
         type: 'post',
         data: '_file='+_file+"&_token="+_token,
         success: function(data) {
+            $("#total_rows").val(data);
+            $("#rows-to-process").val(data);
+            $('.total_rows').text(data);
             $("#dbStore-spinner").hide();
             $('#get-contact-info').removeClass('hide');
-            console.log(data);
         }
     })
 }
@@ -172,11 +174,24 @@ $(document).ready(function() {
             url: '/process_cancel',
             type: 'get',
             success: function(msg) {
-                console.log(msg);
                 if(msg == 'success') {
                     window.location = '/working_area';
                 }
             }
         });
     });
+
+    $('#process-btn').click(function() {
+        $("#dbStore-spinner").show();
+        $('#get-contact-info').addClass('hide');
+
+        $("#processing").removeClass('hide');
+    });
+
+    $("#processing-cancel-btn").click(function() {
+        $("#processing").addClass('hide');
+
+        $("#dbStore-spinner").hide();
+        $('#get-contact-info').removeClass('hide');
+    })
 })
