@@ -45,17 +45,20 @@
                             <strong>Warning!</strong> <span>Please select a file.</span>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <button type="button" id="upload-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
-                            <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
-                        </button>
-                        <button type="button" id="tostep2-btn" class="btn btn-lg btn-success btn-block signup-btn mb20 hide">
-                            <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Continue
-                        </button>
-                        <button type="button" id="cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
-                            <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
-                        </button>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <button type="button" id="upload-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
+                                <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
+                            </button>
+                            <button type="button" id="tostep2-btn" class="btn btn-lg btn-success btn-block signup-btn mb20 hide">
+                                <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Continue
+                            </button>
+                            <button type="button" id="cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
+                                <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
+                            </button>
+                        </div>
                     </div>
+
                 </form>
             </div>
         </div>
