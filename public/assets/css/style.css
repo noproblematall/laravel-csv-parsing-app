@@ -450,8 +450,6 @@ legend{
         padding: 10px;
     }
     .index-1 footer {
-        position: fixed !important;
-        bottom: 0;
         width: 100%;
         padding-left: 10px;
     }

@@ -16,8 +16,8 @@
                     <div class="spinner-border text-primary center" id="dbStore-spinner"></div>
                 </div>
                 <div class="col-md-12 hide" id="get-contact-info">
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-xs-12">
                             <form action="" class="probootstrap-form" id="process-form">
                                 <div class="form-group text-left">
                                     <label for="total_rows">Total rows:</label>
@@ -42,7 +42,7 @@
                                 </button>
                             </form>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-xs-12">
                             <h4 class="mytext-dark-blue underline">You selected a file. File info is following :</h4>
                             <div class="file-info">
                                 <div class="row">
