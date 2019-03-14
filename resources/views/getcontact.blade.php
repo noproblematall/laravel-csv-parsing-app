@@ -6,13 +6,16 @@
 @section('content')
 <section class="probootstrap-section" id="working-area" data-section="working-area">
     <div class="container">
+        @csrf
+        <input type="hidden" id="_page" value="main_process" />
+        <input type="hidden" id="_file" value="{{session()->get('file')}}" />
         <div class="row justify-content-center text-center mb100">
         <div class="col-md-8 probootstrap-section-heading">
                 <div class="form-group color">
                     <h3 class="text-left mytext-dark-blue underline">2. Get contact information</h3>
                     <div class="spinner-border text-primary center" id="dbStore-spinner"></div>
                 </div>
-                <div class="col-md-12" id="get-contact-info">
+                <div class="col-md-12 hide" id="get-contact-info">
                     <div class="row">
                         <div class="col-md-6">
                             <form action="" class="probootstrap-form" id="process-form">

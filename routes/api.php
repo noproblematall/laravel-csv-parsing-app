@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('upload', 'FileController@fileUploadPost')->name('fileUploadPost');
+
+Route::post('get_file_info', 'HomeController@get_file_info')->name('get_file_info');

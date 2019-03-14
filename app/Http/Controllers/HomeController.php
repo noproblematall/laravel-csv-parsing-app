@@ -35,4 +35,8 @@ class HomeController extends Controller
         $menu = 'working_area';
         return view('getcontact', compact('index','menu'));
     }
+
+    public function get_file_info(Request $request) {
+        echo $request->_file;
+    }
 }

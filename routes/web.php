@@ -20,4 +20,6 @@ Auth::routes();
 
 Route::post('file-upload', 'FileController@fileUploadPost')->name('fileUploadPost');
 
+Route::post('get_file_info', 'HomeController@get_file_info')->name('get_file_info');
+
 Route::post('upload', 'FileController@fileUploadPost')->name('fileUploadPost');

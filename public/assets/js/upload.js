@@ -143,3 +143,26 @@ function getExtension(path) {
 
     return basename.slice(pos + 1);
 }
+
+function get_file_info() {
+    let _token = $('input[name=_token]').val();
+    let _file = $('#_file').val();
+
+    $.ajax({
+        url: '/get_file_info',
+        type: 'post',
+        data: '_file='+_file+"&_token="+_token,
+        success: function(data) {
+            $("#dbStore-spinner").hide();
+            $('#get-contact-info').removeClass('hide');
+            console.log(data);
+        }
+    })
+}
+
+$(document).ready(function() {
+    if($("#_page").val() == 'main_process') {
+        get_file_info();
+    }
+
+})
