@@ -7,9 +7,15 @@ $(document).ready(function() {
 
     let page = $("#_page").val();
 
-    
-    $(".signin-btn").click(function() {
-        let elem =  $(this);
+    $('#signin-form #password').keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            login();
+        }
+    });
+
+    function login() {
+        let elem =  $(".signin-btn");
         if( elem.hasClass('btn-disable') ) {
             return false;
         }
@@ -58,7 +64,11 @@ $(document).ready(function() {
                     }
                 }
             }
-        })
+        });
+    }
+
+    $(".signin-btn").click(function() {
+        login();
     });
 
     $("#signup-form").submit(function() {

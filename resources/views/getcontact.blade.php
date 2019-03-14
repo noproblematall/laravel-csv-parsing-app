@@ -10,7 +10,7 @@
         <div class="col-md-8 probootstrap-section-heading">
                 <div class="form-group color">
                     <h3 class="text-left mytext-dark-blue underline">2. Get contact information</h3>
-                    <div class="spinner-border text-primary center hide" id="dbStore-spinner"></div>
+                    <div class="spinner-border text-primary center" id="dbStore-spinner"></div>
                 </div>
                 <div class="col-md-12" id="get-contact-info">
                     <div class="row">
