@@ -37,7 +37,7 @@
                                 <button type="button" id="tostep2-btn" class="btn btn-lg btn-success btn-block signup-btn mb20 hide">
                                     <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Continue
                                 </button>
-                                <button type="button" id="cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
+                                <button type="button" id="process-cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
                                     <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
                                 </button>
                             </form>

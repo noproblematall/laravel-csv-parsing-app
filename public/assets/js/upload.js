@@ -163,6 +163,20 @@ function get_file_info() {
 $(document).ready(function() {
     if($("#_page").val() == 'main_process') {
         get_file_info();
-    }
+    };
 
+    $("#process-cancel-btn").click(function() {
+        $('#get-contact-info').addClass('hide');
+        $("#dbStore-spinner").show();
+        $.ajax({
+            url: '/process_cancel',
+            type: 'get',
+            success: function(msg) {
+                console.log(msg);
+                if(msg == 'success') {
+                    window.location = '/working_area';
+                }
+            }
+        });
+    });
 })

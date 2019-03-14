@@ -39,4 +39,10 @@ class HomeController extends Controller
     public function get_file_info(Request $request) {
         echo $request->_file;
     }
+
+    public function processCancel(Request $request) {
+        session()->forget('file');
+        
+        echo "success";
+    }
 }
