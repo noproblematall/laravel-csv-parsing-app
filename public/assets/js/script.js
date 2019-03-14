@@ -135,6 +135,14 @@ $(document).ready(function() {
     $("#avatar").mouseout(function() {
         $(".dropdown-menu").hide();
     })
+
+    var height = $(window).scrollTop();
+    if (height > 100) {
+        $('#qodef-back-to-top').show();
+    } else {
+        $('#qodef-back-to-top').hide();
+    }
+
     $(window).scroll(function() {
         var height = $(window).scrollTop();
         if (height > 100) {

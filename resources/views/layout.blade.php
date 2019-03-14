@@ -104,7 +104,7 @@
     </div>
   </footer>
 
-  <a id="qodef-back-to-top" href="#" class="on">
+  <a id="qodef-back-to-top" href="#" class="on" style="display: none">
       <span class="qodef-icon-stack">
         <i class="qodef-icon-font-awesome fa fa-chevron-up "></i>
       </span>
