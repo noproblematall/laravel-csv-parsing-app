@@ -43,6 +43,17 @@ body {
 .mytext-dark-blue {
     color: #161e2c !important;
 }
+.forgot-pwd {
+    padding: 0px 10px;
+    font-size: 14px;
+    text-align: right;
+}
+#for-email {
+    line-height: 41px;
+}
+.pwd-reset-form label {
+    line-height: 50px;
+}
 .underline {
     border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
