@@ -11,7 +11,7 @@
                 <form method="POST" action="#">
                     @csrf
                     <div class="form-group color">
-                        <h3 class="text-left mytext-dark-blue underline">1. Upload Your File </h3>
+                        <h3 class="text-left mytext-dark-blue underline">1. Upload Your File</h3>
                         <div id="resumable-drop" class="files">
                             @csrf
                             <p>
