@@ -96,10 +96,11 @@ $(document).ready(function () {
             let origin_header = new Array();
             origin_header = JSON.parse(event.target.response);
 
-            let header = ['Address','City','Province','Postal code'];
+            let header = ['Address','City','Province','Postal_code'];
             let _added_elem = '';
             for(let i=0; i<header.length; i++) {
-                _added_elem += '<div class="col-md-3"><select class="cus_sel_box" name="" id=""><option value="">'+
+                _added_elem += '<div class="col-md-3"><select class="cus_sel_box '+header[i]
+                +'" name=""><option value="">'+
                 header[i]+'</option>';
                 for(let j=0; j<origin_header.length; j++) {
                     _added_elem += '<option value="'+origin_header[j]+'">'+
@@ -107,7 +108,8 @@ $(document).ready(function () {
                 }
                 _added_elem += '</select></div>';
             }
-            let whole_added_elem = '<div class="custom-select"><div class="row">'+_added_elem+'</div></div>';
+            let whole_added_elem = '<div class="custom-select" id="selected_'+fileId
+            +'"><div class="row">'+_added_elem+'</div></div>';
             $('#resumable-drop').hide();
             $("#progressbar_"+fileId).append(whole_added_elem);
             $("#upload-btn").addClass('hide');
@@ -139,4 +141,52 @@ $(document).ready(function () {
             $("progressbar_"+fileId).hide();
         })
     }
+
+    $("#tostep2-btn").click(function() {
+        var file_count = file.files.length - del_item.length;
+        var header_info = {};
+        var _token = $("input[name=_token]").val();
+        for(var k=0; k<file_count; k++) {
+            header_info[k] = {};
+            header_info[k]['Address'] = $("#selected_"+k+" .Address").val();
+            header_info[k]['City'] = $("#selected_"+k+" .City").val();
+            header_info[k]['Province'] = $("#selected_"+k+" .Province").val();
+            header_info[k]['Postal_code'] = $("#selected_"+k+" .Postal_code").val();
+        }
+        console.log(header_info);
+        
+        // var myJSON = header_info.toString();
+        // console.log(myJSON);
+        $.ajax({
+            url: 'set_header',
+            type: 'post',
+            data: {'header_info':header_info,'_token':_token},
+            success: function(msg) {
+                if(msg=="success") {
+                    window.location = 'main_process';
+                }
+            }
+        })
+    });
+
+    if($("#_page").val() == 'main_process') {
+        get_file_info();
+    };
 })
+
+function get_file_info() {
+    let _token = $('input[name=_token]').val();
+    let _file = $('#_file').val();
+
+    $.ajax({
+        url: '/get_file_info',
+        type: 'get',
+        success: function(data) {
+            $("#total_rows").val(data);
+            $("#rows-to-process").val(data);
+            $('.total_rows').text(data);
+            $("#dbStore-spinner").hide();
+            $('#get-contact-info').removeClass('hide');
+        }
+    })
+}

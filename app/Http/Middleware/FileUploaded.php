@@ -16,7 +16,7 @@ class FileUploaded
      */
     public function handle($request, Closure $next)
     {
-        if(!session()->has('file')) {
+        if(!session()->has('header_info')) {
             return redirect('/working_area');
         }
         return $next($request);

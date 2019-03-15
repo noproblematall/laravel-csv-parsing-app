@@ -54,6 +54,11 @@ class HomeController extends Controller
         return $header;
     }
 
+    public function setHeader(Request $request) {
+        session()->put('header_info',$request->get('header_info'));
+        echo "success";
+    }
+
     public function get_file_info(Request $request) {
         $user_id =  Auth::user()->id;
         $filename = $request->_file;

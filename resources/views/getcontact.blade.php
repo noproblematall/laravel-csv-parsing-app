@@ -8,7 +8,6 @@
     <div class="container">
         @csrf
         <input type="hidden" id="_page" value="main_process" />
-        <input type="hidden" id="_file" value="{{session()->get('file')}}" />
         <div class="row justify-content-center text-center mb100">
         <div class="col-md-8 probootstrap-section-heading">
                 <div class="form-group color">
