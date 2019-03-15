@@ -10,7 +10,7 @@
             <div class="col-md-8 probootstrap-section-heading">
                 <form method="POST" action="#">
                     @csrf
-                    <div class="form-group color">
+                    <div class="form-group color mb0">
                         <h3 class="text-left mytext-dark-blue underline">1. Upload Your File</h3>
                         <div id="resumable-drop" class="files">
                             @csrf
@@ -18,8 +18,8 @@
                                 <input type="file" name="resumable-browse" class="form-control" id="resumable-browse" multiple />
                             </p>
                         </div>
-                        <div id="progess">
-                            
+                        <div id="progess" class="hide">
+
                         </div>
                         <div class="myalert alert-success alert-dismissible hide" id="success-alert">
                             <a href="#" class="myclose" data-dismiss="alert" aria-label="close">&times;</a>
@@ -31,15 +31,15 @@
                             <strong>Warning!</strong> <span>Please select a file.</span>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 col-xs-12">
-                            <button type="button" id="upload-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
+                    <div class="right">
+                        <div class="right">
+                            <button type="button" id="upload-btn" class="btn btn-lg btn-primary signup-btn mb20">
                                 <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
                             </button>
-                            <button type="button" id="tostep2-btn" class="btn btn-lg btn-success btn-block signup-btn mb20 hide">
-                                <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Continue
+                            <button type="button" id="tostep2-btn" class="btn btn-lg btn-success signup-btn mb20 hide">
+                                &nbsp;&nbsp;Continue
                             </button>
-                            <button type="button" id="cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
+                            <button type="button" id="cancelAll-btn" class="btn btn-lg btn-danger signup-btn mb20">
                                 <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel All
                             </button>
                         </div>

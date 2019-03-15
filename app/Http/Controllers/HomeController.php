@@ -41,9 +41,17 @@ class HomeController extends Controller
     }
 
     public function fileUploadPost(Request $request) {
-        $path = $request->file('file')->store('upload');
+        $filename = $request->file('file')->getClientOriginalName().'_'.md5(time()).'.'.$request->file('file')->getClientOriginalExtension();
+        $path = $request->file('file')->storeAs(
+            'upload', $filename
+        );
 
-        return $path;
+        $csv = Reader::createFromPath(storage_path('app/').$path, 'r');
+        $csv->setHeaderOffset(0);
+        $header_offset = $csv->getHeaderOffset();
+        $header = $csv->getHeader();
+
+        return $header;
     }
 
     public function get_file_info(Request $request) {
