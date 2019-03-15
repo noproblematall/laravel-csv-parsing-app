@@ -10,30 +10,16 @@
             <div class="col-md-8 probootstrap-section-heading">
                 <form method="POST" action="#">
                     @csrf
-                    <div class="form-group files color">
+                    <div class="form-group color">
                         <h3 class="text-left mytext-dark-blue underline">1. Upload Your File </h3>
-                        <div id="resumable-drop" class="hide">
-                            <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                        <div id="resumable-drop" class="files">
+                            @csrf
                             <p>
-                                <button type="button" name="resumable-browse" class="form-control" data-url="{{ url('upload') }}" id="resumable-browse"></button>
+                                <input type="file" name="resumable-browse" class="form-control" id="resumable-browse" multiple />
                             </p>
                         </div>
-                        <div class="hide mb20" id="progress">
-                            <div class="row">
-                                <div class="col-md-1 col-sm-1 col-xs-1 text-center">
-                                    <i class="fas fa-file" style="margin-top: 20px;"></i>
-                                </div>
-                                <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <p class="text-left"><b id="file-name">&nbsp;</b></p>
-                                    <p class="text-left" id="file-size">&nbsp;</p>
-                                    <div id="myProgress">
-                                        <div class="bar" id="myBar"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-2 col-xs-1">
-                                    <span id="close">&times;</span>
-                                </div>
-                            </div>
+                        <div id="progess">
+                            
                         </div>
                         <div class="myalert alert-success alert-dismissible hide" id="success-alert">
                             <a href="#" class="myclose" data-dismiss="alert" aria-label="close">&times;</a>
@@ -54,7 +40,7 @@
                                 <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Continue
                             </button>
                             <button type="button" id="cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
-                                <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
+                                <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel All
                             </button>
                         </div>
                     </div>

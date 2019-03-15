@@ -18,7 +18,7 @@ Route::get('/main_process', 'HomeController@process')->name('main_process')->mid
 
 Auth::routes(['verify' => true]);
 
-Route::post('file-upload', 'FileController@fileUploadPost')->name('fileUploadPost');
+Route::post('file_upload', 'HomeController@fileUploadPost')->name('fileUploadPost');
 
 Route::post('get_file_info', 'HomeController@get_file_info')->name('get_file_info');
 

@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use Storage;
-use Session;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Pion\Laravel\ChunkUpload\Exceptions\UploadMissingFileException;
@@ -64,7 +63,7 @@ class UploadController extends Controller
 
         $disk = Storage::disk('s3');
         // It's better to use streaming Streaming (laravel 5.4+)
-        $disk->putFileAs(time(), $file, $fileName);
+        $disk->putFileAs('photos', $file, $fileName);
 
         // for older laravel
         // $disk->put($fileName, file_get_contents($file), 'public');
@@ -92,11 +91,13 @@ class UploadController extends Controller
         $fileName = $this->createFilename($file);
         // Group files by mime type
         $mime = str_replace('/', '-', $file->getMimeType());
-        $time = time();
+        // Group files by the date (week
+        $dateFolder = date("Y-m-W");
+
         // Build the file path
-        $filePath = "upload/";
+        $filePath = "upload/{$mime}/{$dateFolder}/";
         $finalPath = storage_path("app/".$filePath);
-        
+
         // move the file name
         $file->move($finalPath, $fileName);
 
@@ -115,9 +116,11 @@ class UploadController extends Controller
     protected function createFilename(UploadedFile $file)
     {
         $extension = 'csv';
+        $filename = str_replace(".".$extension, "", $file->getClientOriginalName()); // Filename without extension
 
-        $filename = time() . "." . $extension;
-        session(['file' => $filename]);
+        // Add timestamp hash to name of the file
+        $filename .= "_" . md5(time()) . "." . $extension;
+
         return $filename;
     }
 }

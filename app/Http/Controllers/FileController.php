@@ -25,7 +25,7 @@ class FileController extends UploadController
     	return view('fileUpload');
     }
 
-    public function fileUploadPost(FileReceiver $receiver,Request $request)
+    public function fileUploadPost(FileReceiver $receiver)
     {
         // check if the upload is success, throw exception or return response you need
         if ($receiver->isUploaded() === false) {

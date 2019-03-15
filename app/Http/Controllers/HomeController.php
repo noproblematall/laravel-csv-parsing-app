@@ -40,6 +40,12 @@ class HomeController extends Controller
         return view('getcontact', compact('index','menu'));
     }
 
+    public function fileUploadPost(Request $request) {
+        $path = $request->file('file')->store('upload');
+
+        return $path;
+    }
+
     public function get_file_info(Request $request) {
         $user_id =  Auth::user()->id;
         $filename = $request->_file;

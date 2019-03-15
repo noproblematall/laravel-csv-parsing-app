@@ -1,197 +1,86 @@
-var $ = window.$; // use the global jQuery instance
+$(document).ready(function () {
+    $('input[type=file]').change(function () {
+        $('#progess').html('');
+        for (var i = 0; i < this.files.length; i++) { //Progress bar and status label's for each file genarate dynamically
+            var fileId = i;
+            let filesize;
 
-var $fileUpload = $('#resumable-browse');
-var $fileUploadDrop = $('#resumable-drop');
-var $progress = $("#progress");
-var file_name = $("#file-name");
-var file_size = $("#file-size");
-var bar = $('.bar');
-var file_selected = false;
-var elem =  $('#upload-btn');
-
-elem.addClass('btn-disable');
-elem.addClass('dark-red');
-
-$("#resumable-browse").click(function() {
-    if(file_selected) {
-        $(this).addClass('btn-disable');
-        return false;
-    }
-    else {
-        $(this).removeClass('btn-disable');
-    }
-});
-$("#resumable-browse").mouseover(function() {
-    if(file_selected) {
-        $(this).addClass('btn-disable');
-    }
-    else {
-        $(this).removeClass('btn-disable');
-    }
-})
-
-if ($fileUpload.length > 0 && $fileUploadDrop.length > 0) {
-    var resumable = new Resumable({
-        chunkSize: 1 * 1024 * 1024, // 1MB
-        simultaneousUploads: 3,
-        testChunks: false,
-        throttleProgressCallbacks: 1,
-        target: $fileUpload.data('url'),
-        query:{_token : $('input[name=_token]').val()}
-    });
-
-// Resumable.js isn't supported, fall back on a different method
-    if (!resumable.support) {
-        $('#resumable-error').addClass('show');
-    } else {
-        $('#cancel-btn').click(function() {
-            file_selected = false;
-            $progress.removeClass('show');
-            resumable.cancel();
-            $("#upload-btn").show();
-            $("#tostep2-btn").addClass('hide');
-            $('.myalert').removeClass('show');
-        });
-        $("#close").click(function(e) {
-            file_selected = false;
-            e.preventDefault();
-            resumable.cancel();
-            $("#progress").removeClass('show');
-            $("#upload-btn").show();
-            $("#tostep2-btn").addClass('hide');
-            $('.myalert').removeClass('show');
-        })
-        // Show a place for dropping/selecting files
-
-        $fileUploadDrop.addClass('show');
-        resumable.assignDrop($fileUpload[0]);
-        resumable.assignBrowse($fileUploadDrop[0]);
-
-        // Handle file add event
-        resumable.on('fileAdded', function (file) {
-            elem.removeClass('btn-disable');
-            elem.removeClass('dark-red');
-            $("#warning-alert").removeClass('show');
-
-            let ext = getExtension(file.relativePath);
-
-            if( ext == 'csv' || ext =='CSV' ) {
-                file_selected = true;
-                $progress.addClass('show');
-
-                if(file.size < 1024) {
-                    let filesize = file.size;
-                    file_size.html(filesize+' bytes');
-                }
-                else {
-                    let filesize = parseFloat((file.size/1048576).toFixed(1));
-                    file_size.html(filesize+' MB');
-                }
-                
-                file_name.html(file.fileName);
-                bar.css("background-color","#3ea200");
-                $("#success-alert").hide();
-                $("#warning-alert").hide();
-
-                $('#upload-btn').click(function() {
-                    elem.addClass('btn-disable');
-                    elem.addClass('dark-red');
-                    resumable.upload();
-                });
+            if(this.files[i].size < 1024) {
+                filesize = this.files[i].size + ' bytes';
             }
             else {
-                $("#warning-alert span").text('Plese select a correct csv file!');
-                $("#warning-alert").addClass('show');
-                elem.addClass('btn-disable');
-                elem.addClass('dark-red');
+                filesize = parseFloat((this.files[i].size/1048576).toFixed(2))+' MB';
             }
-        });
-        resumable.on('fileSuccess', function (file, message) {
-            $("#success-alert").addClass('show');
-            $("#upload-btn").hide();
-            $("#tostep2-btn").removeClass('hide');
-            file = {};
-        });
-        resumable.on('fileError', function (file, message) {
-            $("#warning-alert span").text(message);
-            $("#warning-alert").addClass('show');
-            $("#myProgress #myBar").css("background-color","#b30000");
-            file = {};
-        });
-        resumable.on('fileProgress', function (file) {
-            bar.width(Math.floor(resumable.progress() * 100) + '%');
-        });
-    };
-
-}
-
-$(".myclose").click(function(e) {
-    e.preventDefault();
-    $(this).parent().removeClass('show');
-})
-
-$("#tostep2-btn").click(function() {
-    window.location = '/main_process';
-})
-
-function getExtension(path) {
-    var basename = path.split(/[\\/]/).pop(),
-        pos = basename.lastIndexOf(".");
-
-    if (basename === "" || pos < 1)
-        return "";
-
-    return basename.slice(pos + 1);
-}
-
-function get_file_info() {
-    let _token = $('input[name=_token]').val();
-    let _file = $('#_file').val();
-
-    $.ajax({
-        url: '/get_file_info',
-        type: 'post',
-        data: '_file='+_file+"&_token="+_token,
-        success: function(data) {
-            $("#total_rows").val(data);
-            $("#rows-to-process").val(data);
-            $('.total_rows').text(data);
-            $("#dbStore-spinner").hide();
-            $('#get-contact-info').removeClass('hide');
+            console.log(this.files[i]);
+            $("#progess").append('<div class="mb20 f_progress" id="progressbar_'+fileId+
+            '"><div class="row"><div class="col-md-1 col-sm-1 col-xs-1 text-center"><i class="fas fa-file" style="margin-top: 20px;"></i></div><div class="col-md-9 col-sm-9 col-xs-9"><p class="text-left"><b class="file-name">'+
+            this.files[i].name+'</b></p><div class="text-left"><span class="process-size">0 bytes </span><span class="file-size"> / '+
+            filesize+'</span></div><div class="myProgress"><div class="bar myBar"></div></div></div><div class="col-md-2 col-sm-2 col-xs-1"><span class="f_close">&times;</span></div></div></div>');
         }
     })
-}
 
-$(document).ready(function() {
-    if($("#_page").val() == 'main_process') {
-        get_file_info();
-    };
-
-    $("#process-cancel-btn").click(function() {
-        $('#get-contact-info').addClass('hide');
-        $("#dbStore-spinner").show();
-        $.ajax({
-            url: '/process_cancel',
-            type: 'get',
-            success: function(msg) {
-                if(msg == 'success') {
-                    window.location = '/working_area';
-                }
-            }
-        });
-    });
-
-    $('#process-btn').click(function() {
-        $("#dbStore-spinner").show();
-        $('#get-contact-info').addClass('hide');
-
-        $("#processing").removeClass('hide');
-    });
-
-    $("#processing-cancel-btn").click(function() {
-        $("#processing").addClass('hide');
-
-        $("#dbStore-spinner").hide();
-        $('#get-contact-info').removeClass('hide');
+    $("#upload-btn").click(function() {
+        uploadFiles();
     })
+
+    function uploadFiles() {
+        var file = document.getElementById("resumable-browse")//All files
+        for (var i = 0; i < file.files.length; i++) {
+            uploadSingleFile(file.files[i], i);
+        }
+    }
+
+    function uploadSingleFile(file, i) {
+        var fileId = i;
+        var ajax = new XMLHttpRequest();
+        //Progress Listener
+        ajax.upload.addEventListener("progress", function (e) {
+            var percent = (e.loaded / e.total) * 100;
+            $('#progressbar_' + fileId + ' .myBar').css("width", percent + "%");
+
+            var process_size;
+            if(e.loaded < 1024) {
+                process_size = file.size + ' bytes';
+            }
+            else {
+                process_size = (e.loaded / 1048576).toFixed(2) + ' MB';
+            }
+            $('#progressbar_' + fileId + ' .process-size').text(process_size);
+           
+            
+        }, false);
+        //Load Listener
+        ajax.addEventListener("load", function (e) {
+            $("#status_" + fileId).text(event.target.responseText);
+            $('#progressbar_' + fileId).css("width", "100%")
+
+            //Hide cancel button
+            var _cancel = $('#cancel_' + fileId);
+            _cancel.hide();
+        }, false);
+        //Error Listener
+        ajax.addEventListener("error", function (e) {
+            $("#status_" + fileId).text("Upload Failed");
+        }, false);
+        //Abort Listener
+        ajax.addEventListener("abort", function (e) {
+            $("#status_" + fileId).text("Upload Aborted");
+        }, false);
+
+        ajax.open("POST", "file_upload"); // Your API .net, php
+
+        var uploaderForm = new FormData();
+        var _token = $('input[name=_token]').val();
+        uploaderForm.append("file", file);
+        uploaderForm.append("_token", _token);
+        ajax.send(uploaderForm);
+        
+        //Cancel button
+        var _cancel = $('#cancel_' + fileId);
+        _cancel.show();
+
+        _cancel.on('click', function () {
+            ajax.abort();
+        })
+    }
 })
