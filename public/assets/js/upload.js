@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     var file = document.getElementById('resumable-browse');
     $('#resumable-browse').change(function () {
+        $("#upload-btn").removeClass('btn-disable');
         $('#progess').removeClass('hide');
         $('#resumable-drop').addClass('hide');
         for (var i = 0; i < this.files.length; i++) { //Progress bar and status label's for each file genarate dynamically
@@ -54,11 +55,12 @@ $(document).ready(function () {
     $("#upload-btn").click(function() {
         m = 0
         if(!$(this).hasClass('btn-disable')) {
-            uploadFiles();
-            $(".upload-btn-text'").hide();
+            $(".upload-btn-text").hide();
             $("#uploading-spinner").removeClass('hide');
             $(this).addClass('btn-disable');
             $(this).addClass('dark-red');
+
+            uploadFiles();
         }
     })
     $("#cancelAll-btn").click(function() {
@@ -68,9 +70,10 @@ $(document).ready(function () {
         $('#resumable-drop').removeClass('hide');
         $('#resumable-drop').show();
 
-        $(".upload-btn-text'").show();
+        $(".upload-btn-text").show();
         $("#uploading-spinner").addClass('hide');
 
+        $("#upload-btn").removeClass('btn-disable');
         $("#upload-btn").removeClass('hide');
         $("#tostep2-btn").addClass('hide');
     })

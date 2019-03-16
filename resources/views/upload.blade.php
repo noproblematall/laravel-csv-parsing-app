@@ -36,7 +36,7 @@
                             <button type="button" id="cancelAll-btn" class="btn btn-lg btn-danger signup-btn mb20">
                                 <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel All
                             </button>
-                            <button type="button" id="upload-btn" class="btn btn-lg btn-primary signup-btn mb20">
+                            <button type="button" id="upload-btn" class="btn btn-lg btn-primary signup-btn mb20 btn-disable">
                                 <div class="upload-btn-text">
                                     <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
                                 </div>
