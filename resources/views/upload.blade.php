@@ -43,7 +43,8 @@
                                 <div class="spinner-border alert-white hide center" id="uploading-spinner"></div>
                             </button>
                             <button type="button" id="tostep2-btn" class="btn btn-lg btn-success signup-btn mb20 hide">
-                                &nbsp;&nbsp;Continue
+                                <div class="continue-btn-text">&nbsp;&nbsp;Continue</div>
+                                <div class="spinner-border alert-white hide center" id="tostep2-spinner"></div>
                             </button>
                         </div>
                     </div>

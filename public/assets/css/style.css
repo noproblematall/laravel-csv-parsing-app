@@ -40,6 +40,9 @@ body {
 .dark-red {
     background-color: #6d1226 !important;
 }
+.dark-danger {
+    background-color: #d43f3a !important;
+}
 .mytext-dark-blue {
     color: #161e2c !important;
 }
@@ -537,4 +540,7 @@ legend{
 }
 #upload-btn {
     width: 157.59px;
+}
+#tostep2-btn {
+    width: 154.94px;
 }

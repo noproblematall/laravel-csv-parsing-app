@@ -3,9 +3,21 @@ $(document).ready(function () {
     let m = 0;
     let file_count = 0;
 
+    $("#upload-btn").addClass('btn-disable');
+    $("#upload-btn").addClass('dark-red');
+
+    $("#cancelAll-btn").addClass('btn-disable');
+    $("#cancelAll-btn").addClass('dark-danger')
+
     var file = document.getElementById('resumable-browse');
     $('#resumable-browse').change(function () {
         $("#upload-btn").removeClass('btn-disable');
+        $("#upload-btn").removeClass('dark-red');
+
+        $("#cancelAll-btn").removeClass('btn-disable');
+        $("#cancelAll-btn").removeClass('dark-danger')
+    
+
         $('#progess').removeClass('hide');
         $('#resumable-drop').addClass('hide');
         for (var i = 0; i < this.files.length; i++) { //Progress bar and status label's for each file genarate dynamically
@@ -64,18 +76,23 @@ $(document).ready(function () {
         }
     })
     $("#cancelAll-btn").click(function() {
-        $('#resumable-drop').removeClass('hide');
-        $('#progess').html('');
-        $("#resumable-browse").val('');
-        $('#resumable-drop').removeClass('hide');
-        $('#resumable-drop').show();
+        if(!$(this).hasClass('btn-disable')) {
+            $(this).addClass('btn-disable');
+            $(this).addClass('dark-danger');
+            
+            $('#resumable-drop').removeClass('hide');
+            $('#progess').html('');
+            $("#resumable-browse").val('');
+            $('#resumable-drop').removeClass('hide');
+            $('#resumable-drop').show();
 
-        $(".upload-btn-text").show();
-        $("#uploading-spinner").addClass('hide');
+            $(".upload-btn-text").show();
+            $("#uploading-spinner").addClass('hide');
 
-        $("#upload-btn").removeClass('btn-disable');
-        $("#upload-btn").removeClass('hide');
-        $("#tostep2-btn").addClass('hide');
+            $("#upload-btn").addClass('btn-disable');
+            $("#upload-btn").removeClass('hide');
+            $("#tostep2-btn").addClass('hide');
+        }
     })
     $(".f_close").click(function() {
         alert(123);
@@ -181,6 +198,7 @@ $(document).ready(function () {
     }
 
     $("#tostep2-btn").click(function() {
+
         $('.alert_header').hide();
         let validation = false;
         $('.cus_sel_box').each(function() {
@@ -192,6 +210,9 @@ $(document).ready(function () {
         })
 
         if(!validation) {
+            $(".continue-btn-text").hide();
+            $("#tostep2-spinner").removeClass('hide');
+
             var file_count = file.files.length - del_item.length;
             var header_info = {};
             var _token = $("input[name=_token]").val();
