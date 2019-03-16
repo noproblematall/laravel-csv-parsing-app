@@ -37,7 +37,10 @@
                                 <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel All
                             </button>
                             <button type="button" id="upload-btn" class="btn btn-lg btn-primary signup-btn mb20">
-                                <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
+                                <div class="upload-btn-text">
+                                    <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Upload
+                                </div>
+                                <div class="spinner-border alert-white hide center" id="uploading-spinner"></div>
                             </button>
                             <button type="button" id="tostep2-btn" class="btn btn-lg btn-success signup-btn mb20 hide">
                                 &nbsp;&nbsp;Continue

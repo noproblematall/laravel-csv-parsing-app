@@ -55,6 +55,8 @@ $(document).ready(function () {
         m = 0
         if(!$(this).hasClass('btn-disable')) {
             uploadFiles();
+            $(".upload-btn-text'").hide();
+            $("#uploading-spinner").removeClass('hide');
             $(this).addClass('btn-disable');
             $(this).addClass('dark-red');
         }
@@ -65,6 +67,9 @@ $(document).ready(function () {
         $("#resumable-browse").val('');
         $('#resumable-drop').removeClass('hide');
         $('#resumable-drop').show();
+
+        $(".upload-btn-text'").show();
+        $("#uploading-spinner").addClass('hide');
 
         $("#upload-btn").removeClass('hide');
         $("#tostep2-btn").addClass('hide');
