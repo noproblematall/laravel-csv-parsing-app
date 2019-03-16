@@ -1,5 +1,7 @@
 $(document).ready(function () {
     var del_item = [];
+    let m = 0;
+    let file_count = 0;
 
     var file = document.getElementById('resumable-browse');
     $('#resumable-browse').change(function () {
@@ -50,6 +52,7 @@ $(document).ready(function () {
     })
 
     $("#upload-btn").click(function() {
+        m = 0
         if(!$(this).hasClass('btn-disable')) {
             uploadFiles();
             $(this).addClass('btn-disable');
@@ -88,8 +91,8 @@ $(document).ready(function () {
                 }
             }
         }
+        file_count = file.files.length - del_item.length;
 
-        
     }
 
     function uploadSingleFile(file, i) {
@@ -112,7 +115,9 @@ $(document).ready(function () {
             
         }, false);
         //Load Listener
+        
         ajax.addEventListener("load", function (e) {
+            m ++;
             $('#progressbar_' + fileId).css("width", "100%");
 
             let origin_header = new Array();
@@ -134,8 +139,11 @@ $(document).ready(function () {
             +'"><div class="row">'+_added_elem+'</div><p class="alert_header" style="display:none; color: #981a36;">Select the above select boxs!</p></div>';
             $('#resumable-drop').hide();
             $("#progressbar_"+fileId).append(whole_added_elem);
-            $("#upload-btn").addClass('hide');
-            $("#tostep2-btn").removeClass('hide');
+            
+            if( m == file_count ) {
+                $("#upload-btn").addClass('hide');
+                $("#tostep2-btn").removeClass('hide');
+            }
 
         }, false);
         //Error Listener
