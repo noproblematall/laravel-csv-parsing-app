@@ -7,7 +7,7 @@ $(document).ready(function () {
     $("#upload-btn").addClass('dark-red');
 
     $("#cancelAll-btn").addClass('btn-disable');
-    $("#cancelAll-btn").addClass('dark-danger')
+    $("#cancelAll-btn").addClass('dark-danger');
 
     var file = document.getElementById('resumable-browse');
     $('#resumable-browse').change(function () {
@@ -72,6 +72,9 @@ $(document).ready(function () {
             $(this).addClass('btn-disable');
             $(this).addClass('dark-red');
 
+            $("#cancelAll-btn").addClass('btn-disable');
+            $("#cancelAll-btn").addClass('dark-danger');
+
             uploadFiles();
         }
     })
@@ -79,7 +82,7 @@ $(document).ready(function () {
         if(!$(this).hasClass('btn-disable')) {
             $(this).addClass('btn-disable');
             $(this).addClass('dark-danger');
-            
+
             $('#resumable-drop').removeClass('hide');
             $('#progess').html('');
             $("#resumable-browse").val('');
@@ -168,6 +171,9 @@ $(document).ready(function () {
             if( m == file_count ) {
                 $("#upload-btn").addClass('hide');
                 $("#tostep2-btn").removeClass('hide');
+
+                $("#cancelAll-btn").removeClass('btn-disable');
+                $("#cancelAll-btn").removeClass('dark-danger');
             }
 
         }, false);
