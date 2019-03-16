@@ -33,17 +33,15 @@ class HomeController extends Controller
         return view('upload', compact('index','menu'));
     }
     public function process(Request $request) {
-        $file = session('file');
-        
         $index = "index-1";
         $menu = 'working_area';
         return view('getcontact', compact('index','menu'));
     }
 
     public function fileUploadPost(Request $request) {
-        $filename = $request->file('file')->getClientOriginalName().'_'.md5(time()).'.'.$request->file('file')->getClientOriginalExtension();
+        $filename = $request->file('file')->getClientOriginalName();
         $path = $request->file('file')->storeAs(
-            'upload', $filename
+            'upload/'.Auth::user()->email, $filename
         );
 
         $csv = Reader::createFromPath(storage_path('app/').$path, 'r');
@@ -60,26 +58,35 @@ class HomeController extends Controller
     }
 
     public function get_file_info(Request $request) {
-        $user_id =  Auth::user()->id;
-        $filename = $request->_file;
-        $csv = Reader::createFromPath(storage_path('app/upload/').$filename, 'r');
-        $csv->setHeaderOffset(0);
-        $records = $csv->getRecords();
-        
-        foreach ($records as $offset => $record) {
-            Middle::firstOrCreate([
-                'user_id' => $user_id,
-                'address' => $record['address'],
-                'city' => $record['city'],
-                'province' => $record['province'],
-                'postal code' => $record['postal code'],
-            ]);
+        $file = session('header_info');
+        $file_info = [];
+        for($i=0; $i<count($file); $i++) {
+            $csv = Reader::createFromPath(storage_path('app/upload/').Auth::user()->email.'/'.$file[$i]['fileName'], 'r');
+            $file_info[$i]['count'] = count($csv);
+            $file_info[$i]['fileName'] = $file[$i]['fileName'];
+            $file_info[$i]['processable'] = 10000;
         }
-        echo count($csv);
+
+        // $user_id =  Auth::user()->id;
+        // $filename = $request->_file;
+        // $csv = Reader::createFromPath(storage_path('app/upload/').$filename, 'r');
+        // $csv->setHeaderOffset(0);
+        // $records = $csv->getRecords();
+        
+        // foreach ($records as $offset => $record) {
+        //     Middle::firstOrCreate([
+        //         'user_id' => $user_id,
+        //         'address' => $record['address'],
+        //         'city' => $record['city'],
+        //         'province' => $record['province'],
+        //         'postal code' => $record['postal code'],
+        //     ]);
+        // }
+        return response()->json($file_info);
     }
 
     public function processCancel(Request $request) {
-        session()->forget('file');
+        session()->forget('header_info');
 
         echo "success";
     }

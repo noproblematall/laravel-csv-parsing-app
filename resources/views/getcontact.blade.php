@@ -17,28 +17,26 @@
                 <div class="col-md-12 hide" id="get-contact-info">
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-xs-12">
-                            <form action="" class="probootstrap-form" id="process-form">
-                                <div class="form-group text-left">
-                                    <label for="total_rows">Total rows:</label>
-                                    <input type="text" name="total_rows" id="total_rows" class="form-control" value="" placeholder="Total rows" disabled>
-                                </div>
-                                <div class="form-group text-left">
-                                    <label for="rows-to-process">Number of rows to process:</label>
-                                    <input type="text" class="form-control" id="rows-to-process" value="5600" placeholder="Number of rows to process" reqired>
-                                </div>
+                            <form action="" class="probootstrap-form pt0" id="process-form">
+                                <div class="mb20" id="file_info"></div>
+
+                                <hr />
                                 <div class="form-group text-left">
                                     <input type="text" class="form-control" placeholder="Notification email" title="You will receive the notification of completion on this email address.">
                                 </div>
-        
-                                <button type="button" id="process-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
-                                    <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Process
-                                </button>
-                                <button type="button" id="tostep2-btn" class="btn btn-lg btn-success btn-block signup-btn mb20 hide">
-                                    <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Continue
-                                </button>
-                                <button type="button" id="process-cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
-                                    <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
-                                </button>
+                                
+                                <div class="right">
+                                    <button type="button" id="process-cancel-btn" class="btn btn-lg btn-danger signup-btn mb20">
+                                        <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
+                                    </button>
+                                    <button type="button" id="process-btn" class="btn btn-lg btn-primary signup-btn mb20">
+                                        <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Process
+                                    </button>
+                                    <button type="button" id="tostep2-btn" class="btn btn-lg btn-success signup-btn mb20 hide">
+                                        <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Continue
+                                    </button>
+                                </div>
+
                             </form>
                         </div>
                         <div class="col-md-6 col-xs-12">
@@ -46,11 +44,11 @@
                             <div class="file-info">
                                 <div class="row">
                                     <div class="col-xs-6 text-left">Total rows:</div>
-                                    <div class="col-xs-6 text-left total_rows">5600</div>
+                                    <div class="col-xs-6 text-left total_rows"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 text-left">Processable rows:</div>
-                                    <div class="col-xs-6 text-left">10000</div>
+                                    <div class="col-xs-6 text-left processable"></div>
                                 </div>
                             </div>
                             <br>

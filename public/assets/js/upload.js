@@ -109,7 +109,7 @@ $(document).ready(function () {
                 _added_elem += '</select></div>';
             }
             let whole_added_elem = '<div class="custom-select" id="selected_'+fileId
-            +'"><div class="row">'+_added_elem+'</div></div>';
+            +'"><div class="row">'+_added_elem+'</div><p class="alert_header" style="display:none; color: #981a36;">Select the above select boxs!</p></div>';
             $('#resumable-drop').hide();
             $("#progressbar_"+fileId).append(whole_added_elem);
             $("#upload-btn").addClass('hide');
@@ -143,48 +143,89 @@ $(document).ready(function () {
     }
 
     $("#tostep2-btn").click(function() {
-        var file_count = file.files.length - del_item.length;
-        var header_info = {};
-        var _token = $("input[name=_token]").val();
-        for(var k=0; k<file_count; k++) {
-            header_info[k] = {};
-            header_info[k]['Address'] = $("#selected_"+k+" .Address").val();
-            header_info[k]['City'] = $("#selected_"+k+" .City").val();
-            header_info[k]['Province'] = $("#selected_"+k+" .Province").val();
-            header_info[k]['Postal_code'] = $("#selected_"+k+" .Postal_code").val();
-        }
-        console.log(header_info);
-        
-        // var myJSON = header_info.toString();
-        // console.log(myJSON);
-        $.ajax({
-            url: 'set_header',
-            type: 'post',
-            data: {'header_info':header_info,'_token':_token},
-            success: function(msg) {
-                if(msg=="success") {
-                    window.location = 'main_process';
-                }
+        $('.alert_header').hide();
+        let validation = false;
+        $('.cus_sel_box').each(function() {
+            if($(this).val() == "") {
+                this.focus();
+                validation = true;
+                $(this).parent().parent().parent().find('.alert_header').show();
             }
         })
+
+        if(!validation) {
+            var file_count = file.files.length - del_item.length;
+            var header_info = {};
+            var _token = $("input[name=_token]").val();
+            for(var k=0; k<file_count; k++) {
+                header_info[k] = {};
+                header_info[k]['fileName'] = $("#selected_"+k).parent().find('.file-name').text();
+                header_info[k]['Address'] = $("#selected_"+k+" .Address").val();
+                header_info[k]['City'] = $("#selected_"+k+" .City").val();
+                header_info[k]['Province'] = $("#selected_"+k+" .Province").val();
+                header_info[k]['Postal_code'] = $("#selected_"+k+" .Postal_code").val();
+            }
+            console.log(header_info);
+            
+            // var myJSON = header_info.toString();
+            // console.log(myJSON);
+            $.ajax({
+                url: 'set_header',
+                type: 'post',
+                data: {'header_info':header_info,'_token':_token},
+                success: function(msg) {
+                    if(msg=="success") {
+                        window.location = 'main_process';
+                    }
+                }
+            })
+        }
+
     });
 
     if($("#_page").val() == 'main_process') {
         get_file_info();
     };
+
+    $("#process-cancel-btn").click(function() {
+        $('#get-contact-info').addClass('hide');
+        $("#dbStore-spinner").show();
+        $.ajax({
+            url: '/process_cancel',
+            type: 'get',
+            success: function(msg) {
+                if(msg == 'success') {
+                    window.location = '/working_area';
+                }
+            }
+        });
+    });
 })
 
 function get_file_info() {
-    let _token = $('input[name=_token]').val();
-    let _file = $('#_file').val();
+    let appended_elem = $('#file_info');
 
     $.ajax({
         url: '/get_file_info',
         type: 'get',
         success: function(data) {
-            $("#total_rows").val(data);
-            $("#rows-to-process").val(data);
-            $('.total_rows').text(data);
+            console.log(data);
+            let total_count = 0;
+            let processable = 0;
+            for(let i = 0; i < data.length; i++) {
+                let append_str = '<h4 class="mytext-dark-blue underline text-left">'+(i+1)+'. '+data[i].fileName
+                +' :</h4><div class="form-group text-left"><label for="total_rows">Total rows:</label><input type="text" name="total_rows" id="total_rows_'+i
+                +'" class="form-control" value="'+data[i].count+'" placeholder="Total rows" disabled></div><div class="form-group text-left" style="margin-bottom: 68px"><label for="rows-to-process">Number of rows to process:</label><input type="text" class="form-control" id="rows_to_process_'+i+'" value="'+
+                data[i].count+'" placeholder="Number of rows to process" reqired></div>';
+                appended_elem.append(append_str);
+                total_count += data[i].count;
+                processable = data[i].processable;
+                console.log(data[i].fileName);
+                console.log(data[i].count);
+            }
+
+            $('.total_rows').text(total_count);
+            $('.processable').text(processable);
             $("#dbStore-spinner").hide();
             $('#get-contact-info').removeClass('hide');
         }
