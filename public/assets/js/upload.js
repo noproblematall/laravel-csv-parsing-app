@@ -4,35 +4,57 @@ $(document).ready(function () {
     var file = document.getElementById('resumable-browse');
     $('#resumable-browse').change(function () {
         $('#progess').removeClass('hide');
+        $('#resumable-drop').addClass('hide');
         for (var i = 0; i < this.files.length; i++) { //Progress bar and status label's for each file genarate dynamically
-            var fileId = i;
-            let filesize;
+            console.log(this.files[i].name);
+            let ext = getExtension(this.files[i].name);
+            // let ext = 'doc';
 
-            if(this.files[i].size < 1024) {
-                filesize = this.files[i].size + ' bytes';
+            if( ext == 'csv' || ext =='CSV' ) {
+                var fileId = i;
+                let filesize;
+
+                if(this.files[i].size < 1024) {
+                    filesize = this.files[i].size + ' bytes';
+                }
+                else {
+                    filesize = parseFloat((this.files[i].size/1048576).toFixed(2))+' MB';
+                }
+                console.log(this.files[i]);
+                $("#progess").append('<div class="mb20 f_progress" id="progressbar_'+fileId+
+                '"><div class="row mb20"><div class="col-md-1 col-sm-1 col-xs-1 text-center"><i class="fas fa-file" style="margin-top: 20px;"></i></div><div class="col-md-9 col-sm-9 col-xs-9"><p class="text-left"><b class="file-name">'+
+                this.files[i].name+'</b></p><div class="text-left"><span class="process-size">0 bytes </span><span class="file-size"> / '+
+                filesize+'</span></div><div class="myProgress"><div class="bar myBar"></div></div></div><div class="col-md-2 col-sm-2 col-xs-1"><span class="f_close" title="'+fileId+'" id="f_close_'+fileId+'">&times;</span></div></div></div>');
+                $('#progressbar_'+fileId).click(function() {
+
+                })
+                $("#f_close_"+fileId).click(function (){
+                    $('#progressbar_'+$(this).attr('title')).remove();
+                    del_item.push($(this).attr('title'));
+                });
             }
             else {
-                filesize = parseFloat((this.files[i].size/1048576).toFixed(2))+' MB';
+                $("#warning-alert span").text(this.files[i].name+' is not csv file!');
+                $("#warning-alert").removeClass('hide');
+                $("#warning-alert").show();
+                if(this.files.length = 1) {
+                    $('#resumable-drop').removeClass('hide');
+                    $("#resumable-browse").val('');
+                }
+                setTimeout(function() {
+                    $("#warning-alert").fadeOut();
+                },2000);
             }
-            console.log(this.files[i]);
-            $("#progess").append('<div class="mb20 f_progress" id="progressbar_'+fileId+
-            '"><div class="row mb20"><div class="col-md-1 col-sm-1 col-xs-1 text-center"><i class="fas fa-file" style="margin-top: 20px;"></i></div><div class="col-md-9 col-sm-9 col-xs-9"><p class="text-left"><b class="file-name">'+
-            this.files[i].name+'</b></p><div class="text-left"><span class="process-size">0 bytes </span><span class="file-size"> / '+
-            filesize+'</span></div><div class="myProgress"><div class="bar myBar"></div></div></div><div class="col-md-2 col-sm-2 col-xs-1"><span class="f_close" title="'+fileId+'" id="f_close_'+fileId+'">&times;</span></div></div></div>');
-            $('#progressbar_'+fileId).click(function() {
-
-            })
-            $("#f_close_"+fileId).click(function (){
-                $('#progressbar_'+$(this).attr('title')).remove();
-                del_item.push($(this).attr('title'));
-            });
         }
-        $('#resumable-drop').addClass('hide');
+        
     })
 
     $("#upload-btn").click(function() {
-        // console.log(file.files);
-        uploadFiles();
+        if(!$(this).hasClass('btn-disable')) {
+            uploadFiles();
+            $(this).addClass('btn-disable');
+            $(this).addClass('dark-red');
+        }
     })
     $("#cancelAll-btn").click(function() {
         $('#resumable-drop').removeClass('hide');
@@ -210,6 +232,16 @@ $(document).ready(function () {
         return false;
     })
 })
+
+function getExtension(path) {
+    var basename = path.split(/[\\/]/).pop(),
+        pos = basename.lastIndexOf(".");
+
+    if (basename === "" || pos < 1)
+        return "";
+
+    return basename.slice(pos + 1);
+}
 
 function get_file_info() {
     let appended_elem = $('#file_info');
