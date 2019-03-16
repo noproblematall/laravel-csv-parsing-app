@@ -21,6 +21,7 @@ Auth::routes(['verify' => true]);
 Route::post('file_upload', 'HomeController@fileUploadPost')->name('fileUploadPost');
 Route::get('get_file_info', 'HomeController@get_file_info')->name('get_file_info');
 Route::post('set_header', 'HomeController@setHeader')->name('set_header');
+Route::post('store_data', 'HomeController@setHeader')->name('store_data');
 
 Route::post('upload', 'FileController@fileUploadPost')->name('fileUploadPost');
 

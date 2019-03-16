@@ -17,19 +17,19 @@
                 <div class="col-md-12 hide" id="get-contact-info">
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-xs-12">
-                            <form action="" class="probootstrap-form pt0" id="process-form">
+                            <form action="{{ route('store_data') }}" class="probootstrap-form pt0" id="process-form">
                                 <div class="mb20" id="file_info"></div>
 
                                 <hr />
                                 <div class="form-group text-left">
-                                    <input type="text" class="form-control" placeholder="Notification email" title="You will receive the notification of completion on this email address.">
+                                    <input type="email" class="form-control" placeholder="Notification email" title="You will receive the notification of completion on this email address.">
                                 </div>
                                 
                                 <div class="right">
                                     <button type="button" id="process-cancel-btn" class="btn btn-lg btn-danger signup-btn mb20">
                                         <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
                                     </button>
-                                    <button type="button" id="process-btn" class="btn btn-lg btn-primary signup-btn mb20">
+                                    <button type="submit" id="process-btn" class="btn btn-lg btn-primary signup-btn mb20">
                                         <span class="btn-label"><i class="fa fa-upload"></i></span>&nbsp;&nbsp;Process
                                     </button>
                                     <button type="button" id="tostep2-btn" class="btn btn-lg btn-success signup-btn mb20 hide">
@@ -64,13 +64,6 @@
                 <div class="col-md-12 hide" id="processing">
                     <h4 class="text-center underline">Processing ...</h4>
                     <h6 class="text-center"> - You will receive the notification of completion on your or given email address. - </h6>
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <button type="button" id="processing-cancel-btn" class="btn btn-lg btn-danger btn-block signup-btn mb20">
-                                <span class="btn-label"><i class="fas fa-trash-alt"></i></span>&nbsp;&nbsp;Cancel
-                            </button>
-                        </div>
-                    </div>
                 </div>
         </div>
         </div>

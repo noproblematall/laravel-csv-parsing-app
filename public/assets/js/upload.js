@@ -200,6 +200,15 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#process-form").submit(function() {
+        $("#dbStore-spinner").show();
+        $('#get-contact-info').addClass('hide');
+
+        $("#processing").removeClass('hide');
+
+        return false;
+    })
 })
 
 function get_file_info() {
@@ -214,9 +223,9 @@ function get_file_info() {
             let processable = 0;
             for(let i = 0; i < data.length; i++) {
                 let append_str = '<h4 class="mytext-dark-blue underline text-left">'+(i+1)+'. '+data[i].fileName
-                +' :</h4><div class="form-group text-left"><label for="total_rows">Total rows:</label><input type="text" name="total_rows" id="total_rows_'+i
-                +'" class="form-control" value="'+data[i].count+'" placeholder="Total rows" disabled></div><div class="form-group text-left" style="margin-bottom: 68px"><label for="rows-to-process">Number of rows to process:</label><input type="text" class="form-control" id="rows_to_process_'+i+'" value="'+
-                data[i].count+'" placeholder="Number of rows to process" reqired></div>';
+                +' :</h4><div class="form-group text-left"><label for="total_rows">Total rows:</label><input type="number" name="total_rows" id="total_rows_'+i
+                +'" class="form-control" value="'+data[i].count+'" placeholder="Total rows" disabled></div><div class="form-group text-left" style="margin-bottom: 68px"><label for="rows-to-process">Number of rows to process:</label><input type="number" class="form-control" id="rows_to_process_'+i+'" value="'+
+                data[i].count+'" min="1" max="'+data[i].count+'" placeholder="Number of rows to process" reqired></div>';
                 appended_elem.append(append_str);
                 total_count += data[i].count;
                 processable = data[i].processable;
