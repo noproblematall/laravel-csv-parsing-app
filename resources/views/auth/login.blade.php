@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('styles')
 
 @endsection
@@ -40,7 +40,7 @@
                 <button class="btn btn-lg btn-primary btn-block signin-btn mb20" type="button">
                     <span class="signin-btn-text">Sign in</span><div class="spinner-border alert-white hide center" id="signin-spinner"></div>
                 </button>
-                <p class="text-center mb10">Don't have an account? <a href="#" id="to-signup">Sign up here</a>.</p>
+                <p class="text-center mb10">Don't have an account? <a href="{{ route('register') }}">Sign up here</a>.</p>
                 </form>
             </div>
         </div>

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('styles')
 
 @endsection
@@ -11,10 +11,17 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
     <div class="col-md-8 col-md-offset-2 text-center">
       <h1 class="probootstrap-heading probootstrap-animate">Lorem ipsum dolor sit amet, consectetuer adipiscing elit
       </h1>
+      @guest
       <div class="probootstrap-subheading center">
-        <p class="probootstrap-animate"><a href="https://localhost/lorem" target="_blank" role="button"
-            class="btn btn-primary">Get Started</a></p>
+        <p class="probootstrap-animate"><a href="{{ route('register') }}" role="button"
+        class="btn btn-primary">Get Started</a></p>
       </div>
+      @else
+      <div class="probootstrap-subheading center">
+        <p class="probootstrap-animate"><a href="{{ route('working_area') }}" role="button"
+        class="btn btn-primary">Get Started</a></p>
+      </div>
+      @endguest
     </div>
   </div>
 </div>
@@ -242,7 +249,11 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
       <p class="probootstrap-sub-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
         ut aliquip ex ea commodo consequat. </p>
-      <p><a href="#" class="btn btn-black">Get Started</a></p>
+      @guest
+        <p><a href="{{ route('register') }}" class="btn btn-black">Get Started</a></p>
+      @else
+        <p><a href="{{ route('working_area') }}" class="btn btn-black">Get Started</a></p>
+      @endguest
     </div>
   </div>
 </div>

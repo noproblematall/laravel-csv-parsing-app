@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 <br />
@@ -10,7 +10,6 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
                 <h2 class="mytext-dark-blue text-left underline">{{ __('Reset Password') }}</h2>
-
                 <div class="row">
                     <div class="col-md-6">
                         @if (session('status'))
