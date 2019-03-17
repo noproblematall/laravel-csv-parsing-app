@@ -544,3 +544,11 @@ legend{
 #tostep2-btn {
     width: 154.94px;
 }
+.header_label {
+    font-weight: 200;
+    margin-left: 5px;
+    font-size: .9em;
+}
+.required_mark {
+    color: #f00 !important;
+}

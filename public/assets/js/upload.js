@@ -151,12 +151,12 @@ $(document).ready(function () {
             let origin_header = new Array();
             origin_header = JSON.parse(event.target.response);
 
-            let header = ['Address','City','Province','Postal_code'];
+            let header = ['ADDRESS','CITY','PROVINCE','POSTALCODE'];
             let _added_elem = '';
             for(let i=0; i<header.length; i++) {
-                _added_elem += '<div class="col-md-3"><select class="cus_sel_box '+header[i]
-                +'" name=""><option value="">'+
-                header[i]+'</option>';
+                _added_elem += '<div class="col-md-3 text-left"><label class="header_label">'+
+                header[i]+': <span class="required_mark">*</span></label><select class="cus_sel_box '+header[i]
+                +'" name=""><option value=""></option>';
                 for(let j=0; j<origin_header.length; j++) {
                     _added_elem += '<option value="'+origin_header[j]+'">'+
                     origin_header[j]+'</option>';
