@@ -224,11 +224,11 @@ $(document).ready(function () {
             var _token = $("input[name=_token]").val();
             for(var k=0; k<file_count; k++) {
                 header_info[k] = {};
-                header_info[k]['fileName'] = $("#selected_"+k).parent().find('.file-name').text();
-                header_info[k]['Address'] = $("#selected_"+k+" .Address").val();
-                header_info[k]['City'] = $("#selected_"+k+" .City").val();
-                header_info[k]['Province'] = $("#selected_"+k+" .Province").val();
-                header_info[k]['Postal_code'] = $("#selected_"+k+" .Postal_code").val();
+                header_info[k]['filename'] = $("#selected_"+k).parent().find('.file-name').text();
+                header_info[k]['address'] = $("#selected_"+k+" .ADDRESS").val();
+                header_info[k]['city'] = $("#selected_"+k+" .CITY").val();
+                header_info[k]['province'] = $("#selected_"+k+" .PROVINCE").val();
+                header_info[k]['postalcode'] = $("#selected_"+k+" .POSTALCODE").val();
             }
             console.log(header_info);
             
@@ -303,6 +303,14 @@ $(document).ready(function () {
                         })
                         $('.total_rows').text(total_numbers);
                     });
+
+                    $("#rows_to_process_"+i).keypress(function() {
+                        let total_numbers = 0;
+                        $('.process-number-input').each(function() {
+                            total_numbers += parseInt($(this).val());
+                        })
+                        $('.total_rows').text(total_numbers);
+                    })
                 }
     
                 $('.total_rows').text(total_count);

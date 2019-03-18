@@ -20,7 +20,7 @@
                             <form action="{{ route('store_data') }}" class="probootstrap-form pt0" id="process-form">
                                 <div class="mb20" id="file_info"></div>
 
-                                <hr />
+                                <h4 class="text-left mytext-dark-blue underline">Please select a dataset you want to process with your files!</h4>
                                 <div class="form-group text-left">
                                     <input type="email" class="form-control" placeholder="Notification email" title="You will receive the notification of completion on this email address.">
                                 </div>

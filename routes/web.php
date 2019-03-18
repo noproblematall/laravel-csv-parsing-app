@@ -26,3 +26,8 @@ Route::post('store_data', 'HomeController@setHeader')->name('store_data');
 Route::post('upload', 'FileController@fileUploadPost')->name('fileUploadPost');
 
 Route::get('process_cancel', 'HomeController@processCancel')->name('process_cancel');
+
+
+
+
+Route::get('test','HomeController@test');

@@ -8,6 +8,8 @@ use League\Csv\Reader;
 use Storage;
 use App\Middle;
 use Auth;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 
 class HomeController extends Controller
 {
@@ -53,7 +55,16 @@ class HomeController extends Controller
     }
 
     public function setHeader(Request $request) {
-        session()->put('header_info',$request->get('header_info'));
+        $header_info = $request->get('header_info');
+        session()->put('header_info',$header_info);
+
+        Schema::create('david', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            for($i=0; $i<5; $i++) {
+                $table->string('a_'.$i);
+            }
+        });
+
         echo "success";
     }
 
@@ -83,6 +94,12 @@ class HomeController extends Controller
         //     ]);
         // }
         return response()->json($file_info);
+    }
+
+    public function test() {
+        $file = session('header_info');
+
+        return response()->json($file);
     }
 
     public function processCancel(Request $request) {
