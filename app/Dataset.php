@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Filelist extends Model
+class Dataset extends Model
 {
-    protected $guarded = [];
+    //
 }

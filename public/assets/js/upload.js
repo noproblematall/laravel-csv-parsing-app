@@ -230,7 +230,6 @@ $(document).ready(function () {
                 header_info[k]['province'] = $("#selected_"+k+" .PROVINCE").val();
                 header_info[k]['postalcode'] = $("#selected_"+k+" .POSTALCODE").val();
             }
-            console.log(header_info);
             
             // var myJSON = header_info.toString();
             // console.log(myJSON);
@@ -266,14 +265,38 @@ $(document).ready(function () {
         });
     });
 
-    $("#process-form").submit(function() {
+    $("#process-form").submit(function(e) {
+        e.preventDefault();
         $("#dbStore-spinner").show();
         $('#get-contact-info').addClass('hide');
-
         $("#processing").removeClass('hide');
 
-        return false;
+        do_process();
     })
+
+    function do_process() {
+        let number_of_files = parseInt($('.number_files').text());
+        let process_info = {};
+        let _token = $("input[name=_token]").val();
+        for(let i=0; i<number_of_files; i++) {
+            process_info[i] = {};
+            process_info[i]['filename'] = $("#rows_to_process_"+i+"_filename").val();
+            process_info[i]['process_count'] = $("#rows_to_process_"+i).val();
+        }
+        process_info[number_of_files] = {};
+        process_info[number_of_files]['dataset'] = $("#dataset").val();
+        console.log(process_info);
+
+        $.ajax({
+            url: 'processor',
+            type: 'post',
+            dataType: 'json',
+            data: {'process_info':process_info,'_token':_token},
+            success: function(msg) {
+                alert(msg);
+            }
+        });
+    }
 
     function get_file_info() {
         let appended_elem = $('#file_info');
@@ -282,19 +305,17 @@ $(document).ready(function () {
             url: '/get_file_info',
             type: 'get',
             success: function(data) {
-                console.log(data);
                 let total_count = 0;
                 let processable = 0;
-                for(let i = 0; i < data.length; i++) {
+                for(let i = 0; i <( data.length -1 ); i++) {
                     let append_str = '<h4 class="mytext-dark-blue underline text-left">'+(i+1)+'. '+data[i].fileName
                     +' :</h4><div class="form-group text-left"><label for="total_rows">Total rows:</label><input type="number" name="total_rows" id="total_rows_'+i
                     +'" class="form-control" value="'+data[i].count+'" placeholder="Total rows" disabled></div><div class="form-group text-left" style="margin-bottom: 68px"><label for="rows-to-process">Number of rows to process:</label><input type="number" class="form-control process-number-input" id="rows_to_process_'+i+'" value="'+
-                    data[i].count+'" min="1" max="'+data[i].count+'" placeholder="Number of rows to process" reqired></div>';
+                    data[i].count+'" min="1" max="'+data[i].count+'" placeholder="Number of rows to process" reqired><input type="hidden" class="filename" id="rows_to_process_'+i+'_filename" value="'+
+                    data[i].fileName+'"></div>';
                     appended_elem.append(append_str);
                     total_count += data[i].count;
                     processable = data[i].processable;
-                    console.log(data[i].fileName);
-                    console.log(data[i].count);
                 
                     $("#rows_to_process_"+i).change(function() {
                         let total_numbers = 0;
@@ -312,7 +333,13 @@ $(document).ready(function () {
                         $('.total_rows').text(total_numbers);
                     })
                 }
+
+                dataset = data[data.length-1];
+                for(let j = 0; j < dataset.length; j++) {
+                    $("#dataset").append('<option value="'+dataset[j].id+'">'+dataset[j].name+'</option>')
+                }
     
+                $('.number_files').text((data.length -1));
                 $('.total_rows').text(total_count);
                 $('.processable').text(processable);
                 $("#dbStore-spinner").hide();

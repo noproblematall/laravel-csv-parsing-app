@@ -17,12 +17,15 @@
                 <div class="col-md-12 hide" id="get-contact-info">
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-xs-12">
-                            <form action="{{ route('store_data') }}" class="probootstrap-form pt0" id="process-form">
+                            <form action="{{ route('store_data') }}" method="POST" class="probootstrap-form pt0" id="process-form">
+                                @csrf
                                 <div class="mb20" id="file_info"></div>
 
                                 <h4 class="text-left mytext-dark-blue underline">Please select a dataset you want to process with your files!</h4>
                                 <div class="form-group text-left">
-                                    <input type="email" class="form-control" placeholder="Notification email" title="You will receive the notification of completion on this email address.">
+                                    <select name="dataset" class="form-control" id="dataset" required>
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                                 
                                 <div class="right">
@@ -42,6 +45,10 @@
                         <div class="col-md-6 col-xs-12">
                             <h4 class="mytext-dark-blue underline">You selected a file. File info is following :</h4>
                             <div class="file-info">
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">Number of files:</div>
+                                    <div class="col-xs-6 text-left number_files"></div>
+                                </div>
                                 <div class="row">
                                     <div class="col-xs-6 text-left">Total rows:</div>
                                     <div class="col-xs-6 text-left total_rows"></div>
