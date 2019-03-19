@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use Session;
 use League\Csv\Reader;
 use Storage;
-use App\Middle;
 use Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use App\Filelist;
 use App\Dataset;
+use App\Middle;
 
 class HomeController extends Controller
 {
@@ -20,9 +20,12 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    protected $processor;
+
+    public function __construct(ProcessController $processor)
     {
         $this->middleware(['auth','verified']);
+        $this->processor = $processor;
     }
 
     /**
@@ -60,13 +63,6 @@ class HomeController extends Controller
         $header_info = $request->get('header_info');
         session()->put('header_info',$header_info);
 
-        // Schema::create('david', function (Blueprint $table) {
-        //     $table->bigIncrements('id');
-        //     for($i=0; $i<5; $i++) {
-        //         $table->string('a_'.$i);
-        //     }
-        // });
-
         foreach($header_info as $item) {
             Filelist::create([
                 'user_id' => Auth::user()->id,
@@ -74,7 +70,8 @@ class HomeController extends Controller
                 'address' => $item['address'],
                 'city' => $item['city'],
                 'province' => $item['province'],
-                'postalcode' => $item['postalcode']
+                'postalcode' => $item['postalcode'],
+                'status' => 0
             ]);
         }
 
@@ -93,26 +90,28 @@ class HomeController extends Controller
 
         $file_info[count($file)] = Dataset::get(['id','name']);
 
-        // $user_id =  Auth::user()->id;
-        // $filename = $request->_file;
-        // $csv = Reader::createFromPath(storage_path('app/upload/').$filename, 'r');
-        // $csv->setHeaderOffset(0);
-        // $records = $csv->getRecords();
-        
-        // foreach ($records as $offset => $record) {
-        //     Middle::firstOrCreate([
-        //         'user_id' => $user_id,
-        //         'address' => $record['address'],
-        //         'city' => $record['city'],
-        //         'province' => $record['province'],
-        //         'postal code' => $record['postal code'],
-        //     ]);
-        // }
         return response()->json($file_info);
     }
     
-    public function processor(Requrest $requrest) {
-        echo 'ddd';
+    public function processor(Request $requrest) {
+        $process_info = $requrest->get('process_info');
+
+        $file_count = 0;
+        foreach($process_info as $item) {
+            $this_line = Filelist::where([
+                ['user_id','=',Auth::user()->id],
+                ['filename','=',$item['filename']]
+            ])->first();
+            $this_line->process_rows = $item['process_count'];
+            $this_line->dataset = $item['dataset'];
+            $this_line->table_name = md5($item['filename']);
+            $this_line->save();
+            $file_count++;
+        }
+
+        $this->processor->original_csv_store_db($file_count);
+
+        return response()->json($process_info);
     }
 
     public function test() {

@@ -17,16 +17,9 @@
                 <div class="col-md-12 hide" id="get-contact-info">
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-xs-12">
-                            <form action="{{ route('store_data') }}" method="POST" class="probootstrap-form pt0" id="process-form">
+                            <form action="{{ route('processor') }}" method="POST" class="probootstrap-form pt0" id="process-form">
                                 @csrf
                                 <div class="mb20" id="file_info"></div>
-
-                                <h4 class="text-left mytext-dark-blue underline">Please select a dataset you want to process with your files!</h4>
-                                <div class="form-group text-left">
-                                    <select name="dataset" class="form-control" id="dataset" required>
-                                        <option value=""></option>
-                                    </select>
-                                </div>
                                 
                                 <div class="right">
                                     <button type="button" id="process-cancel-btn" class="btn btn-lg btn-danger signup-btn mb20">

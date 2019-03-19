@@ -282,10 +282,8 @@ $(document).ready(function () {
             process_info[i] = {};
             process_info[i]['filename'] = $("#rows_to_process_"+i+"_filename").val();
             process_info[i]['process_count'] = $("#rows_to_process_"+i).val();
+            process_info[i]['dataset'] = $("#dataset_"+i).val();
         }
-        process_info[number_of_files] = {};
-        process_info[number_of_files]['dataset'] = $("#dataset").val();
-        console.log(process_info);
 
         $.ajax({
             url: 'processor',
@@ -293,7 +291,7 @@ $(document).ready(function () {
             dataType: 'json',
             data: {'process_info':process_info,'_token':_token},
             success: function(msg) {
-                alert(msg);
+                console.log(msg);
             }
         });
     }
@@ -310,10 +308,16 @@ $(document).ready(function () {
                 for(let i = 0; i <( data.length -1 ); i++) {
                     let append_str = '<h4 class="mytext-dark-blue underline text-left">'+(i+1)+'. '+data[i].fileName
                     +' :</h4><div class="form-group text-left"><label for="total_rows">Total rows:</label><input type="number" name="total_rows" id="total_rows_'+i
-                    +'" class="form-control" value="'+data[i].count+'" placeholder="Total rows" disabled></div><div class="form-group text-left" style="margin-bottom: 68px"><label for="rows-to-process">Number of rows to process:</label><input type="number" class="form-control process-number-input" id="rows_to_process_'+i+'" value="'+
+                    +'" class="form-control" value="'+data[i].count+'" placeholder="Total rows" disabled></div><div class="form-group text-left"><label for="rows-to-process">Number of rows to process:</label><input type="number" class="form-control process-number-input" id="rows_to_process_'+i+'" value="'+
                     data[i].count+'" min="1" max="'+data[i].count+'" placeholder="Number of rows to process" reqired><input type="hidden" class="filename" id="rows_to_process_'+i+'_filename" value="'+
-                    data[i].fileName+'"></div>';
+                    data[i].fileName+'"></div><div class="form-group text-left" style="margin-bottom: 68px"><label>Select a dataset:</label><select name="dataset" class="form-control" id="dataset_'+i+'" required><option value=""></option></select></div>';
                     appended_elem.append(append_str);
+
+                    dataset = data[data.length-1];
+                    for(let j = 0; j < dataset.length; j++) {
+                        $("#dataset_"+i).append('<option value="'+dataset[j].id+'">'+dataset[j].name+'</option>')
+                    }
+
                     total_count += data[i].count;
                     processable = data[i].processable;
                 
@@ -332,11 +336,6 @@ $(document).ready(function () {
                         })
                         $('.total_rows').text(total_numbers);
                     })
-                }
-
-                dataset = data[data.length-1];
-                for(let j = 0; j < dataset.length; j++) {
-                    $("#dataset").append('<option value="'+dataset[j].id+'">'+dataset[j].name+'</option>')
                 }
     
                 $('.number_files').text((data.length -1));

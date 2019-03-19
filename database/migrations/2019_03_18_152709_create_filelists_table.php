@@ -21,6 +21,9 @@ class CreateFilelistsTable extends Migration
             $table->string('city');
             $table->string('province');
             $table->string('postalcode');
+            $table->string('process_rows')->nullable();
+            $table->string('dataset')->nullable();
+            $table->string('table_name')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });
