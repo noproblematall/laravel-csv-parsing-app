@@ -123,11 +123,18 @@ class HomeController extends Controller
     public function processCancel(Request $request) {
         $filelist = session()->get('header_info');
         foreach($filelist as $file) {
+            $tableName = Filelist::where([
+                ['user_id','=',Auth::user()->id],
+                ['filename','=',$file['filename']]
+            ])->first()->table_name;
+            Schema::drop($tableName);
+
             Filelist::where([
                 ['user_id','=',Auth::user()->id],
                 ['filename','=',$file['filename']]
             ])->delete();
         }
+        
         session()->forget('header_info');
 
         echo "success";
