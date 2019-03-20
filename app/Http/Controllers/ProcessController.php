@@ -23,9 +23,13 @@ class ProcessController extends Controller
      *
      * @return void
      */
-    public function __construct()
+
+    protected $workingender;
+
+    public function __construct(WorkingendController $workingender)
     {
         $this->middleware(['auth','verified']);
+        $this->workingender = $workingender;
     }
 
     public function original_csv_store_db() {
@@ -39,7 +43,8 @@ class ProcessController extends Controller
             self::make_csv_dbtable($path, $item->table_name);
             self::store_csv_db($path, $item->table_name, $item->process_rows);
             self::getCoordinates($item);
-            
+
+            $this->workingender->store_result_as_csv($item);
         }
         
         // return response()->json($filelist);

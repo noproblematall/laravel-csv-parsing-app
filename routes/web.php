@@ -30,4 +30,4 @@ Route::get('process_cancel', 'HomeController@processCancel')->name('process_canc
 
 
 
-Route::get('test','ProcessController@test2');
+Route::get('test','WorkingendController@test1');
