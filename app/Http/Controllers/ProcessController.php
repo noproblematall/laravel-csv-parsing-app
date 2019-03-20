@@ -36,7 +36,7 @@ class ProcessController extends Controller
 
         $file_count = count(session('header_info'));
 
-        $filelist = Filelist::where('user_id','=',Auth::user()->id)->orderby('created_at')->take($file_count)->get();
+        $filelist = Filelist::where('user_id','=',Auth::user()->id)->orderby('created_at','desc')->take($file_count)->get();
 
         foreach($filelist as $item) {
             $path = $item->user->email.'/'.$item->filename;
