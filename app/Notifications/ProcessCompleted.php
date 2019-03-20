@@ -44,7 +44,7 @@ class ProcessCompleted extends Notification
     {
         $url = url('/dashboard/completed_process');
         return (new MailMessage)
-                    ->subject('PROCESS COMPLETED')
+                    ->subject('Process completed')
                     ->line('Your process is completed.')
                     ->action('View my process', $url)
                     ->line('Thank you for using our application!');

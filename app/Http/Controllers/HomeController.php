@@ -111,6 +111,8 @@ class HomeController extends Controller
 
         $this->processor->original_csv_store_db($file_count);
 
+        session()->forget('header_info');
+
         return response()->json($process_info);
     }
 

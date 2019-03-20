@@ -46,9 +46,8 @@ class WorkingendController extends Controller
             array_shift($arr);
             $writer->insertOne($arr);
         }
-
-        Filelist::where('id',$filelist->id)->update(['status' => '1']);
-
+        
+        self::end_process($filelist);
         self::sendMail();
     }
 
@@ -65,6 +64,16 @@ class WorkingendController extends Controller
         $user = Auth::user();
 
         $user->notify(new ProcessCompleted($user));
+    }
+
+    private function end_process($filelist) {
+        
+        Filelist::where('id',$filelist->id)->update(['status' => '1']);
+
+        Schema::drop($filelist->table_name);
+
+        File::delete(storage_path().'/app/upload/'.$filelist->user->email.'/'.$filelist->filename);
+
     }
 
     public function test() {
