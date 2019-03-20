@@ -27,6 +27,8 @@ Route::post('upload', 'FileController@fileUploadPost')->name('fileUploadPost');
 
 Route::get('process_cancel', 'HomeController@processCancel')->name('process_cancel');
 
+Route::get('download/{id}', 'WorkingendController@download')->name('download');
+
 
 
 

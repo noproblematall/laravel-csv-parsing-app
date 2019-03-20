@@ -47,7 +47,12 @@ class ProcessController extends Controller
             $this->workingender->store_result_as_csv($item);
         }
         
-        // return response()->json($filelist);
+        return response()->json($filelist);
+    }
+
+    public function test3() {
+        $filelist = Filelist::where('user_id','=',Auth::user()->id)->orderby('created_at')->take(2)->get();
+        return response()->json($filelist);
     }
 
     private function make_csv_dbtable($path, $table_name) {
@@ -131,9 +136,11 @@ class ProcessController extends Controller
             $riding = (array)$riding;
             $constituencyName = $riding[$item->mydataset->first_keyword];
 
-            $added_values = DB::table('id',$item->mydataset->second_table)
+            $added_values = DB::table($item->mydataset->second_table)
             ->where($item->mydataset->second_keyword,'=',$constituencyName)
             ->first();
+
+            $added_values = (array)$added_values;
 
             DB::table($item->table_name)->where('id','=',$id)
             ->update([

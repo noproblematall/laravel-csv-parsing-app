@@ -109,11 +109,11 @@ class HomeController extends Controller
             $file_count++;
         }
 
-        $this->processor->original_csv_store_db($file_count);
+        $result = $this->processor->original_csv_store_db($file_count);
 
         session()->forget('header_info');
 
-        return response()->json($process_info);
+        return $result;
     }
 
     public function test() {
@@ -129,7 +129,7 @@ class HomeController extends Controller
                 ['user_id','=',Auth::user()->id],
                 ['filename','=',$file['filename']]
             ])->first()->table_name;
-            Schema::drop($tableName);
+            Schema::dropIfExists($tableName);
 
             Filelist::where([
                 ['user_id','=',Auth::user()->id],

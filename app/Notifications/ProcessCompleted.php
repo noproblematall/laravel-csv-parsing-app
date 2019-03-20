@@ -42,11 +42,11 @@ class ProcessCompleted extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('/dashboard/completed_process');
+        $url = url('/download/'.$this->data->table_name);
         return (new MailMessage)
                     ->subject('Process completed')
                     ->line('Your process is completed.')
-                    ->action('View my process', $url)
+                    ->action('Download', $url)
                     ->line('Thank you for using our application!');
     }
 

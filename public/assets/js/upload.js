@@ -2,6 +2,7 @@ $(document).ready(function () {
     var del_item = [];
     let m = 0;
     let file_count = 0;
+    var _base_url = $("#_base_url").val();
 
     $("#upload-btn").addClass('btn-disable');
     $("#upload-btn").addClass('dark-red');
@@ -291,7 +292,27 @@ $(document).ready(function () {
             dataType: 'json',
             data: {'process_info':process_info,'_token':_token},
             success: function(msg) {
-                console.log(msg);
+                $("#processing").hide();
+                $("#completed").removeClass('hide');
+                $("#dbStore-spinner").hide();
+
+                for(let i=0; i < msg.length; i++) {
+                    $("#completed_list").append('<a href="'+_base_url+'/download/'+msg[i].table_name+'" target="_blank" type="button" class="btn btn-lg btn-primary btn-block signup-btn mb20">'+msg[i].filename+'</a>');
+                }
+            }
+        });
+    }
+
+    function test() {
+        $("#dbStore-spinner").hide();
+        $.ajax({
+            url: 'test',
+            type: 'get',
+            dataType: 'json',
+            success: function(msg) {
+                for(let i=0; i < msg.length; i++) {
+                    $("#completed_list").append('<a href="'+_base_url+'/download/'+msg[i].table_name+'" target="_blank" type="button" class="btn btn-lg btn-primary btn-block signup-btn mb20">'+msg[i].filename+'</a>');
+                }
             }
         });
     }

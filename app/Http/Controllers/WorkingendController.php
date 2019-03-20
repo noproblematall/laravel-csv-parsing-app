@@ -16,6 +16,7 @@ use App\Middle;
 use DB;
 use File;
 use App\Notifications\ProcessCompleted;
+use Route;
 
 class WorkingendController extends Controller
 {
@@ -39,7 +40,7 @@ class WorkingendController extends Controller
         $writer = Writer::createFromPath(storage_path('app/processed/').$filelist->user->email.'/'.$filelist->table_name.'.csv', 'w+');
         $writer->addFormatter($encoder);
 
-        $writer->insertOne((array)self::get_table_culumnName($table));
+        $writer->insertOne((array)self::get_table_columnName($table));
 
         for($i=0; $i<count($results); $i++) {
             $arr = (array)$results[$i];
@@ -48,10 +49,10 @@ class WorkingendController extends Controller
         }
         
         self::end_process($filelist);
-        self::sendMail();
+        self::sendMail($filelist);
     }
 
-    private function get_table_culumnName($table) {
+    private function get_table_columnName($table) {
         $columns = DB::table($table)->getConnection()
         ->getSchemaBuilder()
         ->getColumnListing($table);
@@ -60,20 +61,37 @@ class WorkingendController extends Controller
         return $columns;
     }
 
-    private function sendMail() {
+    private function sendMail($filelist) {
         $user = Auth::user();
-
-        $user->notify(new ProcessCompleted($user));
+        $user->notify(new ProcessCompleted($filelist));
     }
 
     private function end_process($filelist) {
-        
+
         Filelist::where('id',$filelist->id)->update(['status' => '1']);
 
-        Schema::drop($filelist->table_name);
+        Schema::dropIfExists($filelist->table_name);
 
         File::delete(storage_path().'/app/upload/'.$filelist->user->email.'/'.$filelist->filename);
 
+    }
+
+    public function download(Request $request) {
+        $id = Route::current()->parameter('id');
+
+        $filelist = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',1]
+        ])->get();
+
+        foreach($filelist as $file) {
+            if($id == $file['table_name']) {
+                return response()->download(storage_path('app/processed/'.Auth::user()->email.'/'.$file['table_name'].'.csv'));
+            }
+            else {
+                return abort(404);
+            }
+        }
     }
 
     public function test() {
@@ -92,7 +110,7 @@ class WorkingendController extends Controller
 
         $writer = Writer::createFromPath(storage_path('app/processed/david1213117@gmail.com/').'76b4b33633da7e29b9012d9d2f851db3.csv', 'w+');
 
-        $writer->insertOne((array)self::get_table_culumnName($table));
+        $writer->insertOne((array)self::get_table_columnName($table));
         $writer->addFormatter($encoder);
 
         for($i=0; $i<count($results); $i++) {
@@ -106,7 +124,7 @@ class WorkingendController extends Controller
 
     public function test1() {
         $user = Auth::user();
-
-        $user->notify(new ProcessCompleted($user));
+        $filelist = Filelist::where('user_id','=',Auth::user()->id)->first();
+        $user->notify(new ProcessCompleted($filelist));
     }
 }
