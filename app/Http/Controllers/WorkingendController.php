@@ -88,10 +88,9 @@ class WorkingendController extends Controller
             if($id == $file['table_name']) {
                 return response()->download(storage_path('app/processed/'.Auth::user()->email.'/'.$file['table_name'].'.csv'));
             }
-            else {
-                return abort(404);
-            }
         }
+        
+        return abort(404);
     }
 
     public function test() {

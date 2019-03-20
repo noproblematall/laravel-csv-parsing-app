@@ -43,9 +43,10 @@ class ProcessCompleted extends Notification
     public function toMail($notifiable)
     {
         $url = url('/download/'.$this->data->table_name);
+        $filename = $this->data->filename;
         return (new MailMessage)
                     ->subject('Process completed')
-                    ->line('Your process is completed.')
+                    ->line('Your process is completed about '.$filename.' file.')
                     ->action('Download', $url)
                     ->line('Thank you for using our application!');
     }

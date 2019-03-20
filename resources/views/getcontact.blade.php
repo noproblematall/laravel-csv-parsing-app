@@ -67,7 +67,7 @@
                     <h6 class="text-center"> - You will receive the notification of completion on your or given email address. - </h6>
                 </div>
                 <div class="col-md-12 hide" id="completed">
-                    <h4 class="text-center underline">Process is completed</h4>
+                    <h4 class="text-center underline">- Process is completed -</h4>
                     <div class="row justify-content-center">
                         <div class="col-md-6" id="completed_list"></div>
                     </div>
