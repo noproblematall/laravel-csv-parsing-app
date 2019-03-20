@@ -89,7 +89,7 @@ class WorkingendController extends Controller
                 return response()->download(storage_path('app/processed/'.Auth::user()->email.'/'.$file['table_name'].'.csv'));
             }
         }
-        
+
         return abort(404);
     }
 
@@ -122,6 +122,7 @@ class WorkingendController extends Controller
     }
 
     public function test1() {
+        phpinfo();die;
         $user = Auth::user();
         $filelist = Filelist::where('user_id','=',Auth::user()->id)->first();
         $user->notify(new ProcessCompleted($filelist));
