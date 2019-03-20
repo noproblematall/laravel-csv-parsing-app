@@ -11,4 +11,8 @@ class Filelist extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    public function mydataset(){
+        return $this->belongsTo('App\Dataset','dataset');
+    }
 }
