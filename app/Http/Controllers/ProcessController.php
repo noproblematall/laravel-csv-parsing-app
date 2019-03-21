@@ -50,11 +50,6 @@ class ProcessController extends Controller
         return response()->json($filelist);
     }
 
-    public function test3() {
-        $filelist = Filelist::where('user_id','=',Auth::user()->id)->orderby('created_at')->take(2)->get();
-        return response()->json($filelist);
-    }
-
     private function make_csv_dbtable($path, $table_name) {
         $csv = Reader::createFromPath(storage_path('app/upload/').$path, 'r');
         $csv->setHeaderOffset(0);
@@ -108,7 +103,7 @@ class ProcessController extends Controller
 
                 $coordinates = Geocoder::getCoordinatesForAddress($query_str);
                 
-                $coordinate = '('.$coordinates['lat'].' '.$coordinates['lng'].')';
+                $coordinate = '('.$coordinates['lng'].' '.$coordinates['lat'].')';
     
                 self::getData($addr['id'],$item,$coordinate);
             }
@@ -116,7 +111,9 @@ class ProcessController extends Controller
     }
 
     private function Add_result_column($item) {
+
         $columns = self::get_table_culumnName($item->mydataset->second_table);
+        
         for($i=1; $i<count($columns); $i++) {
             $column = $columns[$i];
             Schema::table($item->table_name, function($table) use($column) {
@@ -140,41 +137,78 @@ class ProcessController extends Controller
             ->where($item->mydataset->second_keyword,'=',$constituencyName)
             ->first();
 
-            $added_values = (array)$added_values;
+            if($added_values != null) {
+                $added_values = (array)$added_values;
 
-            DB::table($item->table_name)->where('id','=',$id)
-            ->update([
-                'ParlLastName' => $added_values['ParlLastName'],
-                'ParlFirstName' => $added_values['ParlFirstName'],
-                'SalutationEng' => $added_values['SalutationEng'],
-                'SalutationFr' => $added_values['SalutationFr'],
-                'SalutationLtrE' => $added_values['SalutationLtrE'],
-                'SalutationLtrF' => $added_values['SalutationLtrF'],
-                'TitleAbbEng' => $added_values['TitleAbbEng'],
-                'TitleAbbFr' => $added_values['TitleAbbFr'],
-                'InitialEng' => $added_values['InitialEng'],
-                'InitialFr' => $added_values['InitialFr'],
-                'ConstituencyName' => $added_values['ConstituencyName'],
-                'ConstituencyNameFr' => $added_values['ConstituencyNameFr'],
-                'ProvinceEng' => $added_values['ProvinceEng'],
-                'ProvinceFr' => $added_values['ProvinceFr'],
-                'BuildingName' => $added_values['BuildingName'],
-                'BuildingNameFr' => $added_values['BuildingNameFr'],
-                'BuildingProvinceEN' => $added_values['BuildingProvinceEN'],
-                'BuildingProvinceFR' => $added_values['BuildingProvinceFR'],
-                'BuildingCityEN' => $added_values['BuildingCityEN'],
-                'BuildingCityFR' => $added_values['BuildingCityFR'],
-                'BuildingPostalCode' => $added_values['BuildingPostalCode'],
-                'HillAddPhone' => $added_values['HillAddPhone'],
-                'HillAddFax' => $added_values['HillAddFax'],
-                'PartyShortTitle' => $added_values['PartyShortTitle'],
-                'PartyShortTitleFr' => $added_values['PartyShortTitleFr'],
-                'PartyAbbEng' => $added_values['PartyAbbEng'],
-                'PartyAbbFr' => $added_values['PartyAbbFr'],
-                'LanguagePreference' => $added_values['LanguagePreference'],
-                'PreferenceLinguistique' => $added_values['PreferenceLinguistique'],
-                'Email:' => $added_values['Email:'],
-            ]);
+                DB::table($item->table_name)->where('id','=',$id)
+                ->update([
+                    'ParlLastName' => $added_values['ParlLastName'],
+                    'ParlFirstName' => $added_values['ParlFirstName'],
+                    'SalutationEng' => $added_values['SalutationEng'],
+                    'SalutationFr' => $added_values['SalutationFr'],
+                    'SalutationLtrE' => $added_values['SalutationLtrE'],
+                    'SalutationLtrF' => $added_values['SalutationLtrF'],
+                    'TitleAbbEng' => $added_values['TitleAbbEng'],
+                    'TitleAbbFr' => $added_values['TitleAbbFr'],
+                    'InitialEng' => $added_values['InitialEng'],
+                    'InitialFr' => $added_values['InitialFr'],
+                    'ConstituencyName' => $added_values['ConstituencyName'],
+                    'ConstituencyNameFr' => $added_values['ConstituencyNameFr'],
+                    'ProvinceEng' => $added_values['ProvinceEng'],
+                    'ProvinceFr' => $added_values['ProvinceFr'],
+                    'BuildingName' => $added_values['BuildingName'],
+                    'BuildingNameFr' => $added_values['BuildingNameFr'],
+                    'BuildingProvinceEN' => $added_values['BuildingProvinceEN'],
+                    'BuildingProvinceFR' => $added_values['BuildingProvinceFR'],
+                    'BuildingCityEN' => $added_values['BuildingCityEN'],
+                    'BuildingCityFR' => $added_values['BuildingCityFR'],
+                    'BuildingPostalCode' => $added_values['BuildingPostalCode'],
+                    'HillAddPhone' => $added_values['HillAddPhone'],
+                    'HillAddFax' => $added_values['HillAddFax'],
+                    'PartyShortTitle' => $added_values['PartyShortTitle'],
+                    'PartyShortTitleFr' => $added_values['PartyShortTitleFr'],
+                    'PartyAbbEng' => $added_values['PartyAbbEng'],
+                    'PartyAbbFr' => $added_values['PartyAbbFr'],
+                    'LanguagePreference' => $added_values['LanguagePreference'],
+                    'PreferenceLinguistique' => $added_values['PreferenceLinguistique'],
+                    'Email:' => $added_values['Email:'],
+                ]);
+            }
+            else {
+                DB::table($item->table_name)->where('id','=',$id)
+                ->update([
+                    'ParlLastName' => 'INFORMATION NOT FOUND',
+                    'ParlFirstName' => 'INFORMATION NOT FOUND',
+                    'SalutationEng' => 'INFORMATION NOT FOUND',
+                    'SalutationFr' => 'INFORMATION NOT FOUND',
+                    'SalutationLtrE' => 'INFORMATION NOT FOUND',
+                    'SalutationLtrF' => 'INFORMATION NOT FOUND',
+                    'TitleAbbEng' => 'INFORMATION NOT FOUND',
+                    'TitleAbbFr' => 'INFORMATION NOT FOUND',
+                    'InitialEng' => 'INFORMATION NOT FOUND',
+                    'InitialFr' => 'INFORMATION NOT FOUND',
+                    'ConstituencyName' => 'INFORMATION NOT FOUND',
+                    'ConstituencyNameFr' => 'INFORMATION NOT FOUND',
+                    'ProvinceEng' => 'INFORMATION NOT FOUND',
+                    'ProvinceFr' => 'INFORMATION NOT FOUND',
+                    'BuildingName' => 'INFORMATION NOT FOUND',
+                    'BuildingNameFr' => 'INFORMATION NOT FOUND',
+                    'BuildingProvinceEN' => 'INFORMATION NOT FOUND',
+                    'BuildingProvinceFR' => 'INFORMATION NOT FOUND',
+                    'BuildingCityEN' => 'INFORMATION NOT FOUND',
+                    'BuildingCityFR' => 'INFORMATION NOT FOUND',
+                    'BuildingPostalCode' => 'INFORMATION NOT FOUND',
+                    'HillAddPhone' => 'INFORMATION NOT FOUND',
+                    'HillAddFax' => 'INFORMATION NOT FOUND',
+                    'PartyShortTitle' => 'INFORMATION NOT FOUND',
+                    'PartyShortTitleFr' => 'INFORMATION NOT FOUND',
+                    'PartyAbbEng' => 'INFORMATION NOT FOUND',
+                    'PartyAbbFr' => 'INFORMATION NOT FOUND',
+                    'LanguagePreference' => 'INFORMATION NOT FOUND',
+                    'PreferenceLinguistique' => 'INFORMATION NOT FOUND',
+                    'Email:' => 'INFORMATION NOT FOUND',
+                ]);
+            }
         }
         else {
             DB::table($item->table_name)->where('id','=',$id)
@@ -239,8 +273,6 @@ class ProcessController extends Controller
         else {
             dump($riding);
         }
-
-        
     }
 
     public function test1() {

@@ -32,4 +32,4 @@ Route::get('download/{id}', 'WorkingendController@download')->name('download');
 
 
 
-Route::get('test','WorkingendController@test1');
+Route::get('test','ProcessController@test1');
