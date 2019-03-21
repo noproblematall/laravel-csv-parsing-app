@@ -297,7 +297,7 @@ $(document).ready(function () {
                 $("#dbStore-spinner").hide();
 
                 for(let i=0; i < msg.length; i++) {
-                    $("#completed_list").append('<a href="'+_base_url+'download/'+msg[i].table_name+'" target="_blank" type="button" class="btn btn-lg btn-primary btn-block signup-btn mb20">'+msg[i].filename+'</a>');
+                    $("#completed_list").append('<a href="'+_base_url+'download/'+msg[i].table_name+'" target="_blank" type="button" class="btn btn-lg btn-primary btn-block signup-btn mb20">'+msg[i].filename+' download</a>');
                 }
             }
         });
