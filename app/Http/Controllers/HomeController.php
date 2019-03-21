@@ -50,7 +50,7 @@ class HomeController extends Controller
         $path = $request->file('file')->storeAs(
             'upload/'.Auth::user()->email, $filename
         );
-
+        
         $csv = Reader::createFromPath(storage_path('app/').$path, 'r');
         $csv->setHeaderOffset(0);
         $header_offset = $csv->getHeaderOffset();
