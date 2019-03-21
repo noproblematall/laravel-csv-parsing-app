@@ -33,3 +33,4 @@ Route::get('download/{id}', 'WorkingendController@download')->name('download');
 
 
 Route::get('test','ProcessController@test1');
+Route::get('info','HomeController@info');

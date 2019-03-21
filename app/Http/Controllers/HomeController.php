@@ -34,11 +34,13 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function upload() {
-        phpinfo();die;
         $index = "index-1";
         $menu = 'working_area';
         
         return view('upload', compact('index','menu'));
+    }
+    public function info() {
+        phpinfo();
     }
     public function process(Request $request) {
         $index = "index-1";
