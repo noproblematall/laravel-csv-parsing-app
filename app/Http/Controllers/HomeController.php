@@ -34,6 +34,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function upload() {
+        phpinfo();die;
         $index = "index-1";
         $menu = 'working_area';
         
@@ -50,7 +51,7 @@ class HomeController extends Controller
         $path = $request->file('file')->storeAs(
             'upload/'.Auth::user()->email, $filename
         );
-        
+
         $csv = Reader::createFromPath(storage_path('app/').$path, 'r');
         $csv->setHeaderOffset(0);
         $header_offset = $csv->getHeaderOffset();
