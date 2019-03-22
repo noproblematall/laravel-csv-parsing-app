@@ -12,6 +12,7 @@ use Illuminate\Database\Schema\Blueprint;
 use App\Filelist;
 use App\Dataset;
 use App\Middle;
+use Str;
 
 class HomeController extends Controller
 {
@@ -103,11 +104,12 @@ class HomeController extends Controller
         foreach($process_info as $item) {
             $this_line = Filelist::where([
                 ['user_id','=',Auth::user()->id],
-                ['filename','=',$item['filename']]
-            ])->first();
+                ['filename','=',$item['filename']],
+                ['status','=',0]
+            ])->orderby('created_at','desc')->first();
             $this_line->process_rows = $item['process_count'];
             $this_line->dataset = $item['dataset'];
-            $this_line->table_name = md5($item['filename']);
+            $this_line->table_name = md5($item['filename'].Str::random(40).time());
             $this_line->save();
             $file_count++;
         }

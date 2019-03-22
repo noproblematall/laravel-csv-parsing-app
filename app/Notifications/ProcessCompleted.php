@@ -47,7 +47,7 @@ class ProcessCompleted extends Notification
         return (new MailMessage)
                     ->subject('Process completed')
                     ->line('Your process is completed about '.$filename.' file.')
-                    ->action('Download', $url)
+                    ->action('Sign in now!', url('/login'))
                     ->line('Thank you for using our application!');
     }
 
