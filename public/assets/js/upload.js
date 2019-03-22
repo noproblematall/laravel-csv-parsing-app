@@ -279,12 +279,31 @@ $(document).ready(function () {
         let number_of_files = parseInt($('.number_files').text());
         let process_info = {};
         let _token = $("input[name=_token]").val();
+        let total_process_count = 0;
+        let process_duration = 0;
         for(let i=0; i<number_of_files; i++) {
             process_info[i] = {};
             process_info[i]['filename'] = $("#rows_to_process_"+i+"_filename").val();
             process_info[i]['process_count'] = $("#rows_to_process_"+i).val();
+            total_process_count += process_info[i]['process_count'];
             process_info[i]['dataset'] = $("#dataset_"+i).val();
         }
+        process_duration = (total_process_count*0.06)/60;
+        
+        if(process_duration < 1) {
+            process_duration = 1;
+        }
+        else {
+            process_duration++;
+        }
+
+        console.log(total_process_count);
+        console.log(process_duration);
+
+        setTimeout(function() {
+            $('#process-modal #mins').text(process_duration.toFixed());
+            $("#process-modal").modal({backdrop: "static"});
+        },3000);
 
         $.ajax({
             url: 'processor',
@@ -292,6 +311,7 @@ $(document).ready(function () {
             dataType: 'json',
             data: {'process_info':process_info,'_token':_token},
             success: function(msg) {
+                $("#process-modal").modal('hide');
                 $("#processing").hide();
                 $("#completed").removeClass('hide');
                 $("#dbStore-spinner").hide();

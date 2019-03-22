@@ -76,22 +76,28 @@
         </div>
     </div>
 
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-sm">
+    <div class="modal fade" id="process-modal" role="dialog">
+        <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-                <p>This is a small modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+                <div class="modal-header">
+                    <h4 class="modal-title text-center mytext-dark-blue">Your request is being processed!</h4>
+                </div>
+                <div class="modal-body">
+                    <br />
+                    <p class="text-center mb10">Your process will be completed within approx <b id="mins"></b> minutes.</p>
+                    <p class="text-center mb10">Email upon completion will be sent to : <b>{{Auth::user()->email}}</b></p>
+                    <p class="text-center mb10">Where are you going to move?</p>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ route('working_area') }}" type="button" class="btn btn-primary">Go to working area</a>
+                    <a href="#" type="button" class="btn btn-default" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Log out</a>
+                </div>
             </div>
         </div>
     </div>
+
 </section>
 @endsection
 

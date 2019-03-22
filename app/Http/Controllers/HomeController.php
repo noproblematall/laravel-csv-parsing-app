@@ -132,8 +132,10 @@ class HomeController extends Controller
         foreach($filelist as $file) {
             $tableName = Filelist::where([
                 ['user_id','=',Auth::user()->id],
-                ['filename','=',$file['filename']]
-            ])->first()->table_name;
+                ['filename','=',$file['filename']],
+                ['status','=',0]
+            ])->orderby('created_at','desc')
+            ->first()->table_name;
             Schema::dropIfExists($tableName);
 
             Filelist::where([
