@@ -37,6 +37,12 @@ body {
     filter: alpha(opacity=20);
     opacity: .2;
 }
+.mytext-red {
+    color: #981a36;
+}
+.dropdown .img-thumbnail  {
+    padding: 1px;
+}
 .dark-red {
     background-color: #6d1226 !important;
 }

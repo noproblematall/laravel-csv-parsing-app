@@ -52,17 +52,21 @@
             <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
             <li class="dropdown" id="avatar" data-toggle="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{asset('assets/img/default.png')}}" alt="Avatar" class="img-responsive img-circle probootstrap-author-photo" />
+                <img src="{{asset('assets/avatars/').'/'.Auth::user()->avatar}}" alt="Avatar" class="avatar img-circle img-thumbnail img-responsive img-circle probootstrap-author-photo" />
                 </a>
                 <ul class="dropdown-menu">
-                    <a href="/user/preferences"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
+                    <a href="#"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
                     <li class="divider"></li>
-                    <a href="/user/preferences"><li><i class="fas fa-cog"></i>&nbsp;&nbsp;Profile</li></a>
-                    <a href="/help/support"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
+                    <a href="/user/dashboard" class="external" onclick="event.preventDefault();
+                    document.getElementById('goto-userdashboard-form').submit();"><li><i class="fas fa-cog"></i>&nbsp;&nbsp;Dashboard</li></a>
+                    <a href="/user/membership"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
                     <li class="divider"></li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><li><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <form id="goto-userdashboard-form" action="{{ route('user.dashboard') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </ul>
@@ -72,13 +76,13 @@
           <li class="ajax-avatar hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
           <li class="dropdown ajax-avatar hide" id="avatar" data-toggle="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{asset('assets/img/default.png')}}" alt="Avatar" class="img-responsive img-circle probootstrap-author-photo" />
+                <img src="{{asset('assets/avatars/default.png')}}" alt="Avatar" class="avatar img-circle img-thumbnail img-responsive img-circle probootstrap-author-photo" />
               </a>
               <ul class="dropdown-menu">
-                  <a href="/user/preferences"><li><i class="fas fa-user"></i>&nbsp;&nbsp;<span class="ajax-username"></span></li></a>
+                  <a href="#"><li><i class="fas fa-user"></i>&nbsp;&nbsp;<span class="ajax-username"></span></li></a>
                   <li class="divider"></li>
-                  <a href="/user/preferences"><li><i class="fas fa-cog"></i>&nbsp;&nbsp;Profile</li></a>
-                  <a href="/help/support"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
+                  <a href="/user/dashboard" class="external"><li><i class="fas fa-cog"></i>&nbsp;&nbsp;Dashboard</li></a>
+                  <a href="/user/membership"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
                   <li class="divider"></li>
                   <a href="#" onclick="event.preventDefault();
                   document.getElementById('ajax-logout-form').submit();"><li><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li></a>

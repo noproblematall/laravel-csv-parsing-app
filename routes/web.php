@@ -30,6 +30,9 @@ Route::get('process_cancel', 'HomeController@processCancel')->name('process_canc
 Route::get('download/{id}', 'WorkingendController@download')->name('download');
 
 
+Route::group(['prefix' => 'user'], function () {
+    Route::any('dashboard', 'UserController@index')->name('user.dashboard');
+});
 
 
 Route::get('test','ProcessController@test1');
