@@ -77,7 +77,7 @@ class WorkingendController extends Controller
     }
 
     public function download(Request $request) {
-        $id = Route::current()->parameter('id');
+        $download_token = $request->get('_download_token');
 
         $filelist = Filelist::where([
             ['user_id','=',Auth::user()->id],
@@ -85,7 +85,7 @@ class WorkingendController extends Controller
         ])->get();
 
         foreach($filelist as $file) {
-            if($id == $file['table_name']) {
+            if($download_token == $file['table_name']) {
                 return response()->download(storage_path('app/processed/'.Auth::user()->email.'/'.$file['table_name'].'.csv'));
             }
         }

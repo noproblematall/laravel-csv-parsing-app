@@ -558,3 +558,39 @@ legend{
 .required_mark {
     color: #f00 !important;
 }
+
+.dataTables_length select {
+    border-radius: 0 !important;
+}
+.dataTables_length select:focus {
+    border-color: #981a36 !important;
+    outline: none !important;
+    box-shadow: none;
+}
+.dataTables_filter input {
+    border-radius: 0 !important;
+}
+.dataTables_filter input:focus {
+    border-color: #981a36 !important;
+    outline: none !important;
+    box-shadow: none;
+}
+#completed-list-table tr {
+    position: relative;
+    z-index: 5;
+}
+.download-btn {
+    height: 30px;
+    width: 100px;
+    display: block;
+    text-align: center;
+    margin: auto;
+    line-height: 7px !important;
+    font-size: 14px;
+    position: relative;
+    z-index: 10000;
+    padding: 10px 5px;
+}
+.info_tab {
+    margin-top: 0 !important;
+}

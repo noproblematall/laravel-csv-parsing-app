@@ -27,12 +27,16 @@ Route::post('upload', 'FileController@fileUploadPost')->name('fileUploadPost');
 
 Route::get('process_cancel', 'HomeController@processCancel')->name('process_cancel');
 
-Route::get('download/{id}', 'WorkingendController@download')->name('download');
+Route::post('download', 'WorkingendController@download')->name('download');
 
 
 Route::group(['prefix' => 'user'], function () {
     Route::any('dashboard', 'UserController@index')->name('user.dashboard');
+    Route::get('processing_list', 'UserController@getProcessingList')->name('user.get_processing_list');
+    Route::get('completed_list', 'UserController@getCompletedList')->name('user.get_completed_list');
 });
+
+
 
 
 Route::get('test','ProcessController@test1');

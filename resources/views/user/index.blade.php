@@ -1,24 +1,26 @@
 @extends('layouts.app')
 @section('styles')
-
+<link rel="stylesheet" href="{{asset('assets/vendor/dataTables/datatables.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/dataTables/font-awesome.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/dataTables/awesome-bootstrap-checkbox.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/dataTables/dataTables.checkboxes.css')}}">
 @endsection
 
 @section('content')
 <section class="probootstrap-section" id="working-area" data-section="working-area">
+<input type="hidden" name="_base_url" value="{{asset('/')}}" />
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-3">
             <div class="text-center">
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" width="202" height="202" class="avatar img-circle img-thumbnail"
                     alt="avatar">
-                <h6>Upload a different photo...</h6>
-                <input type="file" class="text-center center-block file-upload">
             </div>
             <hr><br>
 
 
             <div class="panel panel-default">
-                <div class="panel-heading"><strong>Website</strong> <i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-heading"><strong>Website</strong> <i class="fas fa-link"></i></div>
                 <div class="panel-body text-center"><a href="{{config('app.url')}}">{{config('app.name')}}</a></div>
             </div>
 
@@ -35,14 +37,15 @@
         <!--/col-3-->
         <div class="col-sm-9">
             <ul class="nav nav-tabs">
-                <li><a data-toggle="tab" class="mytext-red" href="#home">Home</a></li>
-                <li class="active"><a data-toggle="tab" class="mytext-red" href="#processing">Activities in process</a></li>
-                <li><a data-toggle="tab" class="mytext-red" href="#completed">Completed Activities</a></li>
+                <li class="<?php if($active=='completed') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#completed">Completed Activities</a></li>
+                <li class="<?php if($active=='processing') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#processing">Activities in process</a></li>
+                <li class="<?php if($active=='info') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>
+                <li class="<?php if($active=='chang_pwd') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#chang_pwd">Change password</a></li>
             </ul>
 
 
             <div class="tab-content">
-                <div class="tab-pane mytext-dark-blue" id="home">
+                <div class="tab-pane info_tab mytext-dark-blue <?php if($active=='info') echo 'active'; ?>" id="info">
                     <hr>
                     <form class="form myform" action="" method="post" id="registrationForm">
                         <div class="form-group">
@@ -105,7 +108,62 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password2">
+                                    <h4 class="mb10">Upload your photo</h4>
+                                </label>
+                                <input type="file" class=" form-control text-center center-block file-upload">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <div class="right" style="display: inline-block">
+                                    <button class="btn btn-default" type="reset"><i class="fas fa-redo"></i> Reset</button>
+                                    <button class="btn btn-primary" type="submit"><i class="far fa-check-circle"></i> Save</button>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
+                <div class="tab-pane mytext-dark-blue <?php if($active=='processing') echo 'active'; ?>" id="processing">
+                    <hr>
+                    <table id="in-process-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th></th>        
+                                <th>File Name</th>
+                                <th>Processed rows</th>
+                                <th>Dataset</th>
+                                <th>Status</th>
+                                <th>Start date</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="tab-pane mytext-dark-blue <?php if($active=='completed') echo 'active'; ?>" id="completed">
+                    <hr>
+                    <table id="completed-list-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th></th>        
+                                <th>File Name</th>
+                                <th>Processed rows</th>
+                                <th>Dataset</th>
+                                <th>Status</th>
+                                <th>Download</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="tab-pane mytext-dark-blue <?php if($active=='chang_pwd') echo 'active'; ?>" id="chang_pwd">
+                    <hr>
+                    <form class="form myform" action="" method="post" id="registrationForm">
+                        <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="password">
                                     <h4 class="mb10">Password</h4>
@@ -115,7 +173,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="password2">
                                     <h4 class="mb10">Verify</h4>
@@ -128,23 +185,13 @@
                             <div class="col-xs-12">
                                 <br>
                                 <div class="right" style="display: inline-block">
-                                    <button class="btn btn-lg btn-default" type="reset"><i class="fas fa-redo"></i> Reset</button>
-                                    <button class="btn btn-lg btn-primary" type="submit"><i class="far fa-check-circle"></i> Save</button>
+                                    <button class="btn btn-default" type="reset"><i class="fas fa-redo"></i> Reset</button>
+                                    <button class="btn btn-primary" type="submit"><i class="far fa-check-circle"></i> Save</button>
                                 </div>
                                 <div class="clear"></div>
                             </div>
                         </div>
                     </form>
-                </div>
-                <!--/tab-pane-->
-                <div class="tab-pane active mytext-dark-blue" id="processing">
-                    <hr>
-                    
-                </div>
-                <!--/tab-pane-->
-                <div class="tab-pane mytext-dark-blue" id="completed">
-                    <hr>
-                    
                 </div>
 
             </div>
@@ -160,24 +207,7 @@
 @endsection
 
 @section('scripts')
-    <script>
-        $(document).ready(function() {
-
-            var readURL = function(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('.avatar').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-
-            $(".file-upload").on('change', function(){
-                readURL(this);
-            });
-        });
-    </script>
+    <script src="{{asset('assets/vendor/dataTables/dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/dataTables/dataTables.checkboxes.min.js')}}"></script>
+    <script src="{{asset('assets/js/user.js')}}"></script>
 @endsection
