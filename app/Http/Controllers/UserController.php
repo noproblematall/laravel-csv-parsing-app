@@ -56,7 +56,7 @@ class UserController extends Controller
             $result['data'][$i][1] = $item->filename;
             $result['data'][$i][2] = $item->process_rows;
             $result['data'][$i][3] = $item->mydataset->name;
-            $result['data'][$i][4] = 'Completed';
+            $result['data'][$i][4] = $item->updated_at;
             $result['data'][$i][5] = '<a href="#" class="btn btn-primary download-btn" onclick="event.preventDefault();document.getElementById(\'download-form-'.$item->id.'\').submit();">Download</a>'.
             '<form method="POST" id="download-form-'.$item->id.'" action="'.route('download').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
             '" /><input type="text" name="_download_token" value="'.$item->table_name.'" /></form>';

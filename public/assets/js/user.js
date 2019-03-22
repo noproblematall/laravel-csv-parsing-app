@@ -37,7 +37,7 @@ $(document).ready(function() {
             }
         ],
         'select': 'multi',
-        'order': [[1, 'asc']]
+        'order': [[5, 'desc']]
     });
 
     var table2 = $('#completed-list-table').DataTable({
@@ -59,7 +59,7 @@ $(document).ready(function() {
             }
         ],
         'select': 'multi',
-        'order': [[1, 'asc']]
+        'order': [[4, 'desc']]
     });
 
 })

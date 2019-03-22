@@ -594,3 +594,7 @@ legend{
 .info_tab {
     margin-top: 0 !important;
 }
+.avatar {
+    width: 202px;
+    height: 202px;
+}

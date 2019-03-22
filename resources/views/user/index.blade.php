@@ -153,7 +153,7 @@
                                 <th>File Name</th>
                                 <th>Processed rows</th>
                                 <th>Dataset</th>
-                                <th>Status</th>
+                                <th>Completed date</th>
                                 <th>Download</th>
                             </tr>
                         </thead>
@@ -169,7 +169,7 @@
                                     <h4 class="mb10">Password</h4>
                                 </label>
                                 <input type="password" class="form-control" name="password" id="password"
-                                    placeholder="password" title="enter your password.">
+                                    placeholder="password" title="enter your password." required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -178,7 +178,7 @@
                                     <h4 class="mb10">Verify</h4>
                                 </label>
                                 <input type="password" class="form-control" name="password2" id="password2"
-                                    placeholder="confirm password" title="Confirm password.">
+                                    placeholder="confirm password" title="Confirm password." required>
                             </div>
                         </div>
                         <div class="form-group">
