@@ -102,7 +102,13 @@ class ProcessController extends Controller
         DB::table($item->table_name)->select('id',$address,$city,$province,$postalcode)->orderBy('id')->chunk(100, function ($results) use($item,$address,$city,$province,$postalcode) {
             foreach($results as $addr) {
                 $addr = (array)$addr;
-                $query_str = $addr[$address].','.$addr[$city].','.$addr[$province].','.$addr[$postalcode];
+
+                $ad = preg_replace("/[^a-zA-Z0-9 \-'{}]/", "", $addr[$address]);
+                $ct = preg_replace("/[^a-zA-Z0-9 \-'{}]/", "", $addr[$city]);
+                $pv = preg_replace("/[^a-zA-Z0-9 \-'{}]/", "", $addr[$province]);
+                $pc = preg_replace("/[^a-zA-Z0-9 \-'{}]/", "", $addr[$postalcode]);
+
+                $query_str = trim($ad).','.trim($ct).','.trim($pv).','.trim($pc);
 
                 $coordinates = Geocoder::getCoordinatesForAddress($query_str);
                 

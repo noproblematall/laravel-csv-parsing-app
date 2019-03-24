@@ -1,13 +1,8 @@
 $(document).ready(function() {
-    // let h = $(window).height();
-    // console.log(h);
-    // let sub_h = h - 59 - 224;
-    // console.log(sub_h);
-    // $('section#working-area').height(sub_h);
-
+    var _base_url = $("input[name=_base_url]").val();
     let page = $("#_page").val();
 
-    $('#signin-form #password').keypress(function(event){
+    $('#signin-form #login_password').keypress(function(event){
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if(keycode == '13'){
             login();
@@ -35,10 +30,7 @@ $(document).ready(function() {
                 }
                 else {
                     if(data.auth) {
-                        $('.ajax-username').text(data.user.f_name+' '+data.user.l_name);
-                        $('#signin-modal').modal('hide');
-                        $(".ajax-avatar").addClass('show');
-                        $(".guest").hide();
+                        window.location = '/';
                     }
                     else if(data.message == 'The given data was invalid.') {
                         alert(data.message);
@@ -56,7 +48,7 @@ $(document).ready(function() {
                     if(data.responseJSON.errors.email) {
                         $('#in-email-alert').addClass('show');
                         $('#in-email-alert').text(data.responseJSON.errors.email[0]);
-                        $('#signin-modal #email').focus();
+                        $('#signin-modal #login_email').focus();
                     }
                     else if(data.responseJSON.errors.password) {
                         $('#in-pwd-alert').addClass('show');
@@ -126,7 +118,13 @@ $(document).ready(function() {
     $('#working_area').click(function() {
         $('ul.navbar-nav li').removeClass('active');
         $('#working_area').parent().addClass('active');
-        window.location = '/working_area';
+        window.location = _base_url+'working_area';
+    })
+
+    $('#dashboard').click(function() {
+        $('ul.navbar-nav li').removeClass('active');
+        $('#dashboard').parent().addClass('active');
+        window.location = _base_url+'user/dashboard';
     })
 
     $("#avatar").mouseover(function() {
@@ -171,6 +169,21 @@ $(document).ready(function() {
         e.preventDefault();
         $("#signin-modal").modal('hide');
         $("#signup-modal").modal('show');
+    })
+
+    $('#personal_info').click(function(e) {
+        e.preventDefault();
+        window.location = _base_url+'user/personal_info';
+    })
+
+    $('#change_pwd').click(function(e) {
+        e.preventDefault();
+        window.location = _base_url+'user/change_password';
+    })
+
+    $('#manage_mambership').click(function(e) {
+        e.preventDefault();
+        window.location = _base_url+'user/manage_mambership';
     })
 })
 

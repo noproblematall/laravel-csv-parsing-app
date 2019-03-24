@@ -86,13 +86,11 @@
                     <br />
                     <p class="text-center mb10">Your process will be completed within approx <b id="mins"></b> minutes.</p>
                     <p class="text-center mb10">Email upon completion will be sent to : <b>{{Auth::user()->email}}</b></p>
-                    <p class="text-center mb10">Where are you going to move?</p>
                     <br />
                 </div>
                 <div class="modal-footer">
                     <a href="{{ route('working_area') }}" type="button" class="btn btn-primary">Go to working area</a>
-                    <a href="#" type="button" class="btn btn-default" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">Log out</a>
+                    <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-default">Dashboard</a>
                 </div>
             </div>
         </div>

@@ -17,6 +17,7 @@ use DB;
 use File;
 use App\Notifications\ProcessCompleted;
 use Route;
+use Geocoder;
 
 class WorkingendController extends Controller
 {
@@ -125,5 +126,47 @@ class WorkingendController extends Controller
         $user = Auth::user();
         $filelist = Filelist::where('user_id','=',Auth::user()->id)->first();
         $user->notify(new ProcessCompleted($filelist));
+    }
+
+    public function test2() {
+
+        $address = '5788, boul. Ste-Anne';
+        $city = "Boischatel";
+        $province = 'QC';
+        $postalcode = 'G0A1H0';
+
+        $query_str = $address.','.$city.','.$province.','.$postalcode;
+
+        $coordinates = Geocoder::getCoordinatesForAddress($query_str);
+        
+        $coordinate = '('.$coordinates['lng'].' '.$coordinates['lat'].')';
+
+        $first = [];
+        $first['first'] = 'without removing special charaters';
+        $first['query_str'] = $query_str;
+        $first['coordinate'] = $coordinate;
+
+        // ---------------------------------------------------------------//
+        $address = preg_replace("/[^a-zA-Z0-9 \-'{}]/", "", $address);
+        $city = preg_replace("/[^a-zA-Z0-9 \-'{}]/", "", $city);
+        $province = preg_replace("/[^a-zA-Z0-9 \-'{}]/", "", $province);
+        $postalcode = preg_replace("/[^a-zA-Z0-9 \-'{}]/", "", $postalcode);
+
+        $query_str = trim($address).','.trim($city).','.trim($province).','.trim($postalcode);
+
+        $coordinates = Geocoder::getCoordinatesForAddress($query_str);
+        
+        $coordinate = '('.$coordinates['lng'].' '.$coordinates['lat'].')';
+
+        $second = [];
+        $second['second'] = 'removing special charaters';
+        $second['query_str'] = $query_str;
+        $second['coordinate'] = $coordinate;
+
+        $result = [];
+        $result[0] = $first;
+        $result[1] = $second;
+        
+        return response()->json($result);
     }
 }

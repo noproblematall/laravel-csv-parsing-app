@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('home');
 
 Route::get('working_area', 'HomeController@upload')->name('working_area');
 Route::get('main_process', 'HomeController@process')->name('main_process')->middleware('fileUploaded');
+Route::get('contact', 'HomeController@contact')->name('contact');
+Route::get('packages', 'HomeController@package')->name('package');
 
 Auth::routes(['verify' => true]);
 
@@ -22,22 +24,22 @@ Route::post('file_upload', 'HomeController@fileUploadPost')->name('fileUploadPos
 Route::get('get_file_info', 'HomeController@get_file_info')->name('get_file_info');
 Route::post('set_header', 'HomeController@setHeader')->name('set_header');
 Route::post('processor', 'HomeController@processor')->name('processor');
-
 Route::post('upload', 'FileController@fileUploadPost')->name('fileUploadPost');
-
 Route::get('process_cancel', 'HomeController@processCancel')->name('process_cancel');
-
 Route::post('download', 'WorkingendController@download')->name('download');
 
 
 Route::group(['prefix' => 'user'], function () {
     Route::any('dashboard', 'UserController@index')->name('user.dashboard');
-    Route::get('processing_list', 'UserController@getProcessingList')->name('user.get_processing_list');
+    Route::any('personal_info', 'UserController@personal_info')->name('user.personal_info');
+    Route::any('manage_mambership', 'UserController@membership')->name('user.membership');
+    Route::any('change_password', 'UserController@change_pwd')->name('user.change_pwd');
+    Route::get('processing_list', 'UserController@getProcessingList')->name('user.change_password');
     Route::get('completed_list', 'UserController@getCompletedList')->name('user.get_completed_list');
 });
 
 
 
 
-Route::get('test','ProcessController@test1');
+Route::get('test','WorkingendController@test2');
 Route::get('info','HomeController@info');

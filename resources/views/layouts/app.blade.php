@@ -22,6 +22,7 @@
 </head>
 
 <body class="{{$index}}">
+<input type="hidden" name="_base_url" value="{{asset('/')}}" />
 
   <!-- Fixed navbar -->
   <nav class="navbar navbar-default probootstrap-navbar">
@@ -39,27 +40,25 @@
 
       <div id="navbar-collapse" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" data-nav-section="home">Home</a></li>
-          <li><a href="#" data-nav-section="pricing">Pricing</a></li>
-          <li><a href="#" data-nav-section="reviews">Reviews</a></li>
-          <li><a href="#" data-nav-section="contact">Contact</a></li>
+          <li><a href="{{ route('home') }}" data-nav-section="home" id="homepage">Home</a></li>
+          <li class="<?php if($menu == 'package'){ echo 'active'; }?>"><a href="{{ route('package') }}" data-nav-section="pricing" id="to-pricing-page">Pricing</a></li>
+          <li class="<?php if($menu == 'contact'){ echo 'active'; }?>"><a href="{{ route('contact') }}" data-nav-section="contact" id="to-contact-page">Contact</a></li>
           @guest
             <li class="guest">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
             <li class="guest"><a href="#" id="signin">Sign in</a></li>
             <li class="guest"><a href="#" id="signup">Sign up</a></li>
           @else
-            <li class="<?php if($menu == 'working_area'){ echo 'active'; }?>"><a href="{{ route('working_area') }}" id="working_area">Working area</a></li>
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li class="<?php if($menu == 'working_area'){ echo 'active'; }?>"><a href="{{ route('working_area') }}" id="working_area">UPLOAD DATA</a></li>
+            <li class="<?php if($menu == 'dashboard'){ echo 'active'; }?>"><a href="{{ route('user.dashboard') }}" id="dashboard">DASHBOARD</a></li>
             <li class="dropdown" id="avatar" data-toggle="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{asset('assets/avatars/').'/'.Auth::user()->avatar}}" alt="Avatar" class="avatar img-circle img-thumbnail img-responsive img-circle probootstrap-author-photo" />
+                PROFILE
                 </a>
                 <ul class="dropdown-menu">
-                    <a href="#"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
+                    <a href="{{ route('user.personal_info') }}" id="personal_info"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
                     <li class="divider"></li>
-                    <a href="/user/dashboard" class="external" onclick="event.preventDefault();
-                    document.getElementById('goto-userdashboard-form').submit();"><li><i class="fas fa-cog"></i>&nbsp;&nbsp;Dashboard</li></a>
-                    <a href="/user/membership"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
+                    <a href="{{ route('user.membership') }}" id="manage_mambership"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
+                    <a href="{{ route('user.change_pwd') }}" id="change_pwd"><li><i class="fas fa-key"></i>&nbsp;&nbsp;Change password</li></a>
                     <li class="divider"></li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><li><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li></a>
@@ -72,25 +71,6 @@
                 </ul>
             </li>
           @endguest
-          <li class="ajax-avatar hide"><a href="{{ route('working_area') }}" id="working_area">Working area</a></li>
-          <li class="ajax-avatar hide">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-          <li class="dropdown ajax-avatar hide" id="avatar" data-toggle="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{asset('assets/avatars/default.png')}}" alt="Avatar" class="avatar img-circle img-thumbnail img-responsive img-circle probootstrap-author-photo" />
-              </a>
-              <ul class="dropdown-menu">
-                  <a href="#"><li><i class="fas fa-user"></i>&nbsp;&nbsp;<span class="ajax-username"></span></li></a>
-                  <li class="divider"></li>
-                  <a href="/user/dashboard" class="external"><li><i class="fas fa-cog"></i>&nbsp;&nbsp;Dashboard</li></a>
-                  <a href="/user/membership"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
-                  <li class="divider"></li>
-                  <a href="#" onclick="event.preventDefault();
-                  document.getElementById('ajax-logout-form').submit();"><li><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li></a>
-                  <form id="ajax-logout-form" action="{{ route('logout') }}" method="POST">
-                      @csrf
-                  </form>
-              </ul>
-          </li>
         </ul>
       </div>
     </div>
@@ -250,7 +230,7 @@
               <form  method="POST" action="{{ route('login') }}" id="signin-form" accept-charset="utf-8" class="myform form" role="form">
                 <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}" />
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" class="form-control input-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your Email" value="{{ old('email') }}" required autofocus />
+                <input type="email" name="email" id="login_email" class="form-control input-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your Email" value="{{ old('email') }}" required autofocus />
                 <span class="invalid-feedback pb20 hide" role="alert" id="in-email-alert"></span>
                 @if ($errors->has('email'))
                     <span class="invalid-feedback pb20" role="alert">
@@ -264,7 +244,7 @@
                     </a>
                 @endif
                 <div class="clear"></div>
-                <input type="password" name="password" id="password" value="" class="form-control input-lg mb20{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" required />
+                <input type="password" name="password" id="login_password" value="" class="form-control input-lg mb20{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" required />
                 <span class="invalid-feedback pb20 hide" role="alert" id="in-pwd-alert"></span>
                 @if ($errors->has('password'))
                     <span class="invalid-feedback pb20" role="alert">

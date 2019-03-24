@@ -1,7 +1,8 @@
 $(document).ready(function () {
     var del_item = [];
-    let m = 0;
-    let file_count = 0;
+    var m = 0;
+    var file_count = 0;
+    var file_count1 = 0;
     var _base_url = $("#_base_url").val();
 
     $("#upload-btn").addClass('btn-disable');
@@ -21,10 +22,9 @@ $(document).ready(function () {
 
         $('#progess').removeClass('hide');
         $('#resumable-drop').addClass('hide');
+        file_count1 = this.files.length;
         for (var i = 0; i < this.files.length; i++) { //Progress bar and status label's for each file genarate dynamically
-            console.log(this.files[i].name);
             let ext = getExtension(this.files[i].name);
-            // let ext = 'doc';
 
             if( ext == 'csv' || ext =='CSV' ) {
                 var fileId = i;
@@ -36,7 +36,7 @@ $(document).ready(function () {
                 else {
                     filesize = parseFloat((this.files[i].size/1048576).toFixed(2))+' MB';
                 }
-                console.log(this.files[i]);
+
                 $("#progess").append('<div class="mb20 f_progress" id="progressbar_'+fileId+
                 '"><div class="row mb20"><div class="col-md-1 col-sm-1 col-xs-1 text-center"><i class="fas fa-file" style="margin-top: 20px;"></i></div><div class="col-md-9 col-sm-9 col-xs-9"><p class="text-left"><b class="file-name">'+
                 this.files[i].name+'</b></p><div class="text-left"><span class="process-size">0 bytes </span><span class="file-size"> / '+
@@ -47,6 +47,26 @@ $(document).ready(function () {
                 $("#f_close_"+fileId).click(function (){
                     $('#progressbar_'+$(this).attr('title')).remove();
                     del_item.push($(this).attr('title'));
+
+                    file_count1--;
+
+                    if(file_count1 == 0) {
+                        $('#resumable-drop').removeClass('hide');
+                        $('#resumable-drop').show();
+            
+                        $("#resumable-browse").val('');
+            
+                        $(".upload-btn-text").show();
+                        $("#uploading-spinner").addClass('hide');
+            
+                        $("#cancelAll-btn").addClass('btn-disable');
+                        $("#cancelAll-btn").addClass('dark-danger');
+            
+                        $("#upload-btn").addClass('btn-disable');
+                        $("#upload-btn").addClass('dark-red');
+                        $("#upload-btn").removeClass('hide');
+                        $("#tostep2-btn").addClass('hide');
+                    }
                 });
             }
             else {
@@ -98,9 +118,6 @@ $(document).ready(function () {
             $("#tostep2-btn").addClass('hide');
         }
     })
-    $(".f_close").click(function() {
-        alert(123);
-    })
 
     function uploadFiles() {
         
@@ -150,31 +167,47 @@ $(document).ready(function () {
             $('#progressbar_' + fileId).css("width", "100%");
 
             let origin_header = new Array();
-            origin_header = JSON.parse(event.target.response);
+            origin_header = JSON.parse(e.target.response);
 
-            let header = ['ADDRESS','CITY','PROVINCE','POSTALCODE'];
-            let _added_elem = '';
-            for(let i=0; i<header.length; i++) {
-                _added_elem += '<div class="col-md-3 text-left"><label class="header_label">'+
-                header[i]+': <span class="required_mark">*</span></label><select class="cus_sel_box '+header[i]
-                +'" name=""><option value=""></option>';
-                for(let j=0; j<origin_header.length; j++) {
-                    _added_elem += '<option value="'+origin_header[j]+'">'+
-                    origin_header[j]+'</option>';
+            if(origin_header.error == 'none') {
+                let header = ['ADDRESS','CITY','PROVINCE','POSTALCODE'];
+                let _added_elem = '';
+    
+                for(let i=0; i<header.length; i++) {
+                    _added_elem += '<div class="col-md-3 text-left"><label class="header_label">'+
+                    header[i]+': <span class="required_mark">*</span></label><select class="cus_sel_box '+header[i]
+                    +'" name=""><option value=""></option>';
+                    for(let j=0; j<origin_header.header.length; j++) {
+                        _added_elem += '<option value="'+origin_header.header[j]+'">'+
+                        origin_header.header[j]+'</option>';
+                    }
+                    _added_elem += '</select></div>';
                 }
-                _added_elem += '</select></div>';
+                let whole_added_elem = '<div class="custom-select" id="selected_'+fileId
+                +'"><p class="text-center mytext-dark-blue">Please confirm this 1st row contains HEADER information like ADDRESS, CITY, PROVINCE, POSTAL CODE.</p><p class="text-center mytext-dark-blue mb20">If file does not contain header information, process will fail.</p><div class="row">'+_added_elem+'</div><p class="alert_header" style="display:none; color: #981a36;">Select the above select boxs!</p></div>';
+                $('#resumable-drop').hide();
+                $("#progressbar_"+fileId).append(whole_added_elem);
+                
+                if( m == file_count ) {
+                    $("#upload-btn").addClass('hide');
+                    $("#tostep2-btn").removeClass('hide');
+    
+                    $("#cancelAll-btn").removeClass('btn-disable');
+                    $("#cancelAll-btn").removeClass('dark-danger');
+                }
             }
-            let whole_added_elem = '<div class="custom-select" id="selected_'+fileId
-            +'"><div class="row">'+_added_elem+'</div><p class="alert_header" style="display:none; color: #981a36;">Select the above select boxs!</p></div>';
-            $('#resumable-drop').hide();
-            $("#progressbar_"+fileId).append(whole_added_elem);
-            
-            if( m == file_count ) {
-                $("#upload-btn").addClass('hide');
-                $("#tostep2-btn").removeClass('hide');
-
-                $("#cancelAll-btn").removeClass('btn-disable');
-                $("#cancelAll-btn").removeClass('dark-danger');
+            else {
+                let _added_elem_error = '<div class="row"><div class="col-md-12"><p class="text-center text-danger">'+origin_header.error+'</p></div></div>';
+                $("#progressbar_"+fileId).append(_added_elem_error);
+                $("#progressbar_"+fileId+" .myBar").css('background-color','#981a36');
+                
+                if( m == file_count ) {
+                    $("#upload-btn").addClass('hide');
+    
+                    $("#cancelAll-btn").removeClass('btn-disable');
+                    $("#cancelAll-btn").removeClass('dark-danger');
+                    file_count--;
+                }
             }
 
         }, false);
@@ -200,6 +233,25 @@ $(document).ready(function () {
         // _cancel.show();
 
         _cancel.on('click', function () {
+            file_count--;
+
+            if(file_count == 0) {
+                $('#resumable-drop').removeClass('hide');
+                $('#resumable-drop').show();
+
+                $("#resumable-browse").val('');
+
+                $(".upload-btn-text").show();
+                $("#uploading-spinner").addClass('hide');
+    
+                $("#cancelAll-btn").addClass('btn-disable');
+                $("#cancelAll-btn").addClass('dark-danger');
+
+                $("#upload-btn").addClass('btn-disable');
+                $("#upload-btn").addClass('dark-red');
+                $("#upload-btn").removeClass('hide');
+                $("#tostep2-btn").addClass('hide');
+            }
             $("progressbar_"+fileId).hide();
         })
     }
@@ -232,8 +284,6 @@ $(document).ready(function () {
                 header_info[k]['postalcode'] = $("#selected_"+k+" .POSTALCODE").val();
             }
             
-            // var myJSON = header_info.toString();
-            // console.log(myJSON);
             $.ajax({
                 url: 'set_header',
                 type: 'post',
@@ -288,7 +338,7 @@ $(document).ready(function () {
             total_process_count += process_info[i]['process_count'];
             process_info[i]['dataset'] = $("#dataset_"+i).val();
         }
-        process_duration = (total_process_count*0.06)/60;
+        process_duration = (total_process_count*0.65)/60;
         
         if(process_duration < 1) {
             process_duration = 1;
@@ -296,9 +346,6 @@ $(document).ready(function () {
         else {
             process_duration++;
         }
-
-        console.log(total_process_count);
-        console.log(process_duration);
 
         setTimeout(function() {
             $('#process-modal #mins').text(process_duration.toFixed());

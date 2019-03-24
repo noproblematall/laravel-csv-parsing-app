@@ -14,10 +14,6 @@ td, th {
     box-shadow: none!important;
 }
 
-}@font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url(Bootstrap-3.3.7/fonts/glyphicons-halflings-regular.eot);
-    src: url(Bootstrap-3.3.7/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(Bootstrap-3.3.7/fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(Bootstrap-3.3.7/fonts/glyphicons-halflings-regular.woff) format('woff'), url(Bootstrap-3.3.7/fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(Bootstrap-3.3.7/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg');
 }
 table {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -114,16 +110,15 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
     bottom: 8px;
     right: 8px;
     display: block;
-    font-family: 'Glyphicons Halflings';
     opacity: 0.5;
 }
 table.dataTable thead .sorting:after {
     opacity: 0.2;
-    content: "\e150"}
+    content: " \21E9"}
 table.dataTable thead .sorting_asc:after {
-    content: "\e155"}
+    content: " \21E9"}
 table.dataTable thead .sorting_desc:after {
-    content: "\e156"}
+    content: " \21E7"}
 table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
     color: #eee;
 }

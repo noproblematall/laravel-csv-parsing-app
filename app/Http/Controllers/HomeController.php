@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use League\Csv\Reader;
+use League\Csv\Statement;
+use League\Csv\CharsetConverter;
 use Storage;
 use Auth;
 use Illuminate\Support\Facades\Schema;
@@ -40,13 +42,28 @@ class HomeController extends Controller
         
         return view('upload', compact('index','menu'));
     }
+
+
     public function info() {
         phpinfo();
     }
+
     public function process(Request $request) {
         $index = "index-1";
         $menu = 'working_area';
         return view('getcontact', compact('index','menu'));
+    }
+
+    public function contact(Request $request) {
+        $index = "index-1";
+        $menu = 'contact';
+        return view('contact', compact('index','menu'));
+    }
+
+    public function package(Request $request) {
+        $index = "none-fixed-footer";
+        $menu = 'package';
+        return view('package', compact('index','menu'));
     }
 
     public function fileUploadPost(Request $request) {
@@ -55,12 +72,75 @@ class HomeController extends Controller
             'upload/'.Auth::user()->email, $filename
         );
 
+        $empty_header_message = self::Empty_header_validation($path);
+
+        $result = [];
+
+        if($empty_header_message == 'success') {
+            $invalid_csv_message = self::None_matching_columns_count($path);
+            if($invalid_csv_message == 'success') {
+                $csv = Reader::createFromPath(storage_path('app/').$path, 'r');
+                $csv->setHeaderOffset(0);
+                $header_offset = $csv->getHeaderOffset();
+                $header = $csv->getHeader();
+
+                $result['error'] = 'none';
+                $result['header'] = $header;
+        
+                return response()->json($result);
+            }
+            else {
+                $result['error'] = $invalid_csv_message;
+                $result['header'] = 'none';
+
+                return response()->json($result);
+            }
+        }
+        else {
+            $result['error'] = $empty_header_message;
+            $result['header'] = 'none';
+
+            return response()->json($result);
+        }
+    }
+
+    public function Empty_header_validation($path) {
         $csv = Reader::createFromPath(storage_path('app/').$path, 'r');
         $csv->setHeaderOffset(0);
         $header_offset = $csv->getHeaderOffset();
         $header = $csv->getHeader();
+        
+        foreach($header as $offset => $item) {
+            if($item == "") {
+                return 'No headers found in this CSV. The 1st row must contain header information. ie: ADDRESS : CITY : PROVINCE : POSTALCODE';
+            }
+        }
 
-        return $header;
+        return 'success';
+    }
+
+    public function None_matching_columns_count($path) {
+        $file = fopen(storage_path('app/').$path, 'r');
+        
+        $arr = fgetcsv($file);
+        $header_count = count($arr);
+
+        $csv = Reader::createFromPath(storage_path('app/').$path, 'r');
+        $length = count($csv);
+
+        $row = 1;
+        while (($data = fgetcsv($file, $length, ",")) !== FALSE) {
+            $each_records_count = count($data);
+            if($header_count != $each_records_count) {
+                fclose($file);
+                return 'This CSV file does not conform to column data integrity. Columns and data must have the same number of columns to data ratio.';
+            }
+            
+            $row++;
+        }
+        
+        fclose($file);
+        return 'success';
     }
 
     public function setHeader(Request $request) {

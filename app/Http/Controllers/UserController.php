@@ -16,8 +16,68 @@ class UserController extends Controller
     }
 
     public function index() {
+
+        $processing_files_count = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',0]
+        ])->count();
+
+        $completed_files_count = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',1]
+        ])->count();
+
         $active = 'completed';
-        return view('user.index', compact('active'));
+        $menu = 'dashboard';
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu'));
+    }
+
+    public function personal_info() {
+        $processing_files_count = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',0]
+        ])->count();
+
+        $completed_files_count = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',1]
+        ])->count();
+
+        $active = 'info';
+        $menu = 'dashboard';
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu'));
+    }
+
+    public function change_pwd() {
+        $processing_files_count = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',0]
+        ])->count();
+
+        $completed_files_count = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',1]
+        ])->count();
+        
+        $active = 'chang_pwd';
+        $menu = 'dashboard';
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu'));
+    }
+
+    public function membership() {
+        $processing_files_count = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',0]
+        ])->count();
+
+        $completed_files_count = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',1]
+        ])->count();
+        
+        $active = 'membership';
+        $menu = 'dashboard';
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu'));
     }
 
     public function getProcessingList() {

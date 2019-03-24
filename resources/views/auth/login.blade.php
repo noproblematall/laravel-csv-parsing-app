@@ -14,7 +14,7 @@
                 <form  method="POST" action="{{ route('login') }}" id="signin-form" accept-charset="utf-8" class="myform form" role="form">
                 <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}" />
                 <label for="email">Email:</label>
-                <input type="text" name="email" id="email" class="form-control input-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your Email" value="{{ old('email') }}" required autofocus />
+                <input type="text" name="email" id="login_email" class="form-control input-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your Email" value="{{ old('email') }}" required autofocus />
                 <span class="invalid-feedback pb20 hide" role="alert" id="in-email-alert"></span>
                 @if ($errors->has('email'))
                     <span class="invalid-feedback pb20" role="alert">
@@ -27,7 +27,7 @@
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif
-                <input type="password" name="password" id="password" value="" class="form-control input-lg mb20{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" required />
+                <input type="password" name="password" id="login_password" value="" class="form-control input-lg mb20{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" required />
                 <span class="invalid-feedback pb20 hide" role="alert" id="in-pwd-alert"></span>
                 @if ($errors->has('password'))
                     <span class="invalid-feedback pb20" role="alert">

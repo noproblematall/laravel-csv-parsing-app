@@ -8,13 +8,12 @@
 
 @section('content')
 <section class="probootstrap-section" id="working-area" data-section="working-area">
-<input type="hidden" name="_base_url" value="{{asset('/')}}" />
+
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-3">
-            <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" width="202" height="202" class="avatar img-circle img-thumbnail"
-                    alt="avatar">
+            <div class="text-center" id="brand-img">
+                
             </div>
             <hr><br>
 
@@ -29,8 +28,8 @@
                 <li class="list-group-item text-muted mytext-dark-blue"><strong>Activity</strong> <i class="fas fa-tachometer-alt"></i></li>
                 <li class="list-group-item text-right"><span class="pull-left">Current plan</span> 10000</li>
                 <li class="list-group-item text-right"><span class="pull-left">Processable rows</span> 8000</li>
-                <li class="list-group-item text-right"><span class="pull-left">Completed Activities</span> 3</li>
-                <li class="list-group-item text-right"><span class="pull-left">Activities in process</span> 5</li>
+                <li class="list-group-item text-right"><span class="pull-left">Completed Activities</span>{{$completed_files_count}}</li>
+                <li class="list-group-item text-right"><span class="pull-left">Activities in process</span>{{$processing_files_count}}</li>
             </ul>
 
         </div>
@@ -41,6 +40,7 @@
                 <li class="<?php if($active=='processing') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#processing">Activities in process</a></li>
                 <li class="<?php if($active=='info') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>
                 <li class="<?php if($active=='chang_pwd') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#chang_pwd">Change password</a></li>
+                <li class="<?php if($active=='membership') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#membership">Manage membership</a></li>
             </ul>
 
 
@@ -74,7 +74,7 @@
                                 <label for="email">
                                     <h4 class="mb10">Email</h4>
                                 </label>
-                                <input type="email" class="form-control" name="email" id="email"
+                                <input type="email" class="form-control" name="email" id="p_email"
                                     placeholder="you@email.com" value="{{Auth::user()->email}}" disabled title="enter your email.">
                             </div>
                         </div>
@@ -100,19 +100,11 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="email">
+                                <label for="location">
                                     <h4 class="mb10">Location</h4>
                                 </label>
-                                <input type="email" class="form-control" id="location" placeholder="somewhere" value="{{Auth::user()->location}}"
+                                <input type="text" class="form-control" id="location" placeholder="somewhere" value="{{Auth::user()->location}}"
                                     title="enter a location">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="password2">
-                                    <h4 class="mb10">Upload your photo</h4>
-                                </label>
-                                <input type="file" class=" form-control text-center center-block file-upload">
                             </div>
                         </div>
                         <div class="form-group">
@@ -162,13 +154,13 @@
 
                 <div class="tab-pane mytext-dark-blue <?php if($active=='chang_pwd') echo 'active'; ?>" id="chang_pwd">
                     <hr>
-                    <form class="form myform" action="" method="post" id="registrationForm">
+                    <form class="form myform" action="" method="post" id="change_pwd_form">
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="password">
                                     <h4 class="mb10">Password</h4>
                                 </label>
-                                <input type="password" class="form-control" name="password" id="password"
+                                <input type="password" class="form-control" name="password" id="p_password"
                                     placeholder="password" title="enter your password." required>
                             </div>
                         </div>
@@ -194,6 +186,83 @@
                     </form>
                 </div>
 
+                <div class="tab-pane mytext-dark-blue <?php if($active=='membership') echo 'active'; ?>" id="membership">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="probootstrap-pricing">
+                                <h2>Starter</h2>
+                                <p class="probootstrap-price"><strong>$22.99</strong></p>
+                                <p class="probootstrap-note">This is a monthly recurring payment.</p>
+                                <ul class="probootstrap-list text-left mb50">
+                                <li class="probootstrap-check">Process 5000 rows of your CSV file.</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet consec tetur adipisicing elit</li>
+                                </ul>
+                                <p><a href="#" class="btn btn-black">Downgrade</a></p>
+                            </div>
+                        </div>
+            
+                        <div class="col-md-4">
+                            <div class="probootstrap-pricing probootstrap-popular probootstrap-shadow">
+                                <h2>Basic</h2>
+                                <p class="probootstrap-price"><strong>$49.99</strong></p>
+                                <p class="probootstrap-note">This is a monthly recurring payment.</p>
+                                <ul class="probootstrap-list text-left mb50">
+                                <li class="probootstrap-check">Process 10000 rows of your CSV file.</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet consec tetur adipisicing elit</li>
+                                </ul>
+                                <p><a href="#" class="btn btn-primary">Current Plan</a></p>
+                            </div>
+                        </div>
+            
+                        <div class="col-md-4">
+                            <div class="probootstrap-pricing">
+                                <h2>Plus</h2>
+                                <p class="probootstrap-price"><strong>$69.99</strong></p>
+                                <p class="probootstrap-note">This is a monthly recurring payment.</p>
+                                <ul class="probootstrap-list text-left mb50">
+                                <li class="probootstrap-check">Process 20000 rows of your CSV file.</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet consec tetur adipisicing elit</li>
+                                </ul>
+                                <p><a href="#" class="btn btn-black">Upgrade</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row member-ship-showmore hide">
+                        <div class="col-md-4">
+                            <div class="probootstrap-pricing">
+                                <h2>Buisness</h2>
+                                <p class="probootstrap-price"><strong>$89.99</strong></p>
+                                <p class="probootstrap-note">This is a monthly recurring payment.</p>
+                                <ul class="probootstrap-list text-left mb50">
+                                <li class="probootstrap-check">Process 30000 rows of your CSV file.</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet consec tetur adipisicing elit</li>
+                                </ul>
+                                <p><a href="#" class="btn btn-black">Upgrade</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="probootstrap-pricing">
+                                <h2>Premium</h2>
+                                <p class="probootstrap-price"><strong>$119.99</strong></p>
+                                <p class="probootstrap-note">This is a monthly recurring payment.</p>
+                                <ul class="probootstrap-list text-left mb50">
+                                <li class="probootstrap-check">Process 50000 rows of your CSV file.</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet</li>
+                                <li class="probootstrap-check">Lorem ipsum dolor sit amet consec tetur adipisicing elit</li>
+                                </ul>
+                                <p><a href="#" class="btn btn-black">Upgrade</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center" id="show-btn-div"><a href="#" id="show-btn">show more</a></div>
+                </div>
+                </div>
+
             </div>
             <!--/tab-pane-->
         </div>
@@ -207,7 +276,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{asset('assets/vendor/dataTables/dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/dataTables/dataTables.checkboxes.min.js')}}"></script>
+    <script src="{{asset('assets/js/link.js')}}"></script>
     <script src="{{asset('assets/js/user.js')}}"></script>
 @endsection
