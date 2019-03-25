@@ -509,6 +509,9 @@ footer {
     #in-process-table {
         display: none;
     }
+    #mobile-completed-list-table {
+        width: 320px !important;
+    }
 }
 
 
