@@ -473,6 +473,24 @@ legend{
         line-height: 0;
         padding-left: 0;
     }
+    .mobile-hide {
+        display: none;
+    }
+    .dataTables_info {
+        display: none;
+    }
+    #dash-right {
+        /* overflow: auto; */
+    }
+    .dataTables_length {
+        display: none;
+    }
+    .mobile-left .dataTables_filter label{
+        float: left;
+    }
+    .mobile-left .pagination{
+        float: left;
+    }
 }
 
 
@@ -583,7 +601,6 @@ legend{
     line-height: 7px !important;
     font-size: 14px;
     position: relative;
-    z-index: 10000;
     padding: 10px 5px;
 }
 .info_tab {
@@ -596,10 +613,6 @@ legend{
 #brand-img{
     width: 202px;
     height: 202px;
-}
-
-#contact-page {
-    
 }
 
 .none-fixed-footer .probootstrap-navbar.scrolled.awake {

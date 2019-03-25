@@ -89,8 +89,8 @@
                     <br />
                 </div>
                 <div class="modal-footer">
-                    <a href="{{ route('working_area') }}" type="button" class="btn btn-primary">Go to working area</a>
-                    <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-default">Dashboard</a>
+                    <a href="{{ route('working_area') }}" type="button" class="btn btn-primary">UPLOAD ANOTHER FILE</a>
+                    <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-default">DASHBOARD</a>
                 </div>
             </div>
         </div>
