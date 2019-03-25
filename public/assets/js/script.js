@@ -186,7 +186,8 @@ $(document).ready(function() {
         window.location = _base_url+'user/manage_membership';
     })
 
-    $("#avatar").focusin(function(e) {
+    $("#profile-btn").click(function(e) {
+        e.preventDefault();
         $(".my-dropdown-menu").show();
     })
 
