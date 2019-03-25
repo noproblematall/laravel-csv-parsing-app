@@ -34,8 +34,10 @@ Route::group(['prefix' => 'user'], function () {
     Route::any('personal_info', 'UserController@personal_info')->name('user.personal_info');
     Route::any('manage_mambership', 'UserController@membership')->name('user.membership');
     Route::any('change_password', 'UserController@change_pwd')->name('user.change_pwd');
-    Route::get('processing_list', 'UserController@getProcessingList')->name('user.change_password');
+    Route::get('processing_list', 'UserController@getProcessingList')->name('user.get_processing_list');
     Route::get('completed_list', 'UserController@getCompletedList')->name('user.get_completed_list');
+    Route::get('processing_list/mobile', 'UserController@getMobileProcessingList')->name('user.get_mobile_processing_list');
+    Route::get('completed_list/mobile', 'UserController@getMobileCompletedList')->name('user.get_mobile_completed_list');
 });
 
 

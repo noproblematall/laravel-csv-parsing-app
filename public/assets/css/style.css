@@ -451,6 +451,14 @@ legend{
         width: 100%;
     }
 }
+@media (min-width:500px) {
+    #mobile-completed-list-table {
+        display: none;
+    }
+    #mobile-in-process-table {
+        display: none;
+    }
+}
 @media (max-width: 500px) {
     #signup-modal .modal-header {
         padding-left: 10px;
@@ -490,6 +498,12 @@ legend{
     }
     .mobile-left .pagination{
         float: left;
+    }
+    #completed-list-table {
+        display: none;
+    }
+    #in-process-table {
+        display: none;
     }
 }
 

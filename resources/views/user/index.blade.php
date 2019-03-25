@@ -53,6 +53,17 @@
                             </tr>
                         </thead>
                     </table>
+
+                    <table id="mobile-completed-list-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th></th>        
+                                <th>File Name</th>
+                                <th>Dataset</th>
+                                <th>Download</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
 
                 <div class="tab-pane mytext-dark-blue <?php if($active=='processing') echo 'active'; ?>" id="processing">
@@ -66,6 +77,17 @@
                                 <th>Dataset</th>
                                 <th>Status</th>
                                 <th>Start date</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <table id="mobile-in-process-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th></th>        
+                                <th>File Name</th>
+                                <th>rows</th>
+                                <th>Dataset</th>
                             </tr>
                         </thead>
                     </table>

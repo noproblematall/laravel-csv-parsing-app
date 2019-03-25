@@ -6118,6 +6118,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
 $(document).ready(function() {
 
     var _base_url = $("input[name=_base_url]").val();
+    var width = $(window).width();
+
+
 
     var readURL = function(input) {
         if (input.files && input.files[0]) {
@@ -6135,49 +6138,98 @@ $(document).ready(function() {
         readURL(this);
     });
 
-    var table1 = $('#in-process-table').DataTable({
-        'ajax': _base_url + '/user/processing_list',
-        'columnDefs': [{
-            'targets': 0,
-            'render': function(data, type, row, meta) {
-                if (type === 'display') {
-                    data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+    if(width > 768) {
+        var table1 = $('#in-process-table').DataTable({
+            'ajax': _base_url + '/user/processing_list',
+            'columnDefs': [{
+                'targets': 0,
+                'render': function(data, type, row, meta) {
+                    if (type === 'display') {
+                        data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+                    }
+    
+                    return data;
+                },
+                'checkboxes': {
+                    'selectRow': true,
+                    'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
                 }
-
-                return data;
-            },
-            'checkboxes': {
-                'selectRow': true,
-                'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
-            }
-        }],
-        'select': 'multi',
-        'order': [
-            [5, 'desc']
-        ]
-    });
-
-    var table2 = $('#completed-list-table').DataTable({
-        'ajax': _base_url + '/user/completed_list',
-        'columnDefs': [{
-            'targets': 0,
-            'render': function(data, type, row, meta) {
-                if (type === 'display') {
-                    data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+            }],
+            'select': 'multi',
+            'order': [
+                [5, 'desc']
+            ]
+        });
+    
+        var table2 = $('#completed-list-table').DataTable({
+            'ajax': _base_url + '/user/completed_list',
+            'columnDefs': [{
+                'targets': 0,
+                'render': function(data, type, row, meta) {
+                    if (type === 'display') {
+                        data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+                    }
+    
+                    return data;
+                },
+                'checkboxes': {
+                    'selectRow': true,
+                    'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
                 }
+            }],
+            'select': 'multi',
+            'order': [
+                [4, 'desc']
+            ]
+        });
+    }
+    else {
+        var table1 = $('#mobile-in-process-table').DataTable({
+            'ajax': _base_url + '/user/processing_list/mobile',
+            'columnDefs': [{
+                'targets': 0,
+                'render': function(data, type, row, meta) {
+                    if (type === 'display') {
+                        data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+                    }
+    
+                    return data;
+                },
+                'checkboxes': {
+                    'selectRow': true,
+                    'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
+                }
+            }],
+            'select': 'multi',
+            'order': [
+                [2, 'desc']
+            ]
+        });
+    
+        var table2 = $('#mobile-completed-list-table').DataTable({
+            'ajax': _base_url + '/user/completed_list/mobile',
+            'columnDefs': [{
+                'targets': 0,
+                'render': function(data, type, row, meta) {
+                    if (type === 'display') {
+                        data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+                    }
+    
+                    return data;
+                },
+                'checkboxes': {
+                    'selectRow': true,
+                    'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
+                }
+            }],
+            'select': 'multi',
+            'order': [
+                [2, 'desc']
+            ]
+        });
+    }
 
-                return data;
-            },
-            'checkboxes': {
-                'selectRow': true,
-                'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
-            }
-        }],
-        'select': 'multi',
-        'order': [
-            [4, 'desc']
-        ]
-    });
+
 
     $("#show-btn").click(function(e) {
         e.preventDefault();
