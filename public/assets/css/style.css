@@ -509,6 +509,9 @@ footer {
     #in-process-table {
         display: none;
     }
+    #dashboard {
+        height: 100vh;
+    }
 }
 #mobile-completed-list-table td {
     text-align: center;

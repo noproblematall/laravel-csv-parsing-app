@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<section class="probootstrap-section" id="working-area" data-section="working-area">
+<section class="probootstrap-section" id="dashboard">
 
 <div class="container bootstrap snippet">
     <div class="row">
