@@ -509,8 +509,11 @@ footer {
     #in-process-table {
         display: none;
     }
-    #dashboard {
+    #dashboard-area {
         height: 100vh;
+    }
+    #dash-right .nav-tabs {
+        display: none;
     }
 }
 #mobile-completed-list-table td {

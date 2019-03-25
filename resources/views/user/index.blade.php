@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<section class="probootstrap-section" id="dashboard">
+<section class="probootstrap-section" id="dashboard-area">
 
 <div class="container bootstrap snippet">
     <div class="row">
@@ -28,7 +28,7 @@
             </ul>
         </div>
         <div class="col-sm-9 col-xs-12" id="dash-right">
-            <ul class="nav nav-tabs hide">
+            <ul class="nav nav-tabs">
                 <li class="<?php if($active=='completed') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#completed">Completed Activities</a></li>
                 <li class="<?php if($active=='processing') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#processing">Activities in process</a></li>
                 <li class="<?php if($active=='info') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>

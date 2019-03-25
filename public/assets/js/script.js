@@ -183,7 +183,7 @@ $(document).ready(function() {
 
     $('#manage_mambership').click(function(e) {
         e.preventDefault();
-        window.location = _base_url+'user/manage_mambership';
+        window.location = _base_url+'user/manage_membership';
     })
 })
 
