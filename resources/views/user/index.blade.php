@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<section class="probootstrap-section" id="dashboard-area">
+<section class="probootstrap-section {{$active}}_area" id="dashboard-area">
 
 <div class="container bootstrap snippet">
     <div class="row">
@@ -28,14 +28,34 @@
             </ul>
         </div>
         <div class="col-sm-9 col-xs-12" id="dash-right">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs mobile-hide">
                 <li class="<?php if($active=='completed') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#completed">Completed Activities</a></li>
                 <li class="<?php if($active=='processing') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#processing">Activities in process</a></li>
                 <li class="<?php if($active=='info') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>
                 <li class="<?php if($active=='chang_pwd') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#chang_pwd">Change password</a></li>
                 <li class="<?php if($active=='membership') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#membership">Manage membership</a></li>
             </ul>
-
+            @if($active=='completed' || $active=='processing')
+            <ul class="nav nav-tabs pc-hide">
+                <li class="<?php if($active=='completed') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#completed">Completed</a></li>
+                <li class="<?php if($active=='processing') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#processing">Processing</a></li>
+            </ul>
+            @endif
+            @if($active=='membership')
+            <ul class="nav nav-tabs pc-hide">
+                <li class="<?php if($active=='membership') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#membership">Manage membership</a></li>
+            </ul>
+            @endif
+            @if($active=='info')
+            <ul class="nav nav-tabs pc-hide">
+                <li class="<?php if($active=='info') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>
+            </ul>
+            @endif
+            @if($active=='chang_pwd')
+            <ul class="nav nav-tabs pc-hide">
+                <li class="<?php if($active=='chang_pwd') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#chang_pwd">Change password</a></li>
+            </ul>
+            @endif
 
             <div class="tab-content">
 
@@ -96,7 +116,7 @@
                     <form class="form myform" action="" method="post" id="registrationForm">
                         <div class="form-group">
 
-                            <div class="col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <label for="first_name">
                                     <h4 class="mb10">First name</h4>
                                 </label>
@@ -106,7 +126,7 @@
                         </div>
                         <div class="form-group">
 
-                            <div class="col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <label for="last_name">
                                     <h4 class="mb10">Last name</h4>
                                 </label>
@@ -116,7 +136,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <label for="email">
                                     <h4 class="mb10">Email</h4>
                                 </label>
@@ -126,7 +146,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <label for="mobile">
                                     <h4 class="mb10">Birthday</h4>
                                 </label>
@@ -135,7 +155,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <label for="mobile">
                                     <h4 class="mb10">Mobile</h4>
                                 </label>
@@ -145,7 +165,7 @@
                         </div>
                         <div class="form-group">
 
-                            <div class="col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <label for="location">
                                     <h4 class="mb10">Location</h4>
                                 </label>
@@ -154,7 +174,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-12">
+                            <div class="col-sm-12 col-xs-12">
                                 <br>
                                 <div class="right" style="display: inline-block">
                                     <button class="btn btn-default" type="reset"><i class="fas fa-redo"></i> Reset</button>
@@ -170,7 +190,7 @@
                     <hr>
                     <form class="form myform" action="" method="post" id="change_pwd_form">
                         <div class="form-group">
-                            <div class="col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <label for="password">
                                     <h4 class="mb10">Password</h4>
                                 </label>
@@ -179,7 +199,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <label for="password2">
                                     <h4 class="mb10">Verify</h4>
                                 </label>
@@ -188,7 +208,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-12">
+                            <div class="col-sm-12 col-xs-12">
                                 <br>
                                 <div class="right" style="display: inline-block">
                                     <button class="btn btn-default" type="reset"><i class="fas fa-redo"></i> Reset</button>

@@ -462,6 +462,14 @@ footer {
     #mobile-in-process-table {
         display: none;
     }
+    .pc-hide {
+        display: none;
+    }
+    .btn {
+        border-radius: 0;
+        font-size: 16px;
+        padding: 10px 40px;
+    }
 }
 @media (max-width: 500px) {
     #signup-modal .modal-header {
@@ -509,14 +517,19 @@ footer {
     #in-process-table {
         display: none;
     }
-    #dashboard-area {
+    .chang_pwd_area {
         height: 100vh;
     }
-    #dash-right .nav-tabs {
-        display: none;
+    .completed_area {
+        height: 100vh;
     }
     .navbar-collapse.in {
         overflow-y: unset;
+    }
+    .btn {
+        border-radius: 0;
+        font-size: 16px;
+        padding: 10px 12px;
     }
 }
 #mobile-completed-list-table td {
