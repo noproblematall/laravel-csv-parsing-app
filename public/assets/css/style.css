@@ -409,6 +409,9 @@ legend{
     font-size: .7rem;
     position: absolute;
 }
+.index-1 .probootstrap-navbar .dropdown>a:before {
+    color: #000;
+}
 .invalid-feedback {
     color: #981a36;
     font-weight: 200;
