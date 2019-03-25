@@ -191,7 +191,6 @@ $(document).ready(function() {
     })
 
     $("#avatar").mouseleave(function(e) {
-        $("#avatar").focusout();
         $(".my-dropdown-menu").hide();
     })
 })
