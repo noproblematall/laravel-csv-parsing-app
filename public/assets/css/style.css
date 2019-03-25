@@ -284,9 +284,6 @@ legend{
     -webkit-transform: translateY(0);
     transform: translateY(0);
 }
-.index-1 .probootstrap-navbar a {
-    color: rgba(0,0,0,.7);
-}
 .index-1 .probootstrap-navbar a.navbar-brand {
     top: 30px;
     color: #981a36 !important;
@@ -466,6 +463,12 @@ footer {
         border-radius: 0;
         font-size: 16px;
         padding: 10px 40px;
+    }
+    .index-1 .probootstrap-navbar a {
+        color: #161e2c !important;
+    }
+    .none-fixed-footer .probootstrap-navbar a {
+        color: rgba(0,0,0,.7) !important;
     }
 }
 @media (max-width: 500px) {
@@ -674,9 +677,6 @@ footer {
     color: #981a36;
     -webkit-transform: translateY(0);
     transform: translateY(0);
-}
-.none-fixed-footer .probootstrap-navbar a {
-    color: rgba(0,0,0,.7) !important;
 }
 .none-fixed-footer .probootstrap-navbar a.navbar-brand {
     top: 30px;
