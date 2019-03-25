@@ -420,6 +420,9 @@ legend{
 .must_show {
     display: block !important;
 }
+#working-area{
+    height: 100vh;
+}
 #dbStore-spinner {
     width: 2.5rem;
     height: 2.5rem;

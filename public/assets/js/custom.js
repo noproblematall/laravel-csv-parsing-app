@@ -113,20 +113,25 @@
 	var clickMenu = function() {
 
 		$('.navbar-nav a:not([class="external"])').click(function(event){
+			var elem = $(this);
 
 			var section = $(this).data('nav-section'),
-				navbar = $('.navbar-nav');
-				if (isMobile.any()) {
-					$('.navbar-toggle').click();
+			navbar = $('.navbar-nav');
+			if (isMobile.any()) {
+				if(elem.attr('id') == 'profile-btn') {
+					return false;
 				}
-				if ( $('[data-section="' + section + '"]').length ) {
-			    	$('html, body').animate({
-			        	scrollTop: $('[data-section="' + section + '"]').offset().top
-			    	}, 500, 'easeInOutExpo');
-			   }
+				$('.navbar-toggle').click();
+			}
+			if ( $('[data-section="' + section + '"]').length ) {
+					$('html, body').animate({
+							scrollTop: $('[data-section="' + section + '"]').offset().top
+					}, 500, 'easeInOutExpo');
+				}
 
-		    event.preventDefault();
-		    return false;
+			event.preventDefault();
+			return false;
+
 		});
 
 
