@@ -59,7 +59,7 @@
                             <tr>     
                                 <th>File Name</th>
                                 <th>Dataset</th>
-                                <th>Download</th>
+                                <th class="text-center"><i class="fas fa-download"></i></th>
                             </tr>
                         </thead>
                     </table>

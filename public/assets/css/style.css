@@ -615,14 +615,11 @@ footer {
 }
 .download-btn {
     height: 30px;
-    width: 100px;
-    display: block;
     text-align: center;
     margin: auto;
     line-height: 7px !important;
     font-size: 14px;
     position: relative;
-    padding: 10px 5px;
 }
 .info_tab {
     margin-top: 0 !important;

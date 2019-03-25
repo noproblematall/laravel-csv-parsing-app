@@ -157,7 +157,7 @@ class UserController extends Controller
         foreach($filelist as $item) {
             $result['data'][$i][0] = $item->filename;
             $result['data'][$i][1] = $item->mydataset->name;
-            $result['data'][$i][2] = '<a href="#" class="btn btn-primary download-btn" onclick="event.preventDefault();document.getElementById(\'download-form-'.$item->id.'\').submit();">Download</a>'.
+            $result['data'][$i][2] = '<a href="#" class="download-btn" onclick="event.preventDefault();document.getElementById(\'download-form-'.$item->id.'\').submit();"><i class="fas fa-download"></i></a>'.
             '<form method="POST" id="download-form-'.$item->id.'" action="'.route('download').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
             '" /><input type="text" name="_download_token" value="'.$item->table_name.'" /></form>';
             $i++;
