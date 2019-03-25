@@ -51,7 +51,7 @@
             <li class="<?php if($menu == 'working_area'){ echo 'active'; }?>"><a href="{{ route('working_area') }}" id="working_area">UPLOAD DATA</a></li>
             <li class="<?php if($menu == 'dashboard'){ echo 'active'; }?>"><a href="{{ route('user.dashboard') }}" id="dashboard">DASHBOARD</a></li>
             <li class="dropdown" id="avatar" data-toggle="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" id="profile-btn" class="dropdown-toggle" data-toggle="dropdown">
                 PROFILE
                 </a>
                 <ul class="dropdown-menu">
