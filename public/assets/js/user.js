@@ -6188,17 +6188,6 @@ $(document).ready(function() {
             'ajax': _base_url + '/user/processing_list/mobile',
             'columnDefs': [{
                 'targets': 0,
-                'render': function(data, type, row, meta) {
-                    if (type === 'display') {
-                        data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
-                    }
-    
-                    return data;
-                },
-                'checkboxes': {
-                    'selectRow': true,
-                    'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
-                }
             }],
             'select': 'multi',
             'order': [
@@ -6210,17 +6199,6 @@ $(document).ready(function() {
             'ajax': _base_url + '/user/completed_list/mobile',
             'columnDefs': [{
                 'targets': 0,
-                'render': function(data, type, row, meta) {
-                    if (type === 'display') {
-                        data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
-                    }
-    
-                    return data;
-                },
-                'checkboxes': {
-                    'selectRow': true,
-                    'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
-                }
             }],
             'select': 'multi',
             'order': [

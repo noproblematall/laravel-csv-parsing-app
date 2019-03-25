@@ -56,8 +56,7 @@
 
                     <table id="mobile-completed-list-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
                         <thead>
-                            <tr>
-                                <th></th>        
+                            <tr>     
                                 <th>File Name</th>
                                 <th>Dataset</th>
                                 <th>Download</th>
@@ -83,8 +82,7 @@
 
                     <table id="mobile-in-process-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
                         <thead>
-                            <tr>
-                                <th></th>        
+                            <tr>    
                                 <th>File Name</th>
                                 <th>rows</th>
                                 <th>Dataset</th>
