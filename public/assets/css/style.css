@@ -436,6 +436,10 @@ legend{
     width: 300px;
     margin: 0 auto;
 }
+footer {
+    z-index: 4;
+    position: relative;
+}
 @media (min-width:768px) {
 	#home{
 		margin-top:50px;

@@ -28,7 +28,7 @@
             </ul>
         </div>
         <div class="col-sm-9 col-12" id="dash-right">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs hide">
                 <li class="<?php if($active=='completed') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#completed">Completed Activities</a></li>
                 <li class="<?php if($active=='processing') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#processing">Activities in process</a></li>
                 <li class="<?php if($active=='info') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>
