@@ -4865,7 +4865,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
 })(function(b, a, d, m) {
     var f = b.fn.dataTable;
     b.extend(!0, f.defaults, {
-        dom: "<'row'<'col-sm-6 col-xs-12 mobile-left'l><'col-sm-6 col-xs-12 mobile-left'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-5 col-xs-12 mobile-left'i><'col-sm-7 col-xs-12 mobile-left'p>>",
+        dom: "<'row'<'col-sm-6 col-xs-12 mobile-left'l><'col-sm-6 col-xs-12 mobile-left'f>><'row'<'col-sm-12 col-xs-12'tr>><'row'<'col-sm-5 col-xs-12 mobile-left'i><'col-sm-7 col-xs-12 mobile-left'p>>",
         renderer: "bootstrap"
     });
     b.extend(f.ext.classes, {
@@ -6189,10 +6189,6 @@ $(document).ready(function() {
             'columnDefs': [{
                 'targets': 0,
             }],
-            'select': 'multi',
-            'order': [
-                [2, 'desc']
-            ]
         });
     
         var table2 = $('#mobile-completed-list-table').DataTable({
@@ -6200,10 +6196,6 @@ $(document).ready(function() {
             'columnDefs': [{
                 'targets': 0,
             }],
-            'select': 'multi',
-            'order': [
-                [2, 'desc']
-            ]
         });
     }
 

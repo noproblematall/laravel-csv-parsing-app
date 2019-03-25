@@ -510,7 +510,9 @@ footer {
         display: none;
     }
 }
-
+#mobile-completed-list-table td {
+    text-align: center;
+}
 
 
 .v-center {

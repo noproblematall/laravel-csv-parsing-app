@@ -27,7 +27,7 @@
                 <li class="list-group-item text-right"><span class="pull-left">Activities in process</span>{{$processing_files_count}}</li>
             </ul>
         </div>
-        <div class="col-sm-9 col-12" id="dash-right">
+        <div class="col-sm-9 col-xs-12" id="dash-right">
             <ul class="nav nav-tabs hide">
                 <li class="<?php if($active=='completed') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#completed">Completed Activities</a></li>
                 <li class="<?php if($active=='processing') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#processing">Activities in process</a></li>
