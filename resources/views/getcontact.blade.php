@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<section class="probootstrap-section" id="working-area" data-section="working-area">
+<section class="probootstrap-section" data-section="working-area">
     <div class="container">
         @csrf
         <input type="hidden" id="_page" value="main_process" />
@@ -89,8 +89,14 @@
                     <br />
                 </div>
                 <div class="modal-footer">
-                    <a href="{{ route('working_area') }}" type="button" class="btn btn-primary">UPLOAD ANOTHER FILE</a>
-                    <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-default">DASHBOARD</a>
+                    <div class="row">
+                        <div class="col-sm-7 col-xs-12">
+                            <a href="{{ route('working_area') }}" type="button" class="btn btn-primary">UPLOAD ANOTHER FILE</a>
+                        </div>
+                        <div class="col-sm-5 col-xs-12">
+                            <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-default">DASHBOARD</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -423,6 +423,9 @@ legend{
 #working-area{
     height: 100vh;
 }
+.modal-footer a {
+    width: 100%;
+}
 #dbStore-spinner {
     width: 2.5rem;
     height: 2.5rem;

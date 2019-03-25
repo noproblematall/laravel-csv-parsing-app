@@ -174,7 +174,7 @@ $(document).ready(function () {
                 let _added_elem = '';
     
                 for(let i=0; i<header.length; i++) {
-                    _added_elem += '<div class="col-md-3 text-left"><label class="header_label">'+
+                    _added_elem += '<div class="col-md-3 col-xs-12 text-left"><label class="header_label">'+
                     header[i]+': <span class="required_mark">*</span></label><select class="cus_sel_box '+header[i]
                     +'" name=""><option value=""></option>';
                     for(let j=0; j<origin_header.header.length; j++) {
