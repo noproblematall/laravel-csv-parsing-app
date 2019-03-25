@@ -55,12 +55,12 @@
                 PROFILE
                 </a>
                 <ul class="dropdown-menu">
-                    <a href="{{ route('user.personal_info') }}" id="personal_info"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
+                    <a class="mytext-dark-blue" href="{{ route('user.personal_info') }}" id="personal_info"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
                     <li class="divider"></li>
-                    <a href="{{ route('user.membership') }}" id="manage_mambership"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
-                    <a href="{{ route('user.change_pwd') }}" id="change_pwd"><li><i class="fas fa-key"></i>&nbsp;&nbsp;Change password</li></a>
+                    <a class="mytext-dark-blue" href="{{ route('user.membership') }}" id="manage_mambership"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
+                    <a class="mytext-dark-blue" href="{{ route('user.change_pwd') }}" id="change_pwd"><li><i class="fas fa-key"></i>&nbsp;&nbsp;Change password</li></a>
                     <li class="divider"></li>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a class="mytext-dark-blue" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><li><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</li></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

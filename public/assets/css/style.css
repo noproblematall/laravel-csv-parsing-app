@@ -49,9 +49,6 @@ body {
 .dark-danger {
     background-color: #d43f3a !important;
 }
-.mytext-dark-blue {
-    color: #161e2c !important;
-}
 .forgot-pwd {
     padding: 0px 10px;
     font-size: 14px;
@@ -288,7 +285,7 @@ legend{
     transform: translateY(0);
 }
 .index-1 .probootstrap-navbar a {
-    color: rgba(0,0,0,.7) !important;
+    color: rgba(0,0,0,.7);
 }
 .index-1 .probootstrap-navbar a.navbar-brand {
     top: 30px;
@@ -702,4 +699,8 @@ footer {
     padding: 0 30px;
     margin-bottom: 30px;
     border: 1px solid #ebebeb;
+}
+
+.mytext-dark-blue {
+    color: #161e2c !important;
 }
