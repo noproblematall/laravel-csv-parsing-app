@@ -14,12 +14,12 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
       @guest
       <div class="probootstrap-subheading center">
         <p class="probootstrap-animate"><a href="{{ route('register') }}" role="button"
-        class="btn btn-primary">Get Started123</a></p>
+        class="btn btn-primary">Get Started</a></p>
       </div>
       @else
       <div class="probootstrap-subheading center">
         <p class="probootstrap-animate"><a href="{{ route('working_area') }}" role="button"
-        class="btn btn-primary">Get Started123</a></p>
+        class="btn btn-primary">Get Started</a></p>
       </div>
       @endguest
     </div>
