@@ -196,7 +196,7 @@ $(document).ready(function() {
     })
 })
 
-function preview_images() 
+function preview_images()
 {
  var total_file=document.getElementById("images").files.length;
  for(var i=0;i<total_file;i++)
