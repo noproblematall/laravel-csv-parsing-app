@@ -104,7 +104,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 col-xs-12">
               <form  method="POST" id="signup-form" action="{{ route('register') }}" accept-charset="utf-8" class="myform form" role="form">
                 @csrf
                 <div class="row">
@@ -226,7 +226,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 col-xs-12">
               <form  method="POST" action="{{ route('login') }}" id="signin-form" accept-charset="utf-8" class="myform form" role="form">
                 <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}" />
                 <label for="email">Email:</label>
