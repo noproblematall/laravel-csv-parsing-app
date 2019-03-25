@@ -515,6 +515,9 @@ footer {
     #dash-right .nav-tabs {
         display: none;
     }
+    .navbar-collapse.in {
+        overflow-y: unset;
+    }
 }
 #mobile-completed-list-table td {
     text-align: center;
