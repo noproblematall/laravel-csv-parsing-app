@@ -186,18 +186,12 @@ $(document).ready(function() {
         window.location = _base_url+'user/manage_membership';
     })
 
-    $("#profile-btn").mouseenter(function(e) {
-        e.preventDefault();
-    })
-    $("#profile-btn").mouseover(function(e) {
-        e.preventDefault();
-    })
-    $("#profile-btn").focusIn(function(e) {
-        e.preventDefault();
+    $("#profile-btn").focusin(function(e) {
+        $(".my-dropdown-menu").show();
     })
 
-    $("#profile-btn").click(function() {
-        $(this).trigger(FocusEvent);
+    $("#profile-btn").focusout(function(e) {
+        $(".my-dropdown-menu").hide();
     })
 })
 

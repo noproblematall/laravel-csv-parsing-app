@@ -54,7 +54,7 @@
                 <a href="#" id="profile-btn" class="dropdown-toggle" data-toggle="dropdown">
                 PROFILE
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="my-dropdown-menu" style="display: none;">
                     <a class="mytext-dark-blue" href="{{ route('user.personal_info') }}" id="personal_info"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
                     <li class="divider"></li>
                     <a class="mytext-dark-blue" href="{{ route('user.membership') }}" id="manage_mambership"><li><i class="fab fa-product-hunt"></i>&nbsp;&nbsp;Manage membership</li></a>
