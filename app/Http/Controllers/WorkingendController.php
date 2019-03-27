@@ -130,10 +130,10 @@ class WorkingendController extends Controller
 
     public function test2() {
 
-        $address = '5788, boul. Ste-Anne';
-        $city = "Boischatel";
+        $address = "909, boul. Mgr de Laval";
+        $city = "Baie-Saint-Paul";
         $province = 'QC';
-        $postalcode = 'G0A1H0';
+        $postalcode = 'G3Z2V9';
 
         $query_str = $address.','.$city.','.$province.','.$postalcode;
 

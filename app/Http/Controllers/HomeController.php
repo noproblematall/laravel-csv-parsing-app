@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use App\Filelist;
 use App\Dataset;
-use App\Middle;
+use App\Pricing;
 use Str;
 
 class HomeController extends Controller
@@ -25,8 +25,7 @@ class HomeController extends Controller
      */
     protected $processor;
 
-    public function __construct(ProcessController $processor)
-    {
+    public function __construct(ProcessController $processor) {
         $this->middleware(['auth','verified']);
         $this->processor = $processor;
     }
@@ -51,6 +50,7 @@ class HomeController extends Controller
     public function process(Request $request) {
         $index = "index-1";
         $menu = 'working_area';
+
         return view('getcontact', compact('index','menu'));
     }
 
@@ -63,7 +63,10 @@ class HomeController extends Controller
     public function package(Request $request) {
         $index = "none-fixed-footer";
         $menu = 'package';
-        return view('package', compact('index','menu'));
+
+        $pricings = Pricing::all();
+
+        return view('package', compact('index','menu','pricings'));
     }
 
     public function fileUploadPost(Request $request) {

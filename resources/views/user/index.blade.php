@@ -29,37 +29,37 @@
         </div>
         <div class="col-sm-9 col-xs-12" id="dash-right">
             <ul class="nav nav-tabs mobile-hide">
-                <li class="<?php if($active=='completed') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#completed">Completed Activities</a></li>
-                <li class="<?php if($active=='processing') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#processing">Activities in process</a></li>
-                <li class="<?php if($active=='info') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>
-                <li class="<?php if($active=='chang_pwd') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#chang_pwd">Change password</a></li>
-                <li class="<?php if($active=='membership') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#membership">Manage membership</a></li>
+                <li class="{{ $active==='completed' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#completed">Completed Activities</a></li>
+                <li class="{{ $active==='processing' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#processing">Activities in process</a></li>
+                <li class="{{ $active==='info' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>
+                <li class="{{ $active==='chang_pwd' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#chang_pwd">Change password</a></li>
+                <li class="{{ $active==='membership' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#membership">Manage membership</a></li>
             </ul>
             @if($active=='completed' || $active=='processing')
             <ul class="nav nav-tabs pc-hide">
-                <li class="<?php if($active=='completed') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#completed">Completed</a></li>
-                <li class="<?php if($active=='processing') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#processing">Processing</a></li>
+                <li class="{{ $active==='completed' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#completed">Completed</a></li>
+                <li class="{{ $active==='processing' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#processing">Processing</a></li>
             </ul>
             @endif
             @if($active=='membership')
             <ul class="nav nav-tabs pc-hide">
-                <li class="<?php if($active=='membership') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#membership">Manage membership</a></li>
+                <li class="{{ $active==='membership' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#membership">Manage membership</a></li>
             </ul>
             @endif
             @if($active=='info')
             <ul class="nav nav-tabs pc-hide">
-                <li class="<?php if($active=='info') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>
+                <li class="{{ $active==='info' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#info">Personal info</a></li>
             </ul>
             @endif
             @if($active=='chang_pwd')
             <ul class="nav nav-tabs pc-hide">
-                <li class="<?php if($active=='chang_pwd') echo 'active'; ?>"><a data-toggle="tab" class="mytext-red" href="#chang_pwd">Change password</a></li>
+                <li class="{{ $active==='chang_pwd' ? 'active' : null }}"><a data-toggle="tab" class="mytext-red" href="#chang_pwd">Change password</a></li>
             </ul>
             @endif
 
             <div class="tab-content">
 
-                <div class="tab-pane mytext-dark-blue <?php if($active=='completed') echo 'active'; ?>" id="completed">
+                <div class="tab-pane mytext-dark-blue {{ $active==='completed' ? 'active' : null }}" id="completed">
                     <hr>
                     <table id="completed-list-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
                         <thead>
@@ -85,7 +85,7 @@
                     </table>
                 </div>
 
-                <div class="tab-pane mytext-dark-blue <?php if($active=='processing') echo 'active'; ?>" id="processing">
+                <div class="tab-pane mytext-dark-blue {{ $active==='processing' ? 'active' : null }}" id="processing">
                     <hr>
                     <table id="in-process-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
                         <thead>
@@ -111,7 +111,7 @@
                     </table>
                 </div>
 
-                <div class="tab-pane info_tab mytext-dark-blue <?php if($active=='info') echo 'active'; ?>" id="info">
+                <div class="tab-pane info_tab mytext-dark-blue {{ $active==='info' ? 'active' : null }}" id="info">
                     <hr>
                     <form class="form myform" action="" method="post" id="registrationForm">
                         <div class="form-group">
@@ -186,7 +186,7 @@
                     </form>
                 </div>
 
-                <div class="tab-pane mytext-dark-blue <?php if($active=='chang_pwd') echo 'active'; ?>" id="chang_pwd">
+                <div class="tab-pane mytext-dark-blue {{ $active==='chang_pwd' ? 'active' : null }}" id="chang_pwd">
                     <hr>
                     <form class="form myform" action="" method="post" id="change_pwd_form">
                         <div class="form-group">
@@ -220,7 +220,7 @@
                     </form>
                 </div>
 
-                <div class="tab-pane mytext-dark-blue <?php if($active=='membership') echo 'active'; ?>" id="membership">
+                <div class="tab-pane mytext-dark-blue {{ $active==='membership' ? 'active' : null }}" id="membership">
                     <hr>
                     <div class="row">
                         <div class="col-md-4">

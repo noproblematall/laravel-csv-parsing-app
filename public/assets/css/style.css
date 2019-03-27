@@ -525,9 +525,6 @@ footer {
     .dataTables_info {
         display: none;
     }
-    #dash-right {
-        /* overflow: auto; */
-    }
     .dataTables_length {
         display: none;
     }
@@ -563,10 +560,9 @@ footer {
         border-top-right-radius: 0;
     }
 }
-#mobile-completed-list-table td {
+#mobile-completed-list-table tr td:last-child {
     text-align: center;
 }
-
 
 .v-center {
     height: 50%;
