@@ -192,7 +192,18 @@ class HomeController extends Controller
         }
 
         $file_info[count($file)] = Dataset::get(['id','name']);
-        $file_info[count($file)+1] = Auth::user()->package->rows - Auth::user()->processed;
+        if(null !== Auth::user()->pricing) {
+            $current_plan = Auth::user()->package->rows;
+            if(null !== Auth::user()->processed) {
+                $file_info[count($file)+1] = Auth::user()->package->rows - Auth::user()->processed;
+            }
+            else {
+                $file_info[count($file)+1] = Auth::user()->package->rows - 0;
+            }
+        }
+        else {
+            $file_info[count($file)+1] = 0;
+        }
 
         return response()->json($file_info);
     }
@@ -201,7 +212,20 @@ class HomeController extends Controller
         $process_info = $requrest->get('process_info');
 
         $total_process_rows = 0;
-        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+
+        if(null !== Auth::user()->pricing) {
+            $current_plan = Auth::user()->package->rows;
+            if(null !== Auth::user()->processed) {
+                $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+            }
+            else {
+                $processable_rows = Auth::user()->package->rows - 0;
+            }
+        }
+        else {
+            $processable_rows = 0;
+        }
+
         foreach($process_info as $item) {
             $total_process_rows += $item['process_count'];
         }
