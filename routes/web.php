@@ -13,11 +13,11 @@
 
 Route::get('/', 'IndexController@index')->name('home');
 
-Route::get('working_area', 'HomeController@upload')->name('working_area');
+Route::get('working_area', 'HomeController@upload')->name('working_area')->middleware('checkActive');
 Route::get('main_process', 'HomeController@process')->name('main_process')->middleware('fileUploaded');
 Route::get('contact', 'HomeController@contact')->name('contact');
 Route::post('contact', 'HomeController@do_contact')->name('contact.post');
-Route::get('packages', 'HomeController@package')->name('package');
+Route::get('packages', 'HomeController@package')->name('package')->middleware('checkActive');
 
 Auth::routes(['verify' => true]);
 
@@ -42,10 +42,13 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('processing_list/mobile', 'UserController@getMobileProcessingList')->name('user.get_mobile_processing_list');
     Route::get('completed_list/mobile', 'UserController@getMobileCompletedList')->name('user.get_mobile_completed_list');
     Route::get('payment_history/mobile', 'UserController@getMobilePaymenthistory')->name('user.mobile_payment_history');
+    Route::get('activation', function() {
+        return view('auth.activation');
+    })->name('user.mobile_payment_history');
 });
 
-Route::post('payment','PricingController@index')->name('get_stripe_form');
-Route::post('stripe', 'PricingController@stripePost')->name('stripe.post');
+Route::post('payment','PricingController@index')->name('get_stripe_form')->middleware('checkActive');
+Route::post('stripe', 'PricingController@stripePost')->name('stripe.post')->middleware('checkActive');
 
 
 
