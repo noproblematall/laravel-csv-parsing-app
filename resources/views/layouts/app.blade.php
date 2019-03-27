@@ -57,7 +57,7 @@
                 <ul class="my-dropdown-menu" style="display: none;">
                     <a class="mytext-dark-blue" href="{{ route('user.personal_info') }}" id="personal_info"><li><i class="fas fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->f_name }} {{ Auth::user()->l_name }}</li></a>
                     <li class="divider"></li>
-                    <a class="mytext-dark-blue" href="{{ route('user.payment_history') }}" id="manage_mambership"><li><i class="fas fa-file-invoice-dollar"></i>&nbsp;&nbsp;Payment history</li></a>
+                    <a class="mytext-dark-blue" href="{{ route('user.payment_history') }}" id="manage_mambership"><li><i class="fas fa-search-dollar"></i>&nbsp;&nbsp;Payment history</li></a>
                     <a class="mytext-dark-blue" href="{{ route('user.change_pwd') }}" id="change_pwd"><li><i class="fas fa-key"></i>&nbsp;&nbsp;Change password</li></a>
                     <li class="divider"></li>
                     <a class="mytext-dark-blue" href="{{ route('logout') }}" onclick="event.preventDefault();
