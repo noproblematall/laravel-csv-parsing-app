@@ -17,7 +17,7 @@ Route::get('working_area', 'HomeController@upload')->name('working_area')->middl
 Route::get('main_process', 'HomeController@process')->name('main_process')->middleware('fileUploaded');
 Route::get('contact', 'HomeController@contact')->name('contact');
 Route::post('contact', 'HomeController@do_contact')->name('contact.post');
-Route::get('packages', 'HomeController@package')->name('package')->middleware('checkActive');
+Route::get('packages', 'HomeController@package')->name('package');
 
 Auth::routes(['verify' => true]);
 
