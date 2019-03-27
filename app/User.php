@@ -40,4 +40,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function filelists(){
         return $this->hasMany('App\Filelist');
     }
+
+    public function package(){
+        return $this->belongsTo('App\Pricing','pricing');
+    }
 }

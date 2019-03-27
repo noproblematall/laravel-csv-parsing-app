@@ -7,21 +7,30 @@
 <section class="probootstrap-section" id="contact-page" data-section="contact">
     <br />
     <div class="container">
-            <h3 class="text-black mt0 underline">Get In Touch</h3>
+        <h3 class="text-black mt0 underline">Get In Touch</h3>
         <div class="row">
+            @if (Session::has('success'))
+                <div class="col-sm-12 col-xs-12">
+                    <div class="alert alert-success text-center">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <p>{{Session::get('success')}}</p>
+                    </div>
+                </div>
+            @endif
             <div class="col-md-8 col-xs-12">
-            <form action="" class="myform form">
+            <form action="{{ route('contact.post') }}" method="POST" class="myform form">
+                @csrf
                 <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="text" class="form-control" name="name" placeholder="Your Name" required autofocus>
                 </div>
                 <div class="form-group">
-                <input type="email" class="form-control" placeholder="Your Email">
+                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                 </div>
                 <div class="form-group">
-                <input type="email" class="form-control" placeholder="Your Phone">
+                <input type="tel" class="form-control" name="phone" placeholder="Your Phone">
                 </div>
                 <div class="form-group">
-                <textarea class="form-control" cols="30" rows="10" placeholder="Write a Message"></textarea>
+                <textarea class="form-control" cols="30" name="message" rows="10" placeholder="Write a Message" required></textarea>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary right" value="Send Message">

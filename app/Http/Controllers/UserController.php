@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Filelist;
 use App\Dataset;
+use App\Payments;
+use App\User;
 use Auth;
 use route;
+use Illuminate\Support\Facades\Validator;
+use Hash;
+use Session;
 
 class UserController extends Controller
 {
@@ -27,9 +32,14 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
+        $current_plan = Auth::user()->package->rows;
+        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+
+        $user = User::where('id','=',Auth::user()->id)->first();
+
         $active = 'completed';
         $menu = 'dashboard';
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu'));
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user'));
     }
 
     public function personal_info() {
@@ -43,9 +53,14 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
+        $current_plan = Auth::user()->package->rows;
+        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+
+        $user = User::where('id','=',Auth::user()->id)->first();
+
         $active = 'info';
         $menu = 'dashboard';
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu'));
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user'));
     }
 
     public function change_pwd() {
@@ -58,13 +73,18 @@ class UserController extends Controller
             ['user_id','=',Auth::user()->id],
             ['status','=',1]
         ])->count();
+
+        $current_plan = Auth::user()->package->rows;
+        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+
+        $user = User::where('id','=',Auth::user()->id)->first();
         
         $active = 'chang_pwd';
         $menu = 'dashboard';
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu'));
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user'));
     }
 
-    public function membership() {
+    public function payment_history() {
         $processing_files_count = Filelist::where([
             ['user_id','=',Auth::user()->id],
             ['status','=',0]
@@ -74,16 +94,21 @@ class UserController extends Controller
             ['user_id','=',Auth::user()->id],
             ['status','=',1]
         ])->count();
+
+        $current_plan = Auth::user()->package->rows;
+        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+        $user = User::where('id','=',Auth::user()->id)->first();
         
-        $active = 'membership';
+        $active = 'payment';
         $menu = 'dashboard';
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu'));
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user'));
     }
 
     public function getProcessingList() {
         $filelist = Filelist::where([
             ['user_id','=',Auth::user()->id],
-            ['status','=',0]
+            ['status','=',0],
+            ['table_name','!=',null]
         ])->get();
 
         $result = [];
@@ -164,5 +189,71 @@ class UserController extends Controller
         }
 
         return response()->json($result);
+    }
+
+    public function getPaymenthistory() {
+        $pay_his = Payments::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=','succeeded']
+        ])->get();
+
+        $result = [];
+        $result['data'] = [];
+        $i = 0;
+        foreach($pay_his as $item) {
+            $result['data'][$i][0] = $i+1;
+            $result['data'][$i][1] = $item->created_at;
+            $result['data'][$i][2] = strtoupper($item->package->name).' package purchase payment.';
+            $result['data'][$i][3] = 'USD';
+            $result['data'][$i][4] = $item->package->price;
+            $i++;
+        }
+
+        return response()->json($result);
+    }
+
+    public function getMobilePaymenthistory() {
+        $pay_his = Payments::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=','succeeded']
+        ])->get();
+
+        $result = [];
+        $result['data'] = [];
+        $i = 0;
+        foreach($pay_his as $item) {
+            $result['data'][$i][0] = strtoupper($item->package->name).' package purchase payment.';
+            $result['data'][$i][1] = '$'.$item->package->price;
+            $i++;
+        }
+
+        return response()->json($result);
+    }
+
+    public function set_personal_info(Request $request) {
+        $user = User::where('id','=',Auth::user()->id)->first();
+        $user->f_name = $request->get('first_name');
+        $user->l_name = $request->get('last_name');
+        $user->birthday = $request->get('birth');
+        $user->mobile = $request->get('mobile');
+        $user->location = $request->get('location');
+
+        $user->save();
+
+        return self::personal_info();
+    }
+
+    public function set_change_pwd(Request $request) {
+        $validatedData = $request->validate([
+            'password' => ['required', 'string', 'min:6', 'confirmed']
+        ]);
+
+        $user = User::where('id','=',Auth::user()->id)->first();
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
+
+        Session::flash('success', 'Password changed successfully!');
+
+        return self::change_pwd();
     }
 }

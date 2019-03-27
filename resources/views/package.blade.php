@@ -13,6 +13,12 @@
             <p>{{ Session::get('success') }}</p>
         </div>
         @endif
+        @if (Session::has('error'))
+        <div class="alert alert-warning text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <p>{{ Session::get('error') }}</p>
+        </div>
+        @endif
         <div class="row justify-content-center text-center">
             <div class="col-md-8">
                 <h2 class="mb30 text-black title">Choose the plan that’s right for your business </h2>

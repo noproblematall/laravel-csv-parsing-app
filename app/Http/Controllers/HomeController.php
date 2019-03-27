@@ -15,6 +15,8 @@ use App\Filelist;
 use App\Dataset;
 use App\Pricing;
 use Str;
+use App\Notifications\ContactUs;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -58,6 +60,21 @@ class HomeController extends Controller
         $index = "index-1";
         $menu = 'contact';
         return view('contact', compact('index','menu'));
+    }
+
+    public function do_contact(Request $request) {
+        $data = [];
+        $data['name'] = $request->get('name');
+        $data['email'] = $request->get('email');
+        $data['phone'] = $request->get('phone');
+        $data['message'] = $request->get('message');
+
+        $user = User::where('id','=',Auth::user()->id)->first();
+        $user->notify(new ContactUs($data));
+
+        Session::flash('success', 'Your message sent successfully!');
+
+        return back();
     }
 
     public function package(Request $request) {
@@ -172,16 +189,26 @@ class HomeController extends Controller
             $csv = Reader::createFromPath(storage_path('app/upload/').Auth::user()->email.'/'.$file[$i]['filename'], 'r');
             $file_info[$i]['count'] = count($csv);
             $file_info[$i]['fileName'] = $file[$i]['filename'];
-            $file_info[$i]['processable'] = 10000;
         }
 
         $file_info[count($file)] = Dataset::get(['id','name']);
+        $file_info[count($file)+1] = Auth::user()->package->rows - Auth::user()->processed;
 
         return response()->json($file_info);
     }
     
     public function processor(Request $requrest) {
         $process_info = $requrest->get('process_info');
+
+        $total_process_rows = 0;
+        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+        foreach($process_info as $item) {
+            $total_process_rows += $item['process_count'];
+        }
+
+        if($total_process_rows > $processable_rows) {
+            return response()->json('exceeded_requests');
+        }
 
         $file_count = 0;
         foreach($process_info as $item) {
@@ -213,17 +240,10 @@ class HomeController extends Controller
     public function processCancel(Request $request) {
         $filelist = session()->get('header_info');
         foreach($filelist as $file) {
-            $tableName = Filelist::where([
+            Filelist::where([
                 ['user_id','=',Auth::user()->id],
                 ['filename','=',$file['filename']],
                 ['status','=',0]
-            ])->orderby('created_at','desc')
-            ->first()->table_name;
-            Schema::dropIfExists($tableName);
-
-            Filelist::where([
-                ['user_id','=',Auth::user()->id],
-                ['filename','=',$file['filename']]
             ])->delete();
         }
         

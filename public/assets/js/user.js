@@ -6182,6 +6182,28 @@ $(document).ready(function() {
                 [4, 'desc']
             ]
         });
+
+        var table3 = $('#payment-history-table').DataTable({
+            'ajax': _base_url + '/user/payment_history',
+            'columnDefs': [{
+                'targets': 0,
+                'render': function(data, type, row, meta) {
+                    if (type === 'display') {
+                        data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+                    }
+    
+                    return data;
+                },
+                'checkboxes': {
+                    'selectRow': true,
+                    'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
+                }
+            }],
+            'select': 'multi',
+            'order': [
+                [1, 'desc']
+            ]
+        });
     }
     else {
         var table1 = $('#mobile-in-process-table').DataTable({
@@ -6193,6 +6215,12 @@ $(document).ready(function() {
     
         var table2 = $('#mobile-completed-list-table').DataTable({
             'ajax': _base_url + '/user/completed_list/mobile',
+            'columnDefs': [{
+                'targets': 0,
+            }],
+        });
+        var table3 = $('#mobile-payment-history-table').DataTable({
+            'ajax': _base_url + '/user/payment_history/mobile',
             'columnDefs': [{
                 'targets': 0,
             }],

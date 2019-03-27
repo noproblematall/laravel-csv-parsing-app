@@ -51,6 +51,8 @@ class WorkingendController extends Controller
         
         self::end_process($filelist);
         self::sendMail($filelist);
+
+        return "success";
     }
 
     private function get_table_columnName($table) {

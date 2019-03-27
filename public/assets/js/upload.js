@@ -318,6 +318,7 @@ $(document).ready(function () {
 
     $("#process-form").submit(function(e) {
         e.preventDefault();
+        $('#exceeded-alert').hide();
         $("#dbStore-spinner").show();
         $('#get-contact-info').addClass('hide');
         $("#processing").removeClass('hide');
@@ -326,6 +327,7 @@ $(document).ready(function () {
     })
 
     function do_process() {
+        let modal_show = true;
         let number_of_files = parseInt($('.number_files').text());
         let process_info = {};
         let _token = $("input[name=_token]").val();
@@ -348,8 +350,10 @@ $(document).ready(function () {
         }
 
         setTimeout(function() {
-            $('#process-modal #mins').text(process_duration.toFixed());
-            $("#process-modal").modal({backdrop: "static"});
+            if(modal_show) {
+                $('#process-modal #mins').text(process_duration.toFixed());
+                $("#process-modal").modal({backdrop: "static"});
+            }
         },3000);
 
         $.ajax({
@@ -358,13 +362,25 @@ $(document).ready(function () {
             dataType: 'json',
             data: {'process_info':process_info,'_token':_token},
             success: function(msg) {
-                $("#process-modal").modal('hide');
-                $("#processing").hide();
-                $("#completed").removeClass('hide');
-                $("#dbStore-spinner").hide();
-
-                for(let i=0; i < msg.length; i++) {
-                    $("#completed_list").append('<a href="'+_base_url+'download/'+msg[i].table_name+'" target="_blank" type="button" class="btn btn-lg btn-primary btn-block signup-btn mb20">'+msg[i].filename+' download</a>');
+                if(msg == 'exceeded_requests') {
+                    modal_show = false;
+                    $("#dbStore-spinner").hide();
+                    $('#get-contact-info').removeClass('hide');
+                    $("#processing").addClass('hide');
+                    $('#exceeded-alert').show();
+                    $('#rows_to_process_0').focus();
+                }
+                else {
+                    $("#process-modal").modal('hide');
+                    $("#processing").hide();
+                    $("#completed").removeClass('hide');
+                    $("#dbStore-spinner").hide();
+    
+                    for(let i=0; i < msg.length; i++) {
+                        $("#completed_list").append('<a href="#" class="btn btn-primary download-btn other-download-btn" onclick="event.preventDefault();document.getElementById(\'download-form-'+msg[i].id+'\').submit();">'+msg[i].filename+' download</a>'+
+                        '<form method="POST" id="download-form-'+msg[i].id+'" action="'+_base_url+'/download" style="display:none;"><input type="hidden" name="_token" value="'+_token+
+                        '" /><input type="text" name="_download_token" value="'+msg[i].table_name+'" /></form>');
+                    }
                 }
             }
         });
@@ -393,7 +409,7 @@ $(document).ready(function () {
             success: function(data) {
                 let total_count = 0;
                 let processable = 0;
-                for(let i = 0; i <( data.length -1 ); i++) {
+                for(let i = 0; i <( data.length -2 ); i++) {
                     let append_str = '<h4 class="mytext-dark-blue underline text-left">'+(i+1)+'. '+data[i].fileName
                     +' :</h4><div class="form-group text-left"><label for="total_rows">Total rows:</label><input type="number" name="total_rows" id="total_rows_'+i
                     +'" class="form-control" value="'+data[i].count+'" placeholder="Total rows" disabled></div><div class="form-group text-left"><label for="rows-to-process">Number of rows to process:</label><input type="number" class="form-control process-number-input" id="rows_to_process_'+i+'" value="'+
@@ -401,13 +417,12 @@ $(document).ready(function () {
                     data[i].fileName+'"></div><div class="form-group text-left" style="margin-bottom: 68px"><label>Select a dataset:</label><select name="dataset" class="form-control" id="dataset_'+i+'" required><option value=""></option></select></div>';
                     appended_elem.append(append_str);
 
-                    dataset = data[data.length-1];
+                    dataset = data[data.length-2];
                     for(let j = 0; j < dataset.length; j++) {
                         $("#dataset_"+i).append('<option value="'+dataset[j].id+'">'+dataset[j].name+'</option>')
                     }
 
                     total_count += data[i].count;
-                    processable = data[i].processable;
                 
                     $("#rows_to_process_"+i).change(function() {
                         let total_numbers = 0;
@@ -425,8 +440,9 @@ $(document).ready(function () {
                         $('.total_rows').text(total_numbers);
                     })
                 }
+                processable = data[data.length-1];
     
-                $('.number_files').text((data.length -1));
+                $('.number_files').text((data.length -2));
                 $('.total_rows').text(total_count);
                 $('.processable').text(processable);
                 $("#dbStore-spinner").hide();

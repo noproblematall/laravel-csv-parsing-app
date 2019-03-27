@@ -477,6 +477,9 @@ footer {
     #mobile-in-process-table {
         display: none;
     }
+    #mobile-payment-history-table {
+        display: none;
+    }
     .pc-hide {
         display: none;
     }
@@ -540,10 +543,19 @@ footer {
     #in-process-table {
         display: none;
     }
+    #payment-history-table {
+        display: none;
+    }
     .chang_pwd_area {
         height: 100vh;
     }
     .completed_area {
+        height: 100vh;
+    }
+    .payment_area {
+        height: 100vh;
+    }
+    .stripe > div {
         height: 100vh;
     }
     .navbar-collapse.in {
@@ -730,4 +742,13 @@ footer {
 
 .mytext-dark-blue {
     color: #161e2c !important;
+}
+
+.other-download-btn {
+    height: 50px;
+    text-align: center;
+    margin: auto;
+    line-height: 25px !important;
+    font-size: 18px;
+    position: relative;
 }

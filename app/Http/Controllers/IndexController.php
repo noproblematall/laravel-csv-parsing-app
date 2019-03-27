@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pricing;
 
 class IndexController extends Controller
 {
@@ -13,6 +14,7 @@ class IndexController extends Controller
     public function index() {
         $index = "index";
         $menu = '';
-        return view('index', compact('index','menu'));
+        $pricings = Pricing::all();
+        return view('index', compact('index','menu','pricings'));
     }
 }

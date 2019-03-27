@@ -13,6 +13,7 @@ use Illuminate\Database\Schema\Blueprint;
 use App\Filelist;
 use App\Dataset;
 use App\Middle;
+use App\User;
 use DB;
 use Geocoder;
 
@@ -47,10 +48,23 @@ class ProcessController extends Controller
             self::store_csv_db($path, $item->table_name, $item->process_rows);
             self::getCoordinates($item);
 
-            $this->workingender->store_result_as_csv($item);
+            $result = $this->workingender->store_result_as_csv($item);
+            if($result == 'success') {
+                self::subtract_processed_rows($item->process_rows);
+            }
         }
         
         return response()->json($filelist);
+    }
+
+    private function subtract_processed_rows($rows) {
+        $current_rows = Auth::user()->processed;
+        $total_rows = $current_rows + $rows;
+        $user = User::where('id',Auth::user()->id)->first();
+        $user->processed = $total_rows;
+        $user->save();
+
+        return 'success';
     }
 
     private function make_csv_dbtable($path, $table_name) {

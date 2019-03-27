@@ -15,6 +15,10 @@
                     <h3 class="text-left mytext-dark-blue underline">2. Get contact information</h3>
                     <div class="spinner-border text-primary center" id="dbStore-spinner"></div>
                 </div>
+                <div class="alert alert-danger text-center" id="exceeded-alert" style="display:none;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <p>The number of rows you requested exceeds the number of rows you can process.</p>
+                </div>
                 <div class="col-md-12 hide" id="get-contact-info">
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-xs-12">
