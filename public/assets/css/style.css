@@ -752,3 +752,12 @@ footer {
     font-size: 18px;
     position: relative;
 }
+#active-alert-div {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 5000;
+}
+#active-alert {
+    width: 100%;
+}

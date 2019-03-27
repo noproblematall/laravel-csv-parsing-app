@@ -32,9 +32,20 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
-        $current_plan = Auth::user()->package->rows;
-        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
-
+        if(null !== Auth::user()->pricing) {
+            $current_plan = Auth::user()->package->rows;
+            if(null !== Auth::user()->processed) {
+                $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+            }
+            else {
+                $processable_rows = Auth::user()->package->rows - 0;
+            }
+        }
+        else {
+            $current_plan = 0;
+            $processable_rows = 0;
+        }
+    
         $user = User::where('id','=',Auth::user()->id)->first();
 
         $active = 'completed';
@@ -53,8 +64,19 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
-        $current_plan = Auth::user()->package->rows;
-        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+        if(null !== Auth::user()->pricing) {
+            $current_plan = Auth::user()->package->rows;
+            if(null !== Auth::user()->processed) {
+                $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+            }
+            else {
+                $processable_rows = Auth::user()->package->rows - 0;
+            }
+        }
+        else {
+            $current_plan = 0;
+            $processable_rows = 0;
+        }
 
         $user = User::where('id','=',Auth::user()->id)->first();
 
@@ -74,8 +96,19 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
-        $current_plan = Auth::user()->package->rows;
-        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+        if(null !== Auth::user()->pricing) {
+            $current_plan = Auth::user()->package->rows;
+            if(null !== Auth::user()->processed) {
+                $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+            }
+            else {
+                $processable_rows = Auth::user()->package->rows - 0;
+            }
+        }
+        else {
+            $current_plan = 0;
+            $processable_rows = 0;
+        }
 
         $user = User::where('id','=',Auth::user()->id)->first();
         
@@ -95,8 +128,19 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
-        $current_plan = Auth::user()->package->rows;
-        $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+        if(null !== Auth::user()->pricing) {
+            $current_plan = Auth::user()->package->rows;
+            if(null !== Auth::user()->processed) {
+                $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+            }
+            else {
+                $processable_rows = Auth::user()->package->rows - 0;
+            }
+        }
+        else {
+            $current_plan = 0;
+            $processable_rows = 0;
+        }
         $user = User::where('id','=',Auth::user()->id)->first();
         
         $active = 'payment';

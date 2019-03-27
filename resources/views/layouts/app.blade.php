@@ -75,6 +75,18 @@
       </div>
     </div>
   </nav>
+  @if(null !== Auth::user())
+  @if (!Auth::user()->active)
+  <div class="row justify-content-center" id="active-alert-div">
+    <div class="col-sm-8">
+        <div class="alert alert-danger text-center" id="active-alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <p>Your account is not actived. You have to ask to Administrator.</p>
+        </div>
+    </div>
+  </div>
+  @endif
+  @endif
 
   @yield('content')
 

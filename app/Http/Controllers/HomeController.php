@@ -69,7 +69,7 @@ class HomeController extends Controller
         $data['phone'] = $request->get('phone');
         $data['message'] = $request->get('message');
 
-        $user = User::where('id','=',Auth::user()->id)->first();
+        $user = User::where('role','=','admin')->first();
         $user->notify(new ContactUs($data));
 
         Session::flash('success', 'Your message sent successfully!');
