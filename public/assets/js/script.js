@@ -25,16 +25,11 @@ $(document).ready(function() {
             dataType: 'json',
             data: $('#signin-form').serialize(),
             success : function(data) {
-                if(page == 'login') {
-                    window.location = '/working_area';
+                if(data.auth) {
+                    window.location = data.intended;
                 }
-                else {
-                    if(data.auth) {
-                        window.location = '/';
-                    }
-                    else if(data.message == 'The given data was invalid.') {
-                        alert(data.message);
-                    }
+                else if(data.message == 'The given data was invalid.') {
+                    alert(data.message);
                 }
             },
             error: function(data) {
