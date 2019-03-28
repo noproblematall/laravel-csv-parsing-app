@@ -1,3 +1,42 @@
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #999; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #777; 
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+.spinner-border {
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: .2em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: spinner-border .75s linear infinite;
+    animation: spinner-border .75s linear infinite;
+}
+.mytext-red {
+    color: #981a36;
+}
+.center {
+    margin: auto;
+}
+
 .skin-blue .main-header .navbar {
     background-color: #981a36;
 }
@@ -20,4 +59,16 @@
 }
 .box.box-info {
     border-top-color: #981a36;
+}
+.box-body {
+    position: relative;
+}
+div.toolbar {
+    float: right;
+}
+.clear {
+    clear: both;
+}
+.box-header {
+    border-bottom: 1px solid #f1f1f1;
 }

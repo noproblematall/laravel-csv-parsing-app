@@ -95,7 +95,7 @@
                     </a>
                 </li>
                 <li class="{{ $index==='dataset' ? 'active' : null }}">
-                    <a href="#">
+                    <a href="{{ route('admin.dataset') }}">
                         <i class="fa fa-database"></i> <span>Dataset management</span>
                     </a>
                 </li>
@@ -105,22 +105,22 @@
                     </a>
                 </li>
                 <li class="{{ $index==='package' ? 'active' : null }}">
-                    <a href="#">
+                    <a href="{{ route('admin.package') }}">
                         <i class="fa fa-user-md"></i> <span>Package management</span>
                     </a>
                 </li>
                 <li class="{{ $index==='payment' ? 'active' : null }}">
-                    <a href="#">
+                    <a href="{{ route('admin.payment') }}">
                         <i class="fa fa-credit-card"></i> <span>Payment history</span>
                     </a>
                 </li>
                 <li class="{{ $index==='contact' ? 'active' : null }}">
-                    <a href="#">
+                    <a href="{{ route('admin.contact') }}">
                         <i class="fa fa-whatsapp"></i> <span>Contact management</span>
                     </a>
                 </li>
                 <li class="{{ $index==='setting' ? 'active' : null }}">
-                    <a href="#">
+                    <a href="{{ route('admin.setting') }}">
                         <i class="fa fa-gears"></i> <span>Settings</span>
                     </a>
                 </li>

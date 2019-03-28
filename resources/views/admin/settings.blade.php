@@ -8,10 +8,10 @@
 <div class="content-wrapper">
 @csrf
     <section class="content-header">
-        <h1>User management</h1>
+        <h1>Settings</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-users"></i> Home</a></li>
-            <li class="active">User management</li>
+            <li><a href="#"><i class="fa fa-gears"></i> Home</a></li>
+            <li class="active">Settings</li>
         </ol>
     </section>
     <section class="content">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="box-body">
-                <table id="user-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                <table id="package-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th></th>

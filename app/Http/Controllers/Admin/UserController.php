@@ -34,12 +34,11 @@ class UserController extends Controller
             $result['data'][$i][0] = $i+1;
             $result['data'][$i][1] = $user->f_name;
             $result['data'][$i][2] = $user->l_name;
-            $result['data'][$i][3] = $user->email;
+            $result['data'][$i][3] = "<a href='mailto:".$user->email."' class='email'>".$user->email."</a>";
             
             if(null !== $user->pricing) {
-                $current_plan = Auth::user()->package->rows;
-                if(null !== Auth::user()->processed) {
-                    $result['data'][$i][4] = $user->package->name;
+                if(null !== $user->processed) {
+                    $result['data'][$i][4] = strtoupper($user->package->name);
                     $result['data'][$i][5] = $user->package->rows - $user->processed;
                 }
                 else {
@@ -48,7 +47,7 @@ class UserController extends Controller
                 }
             }
             else {
-                $result['data'][$i][4] = 'None';
+                $result['data'][$i][4] = 'NONE';
                 $result['data'][$i][5] = 0;
             }
             
@@ -65,10 +64,38 @@ class UserController extends Controller
                 $result['data'][$i][9] = '';
             }
             $result['data'][$i][10] = $user->created_at;
-            $result['data'][$i][11] = $user->active;
+            if($user->active) {
+                $result['data'][$i][11] = "<span class='label label-success inactive'>Active</span>";
+            }
+            else {
+                $result['data'][$i][11] = "<span class='label label-danger inactive'>Inactive</span>";
+            }
+            
             $i++;
         }
 
         return response()->json($result);
+    }
+
+    public function makeActive(Request $request) {
+        $user = User::where('email','=',$request->get('user_id'))->first();
+        $user->active = 1;
+        $user->save();
+
+        return "success";
+    }
+
+    public function makeInactive(Request $request) {
+        $user = User::where('email','=',$request->get('user_id'))->first();
+        $user->active = 0;
+        $user->save();
+
+        return "success";
+    }
+
+    public function delete(Request $request) {
+        User::where('email','=',$request->get('user_id'))->delete();
+
+        return "success";
     }
 }

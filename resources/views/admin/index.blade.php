@@ -89,9 +89,9 @@
                                     <tr>
                                         <td><a href="pages/examples/invoice.html">{{$process->user->f_name}} {{$process->user->l_name}}</a></td>
                                         <td>{{$process->filename}}</td>
-                                        <td>{{$process->mydataset->name}}</td>
+                                        <td>@if(isset($process->mydataset->name)) {{$process->mydataset->name}} @endif</td>
                                         <td>{{$process->process_rows}}</td>
-                                        <td><span class="label {{ $process->status==1 ? 'label-success' : 'label-info' }}">{{ $process->status==1 ? 'succeeded' : 'pending' }}</span></td>
+                                        <td><span class="label {{ $process->status==1 ? 'label-success' : 'label-danger' }}">{{ $process->status==1 ? 'succeeded' : 'pending' }}</span></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

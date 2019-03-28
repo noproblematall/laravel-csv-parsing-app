@@ -6153,4 +6153,70 @@ $(document).ready(function() {
         $('.member-ship-showmore').toggleClass('hide');
     })
 
+    $(".dropdown").mouseover(function() {
+        $(".dropdown-menu").show();
+    })
+
+    $(".dropdown").mouseout(function() {
+        $(".dropdown-menu").hide();
+    })
+
+    $("#make-active").click(function() {
+        $("#user-table tr.selected").each(function() {
+            let user_id = $(this).find('.email').text();
+            let elem = $(this);
+            
+            $.ajax({
+                url: _base_url+'admin/make_active',
+                type: 'post',
+                data: "user_id="+user_id+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.find('.inactive').remove('label-danger');
+                        elem.find('.inactive').addClass('label-success');
+                        elem.find('.inactive').text('Active');
+                    }
+                }
+            })
+        })
+    })
+
+    $("#make-inactive").click(function() {
+        $("#user-table tr.selected").each(function() {
+            let user_id = $(this).find('.email').text();
+            let elem = $(this);
+            
+            $.ajax({
+                url: _base_url+'admin/make_inactive',
+                type: 'post',
+                data: "user_id="+user_id+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.find('.inactive').addClass('label-danger');
+                        elem.find('.inactive').removeClass('label-success');
+                        elem.find('.inactive').text('Inactive');
+                    }
+                }
+            })
+        })
+    })
+
+    $("#user-delete").click(function() {
+        $("#user-table tr.selected").each(function() {
+            let user_id = $(this).find('.email').text();
+            let elem = $(this);
+            
+            $.ajax({
+                url: _base_url+'admin/user_delete',
+                type: 'post',
+                data: "user_id="+user_id+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.remove();
+                    }
+                }
+            })
+        })
+    })
+
 })
