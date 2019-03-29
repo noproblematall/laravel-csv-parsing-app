@@ -91,7 +91,7 @@
                                         <td>{{$process->filename}}</td>
                                         <td>@if(isset($process->mydataset->name)) {{$process->mydataset->name}} @endif</td>
                                         <td>{{$process->process_rows}}</td>
-                                        <td><span class="label {{ $process->status==1 ? 'label-success' : 'label-danger' }}">{{ $process->status==1 ? 'completed' : 'pending' }}</span></td>
+                                        <td><span class="label {{ $process->status==1 ? 'label-success' : 'label-primary' }}">{{ $process->status==1 ? 'Completed' : 'In progress' }}</span></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -99,8 +99,8 @@
                         </div>
                     </div>
                     <div class="box-footer clearfix">
-                        <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Process</a>
-                        <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Processes</a>
+                        <a href="{{ route('working_area') }}" class="btn btn-sm btn-info btn-flat pull-left">Place New Process</a>
+                        <a href="{{ route('admin.process') }}" class="btn btn-sm btn-default btn-flat pull-right">View All Processes</a>
                     </div>
                 </div>
             </div>
@@ -115,54 +115,42 @@
                         <div class="progress">
                             <div class="progress-bar" style="width: 50%"></div>
                         </div>
-                        <span class="progress-description">
-                            50% Increase in 30 Days
-                        </span>
                     </div>
                 </div>
                 <div class="info-box bg-green">
-                    <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+                    <span class="info-box-icon"><i class="fa fa-hourglass-end"></i></span>
         
                     <div class="info-box-content">
-                        <span class="info-box-text">Mentions</span>
-                        <span class="info-box-number">92,050</span>
+                        <span class="info-box-text">Completed Processes</span>
+                        <span class="info-box-number">{{$completed_processes}}</span>
         
                         <div class="progress">
                             <div class="progress-bar" style="width: 20%"></div>
                         </div>
-                        <span class="progress-description">
-                            20% Increase in 30 Days
-                        </span>
                     </div>
                 </div>
                 <div class="info-box bg-red">
-                    <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+                    <span class="info-box-icon"><i class="fa fa-hourglass"></i></span>
         
                     <div class="info-box-content">
-                        <span class="info-box-text">Downloads</span>
-                        <span class="info-box-number">114,381</span>
+                        <span class="info-box-text">Processes in progress</span>
+                        <span class="info-box-number">{{$in_progress_processes}}</span>
         
                         <div class="progress">
                             <div class="progress-bar" style="width: 70%"></div>
                         </div>
-                        <span class="progress-description">
-                            70% Increase in 30 Days
-                        </span>
                     </div>
                 </div>
                 <div class="info-box bg-aqua">
-                    <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+                    <span class="info-box-icon"><i class="fa fa-money"></i></span>
         
                     <div class="info-box-content">
-                        <span class="info-box-text">Direct Messages</span>
-                        <span class="info-box-number">163,921</span>
+                        <span class="info-box-text">Total payments</span>
+                        <span class="info-box-number">{{$total_payments}}</span>
         
                         <div class="progress">
                             <div class="progress-bar" style="width: 40%"></div>
                         </div>
-                        <span class="progress-description">
-                            40% Increase in 30 Days
-                        </span>
                     </div>
                 </div>
             </div>

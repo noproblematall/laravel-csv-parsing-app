@@ -198,3 +198,7 @@ textarea.form-control:focus {
 #package-active {
     font-size: 1.5rem;
 }
+#process-table .btn {
+    display: block;
+    margin: auto;
+}

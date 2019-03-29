@@ -6163,6 +6163,28 @@ $(document).ready(function() {
         ]
     });
 
+    var table3 = $('#process-table').DataTable({
+        'ajax': _base_url + '/admin/process/get',
+        'columnDefs': [{
+            'targets': 0,
+            'render': function(data, type, row, meta) {
+                if (type === 'display') {
+                    data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+                }
+
+                return data;
+            },
+            'checkboxes': {
+                'selectRow': true,
+                'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
+            }
+        }],
+        'select': 'multi',
+        'order': [
+            [7, 'desc']
+        ]
+    });
+
 
 
     $("#show-btn").click(function(e) {
@@ -6371,6 +6393,24 @@ $(document).ready(function() {
         }
 
         window.location = _base_url + "/admin/package/edit/"+items[0];
+    })
+
+    $("#process-delete").click(function() {
+        $("#process-table tr.selected").each(function() {
+            let id = $(this).find('.process_id').text();
+            let elem = $(this);
+            
+            $.ajax({
+                url: _base_url+'admin/process/delete',
+                type: 'post',
+                data: "id="+id+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.remove();
+                    }
+                }
+            })
+        })
     })
 
 })

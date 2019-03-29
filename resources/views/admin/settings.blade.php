@@ -32,7 +32,22 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane {{ $tab==='seo' ? 'active' : null }}" id="seo">
-                                    <form action="{{ route('admin.seo') }}" method="post">
+                                    @if ($errors->any())
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="alert alert-danger">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    <form action="{{ route('admin.seo') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Site Logo</b></div>
@@ -51,21 +66,21 @@
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Meta Title</b></div>
                                             <div class="col-md-11">
-                                                <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="Meta Title" required />
+                                                <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="Meta Title" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Meta Keyawords</b></div>
                                             <div class="col-md-11">
-                                                <textarea type="text" class="form-control" name="meta_key" id="meta_key" placeholder="Meta Keyawords" required></textarea>
+                                                <textarea type="text" class="form-control" name="meta_key" id="meta_key" placeholder="Meta Keyawords"></textarea>
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Meta Description</b></div>
                                             <div class="col-md-11">
-                                                <textarea type="text" class="form-control" name="meta_des" id="meta_des" placeholder="Meta Description" required></textarea>
+                                                <textarea type="text" class="form-control" name="meta_des" id="meta_des" placeholder="Meta Description"></textarea>
                                             </div>
                                         </div>
                                         <br />
@@ -81,32 +96,33 @@
 
                                 <div class="tab-pane {{ $tab==='contact' ? 'active' : null }}" id="contact">
                                     <form action="{{ route('admin.contact') }}" method="post">
+                                        @csrf
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Email</b></div>
                                             <div class="col-md-11">
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required />
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Phone</b></div>
                                             <div class="col-md-11">
-                                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" required />
+                                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Fax</b></div>
                                             <div class="col-md-11">
-                                                <input type="text" class="form-control" name="fax" id="fax" placeholder="Fax" required />
+                                                <input type="text" class="form-control" name="fax" id="fax" placeholder="Fax" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Address</b></div>
                                             <div class="col-md-11">
-                                                <textarea type="text" class="form-control" name="address" id="address" placeholder="Address" required></textarea>
+                                                <textarea type="text" class="form-control" name="address" id="address" placeholder="Address"></textarea>
                                             </div>
                                         </div>
                                         <br />
@@ -122,46 +138,47 @@
 
                                 <div class="tab-pane {{ $tab==='other' ? 'active' : null }}" id="other">
                                     <form action="{{ route('admin.other') }}" method="post">
+                                        @csrf
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Banner Text</b></div>
                                             <div class="col-md-10">
-                                                <textarea type="text" class="form-control" name="banner" id="banner" placeholder="Banner Text" required></textarea>
+                                                <textarea type="text" class="form-control" name="banner" id="banner" placeholder="Banner Text"></textarea>
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Package Page Title</b></div>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control" name="pk_title" id="pk_title" placeholder="Package Page Title" required />
+                                                <input type="text" class="form-control" name="pk_title" id="pk_title" placeholder="Package Page Title" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Package Page Text</b></div>
                                             <div class="col-md-10">
-                                                <textarea type="text" class="form-control" name="pk_text" id="pk_text" placeholder="Package Page Text" required></textarea>
+                                                <textarea type="text" class="form-control" name="pk_text" id="pk_text" placeholder="Package Page Text"></textarea>
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Middle Section Title</b></div>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control" name="md_title" id="md_title" placeholder="Middle Section Title" required />
+                                                <input type="text" class="form-control" name="md_title" id="md_title" placeholder="Middle Section Title" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Middle Section Text</b></div>
                                             <div class="col-md-10">
-                                                <textarea type="text" class="form-control" name="md_text" id="md_text" placeholder="Middle Section Text" required></textarea>
+                                                <textarea type="text" class="form-control" name="md_text" id="md_text" placeholder="Middle Section Text"></textarea>
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Footer Text</b></div>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control" name="ft_text" id="ft_text" placeholder="Footer Text" required />
+                                                <input type="text" class="form-control" name="ft_text" id="ft_text" placeholder="Footer Text" />
                                             </div>
                                         </div>
                                         <br />

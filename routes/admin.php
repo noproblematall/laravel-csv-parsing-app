@@ -36,7 +36,9 @@ Route::get('payment', 'PaymentController@index')->name('admin.payment');
 Route::get('payment/get', 'PaymentController@getPayment')->name('admin.payment_history');
 Route::post('payment/delete', 'PaymentController@delete')->name('admin.payment_delete');
 
-Route::get('contact', 'ContactController@index')->name('admin.contact');
+Route::get('process', 'ProcessController@index')->name('admin.process');
+Route::get('process/get', 'ProcessController@get')->name('admin.get_process');
+Route::post('process/delete', 'ProcessController@delete')->name('admin.delete_process');
 
 Route::get('settings', 'SettingController@index')->name('admin.setting');
 Route::post('settings/seo', 'SettingController@addSeo')->name('admin.seo');

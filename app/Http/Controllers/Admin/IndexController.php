@@ -43,7 +43,11 @@ class IndexController extends Controller
             $total_dataset_amount += DB::table($table)->get()->count();
         }
 
-        return view('admin.index', compact('index','total_earnings','total_members','new_members','datasets_count','processes','total_dataset_amount'));
+        $completed_processes = Filelist::where('status','=',1)->get()->count();
+        $in_progress_processes = Filelist::where('status','=',0)->get()->count();
+        $total_payments = Payments::all()->count();
+
+        return view('admin.index', compact('index','total_earnings','total_members','new_members','datasets_count','processes','total_dataset_amount','completed_processes','in_progress_processes','total_payments'));
     }
 
     public function test() {
