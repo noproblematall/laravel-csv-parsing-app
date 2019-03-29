@@ -34,7 +34,7 @@ class ProcessController extends Controller
                 if($item->status == 1) {
                     $result['data'][$i][6] = "<span class='label label-success inactive'>Completed</span>";
                     $result['data'][$i][8] = '<a href="#" class="btn btn-custom btn-square download-btn" onclick="event.preventDefault();document.getElementById(\'download-form-'.$item->id.'\').submit();">Download</a>'.
-                    '<form method="POST" id="download-form-'.$item->id.'" action="'.route('download').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
+                    '<form method="POST" id="download-form-'.$item->id.'" action="'.route('admin.download').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
                     '" /><input type="text" name="_download_token" value="'.$item->table_name.'" /></form>';
                 }
                 else {
@@ -47,7 +47,7 @@ class ProcessController extends Controller
                 if($item->status == 1) {
                     $result['data'][$i][6] = "<span class='label label-success inactive'>Completed</span>";
                     $result['data'][$i][8] = '<a href="#" class="btn btn-primary download-btn" onclick="event.preventDefault();document.getElementById(\'download-form-'.$item->id.'\').submit();">Download</a>'.
-                    '<form method="POST" id="download-form-'.$item->id.'" action="'.route('download').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
+                    '<form method="POST" id="download-form-'.$item->id.'" action="'.route('admin.download').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
                     '" /><input type="text" name="_download_token" value="'.$item->table_name.'" /></form>';
                 }
                 else {

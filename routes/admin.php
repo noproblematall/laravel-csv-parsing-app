@@ -45,6 +45,8 @@ Route::post('settings/seo', 'SettingController@addSeo')->name('admin.seo');
 Route::post('settings/contact', 'SettingController@addContact')->name('admin.contact');
 Route::post('settings/other', 'SettingController@addOther')->name('admin.other');
 
+Route::post('admin/download', 'IndexController@download')->name('admin.download');
+
 
 
 Route::get('test', 'IndexController@test');

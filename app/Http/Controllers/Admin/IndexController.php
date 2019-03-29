@@ -50,6 +50,22 @@ class IndexController extends Controller
         return view('admin.index', compact('index','total_earnings','total_members','new_members','datasets_count','processes','total_dataset_amount','completed_processes','in_progress_processes','total_payments'));
     }
 
+    public function download(Request $request) {
+        $download_token = $request->get('_download_token');
+
+        $filelist = Filelist::where([
+            ['status','=',1]
+        ])->get();
+
+        foreach($filelist as $file) {
+            if($download_token == $file['table_name']) {
+                return response()->download(storage_path('app/processed/'.$file->user->email.'/'.$file['table_name'].'.csv'));
+            }
+        }
+        
+        return abort(404);
+    }
+
     public function test() {
         $load = sys_getloadavg();
         return $load[0];
