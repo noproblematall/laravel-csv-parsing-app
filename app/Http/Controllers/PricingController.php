@@ -56,14 +56,8 @@ class PricingController extends Controller
         else {
             Session::flash('error', 'Payment failed!');
         }
-  
 
-        $index = "none-fixed-footer";
-        $menu = 'package';
-
-        $pricings = Pricing::all();
-
-        return view('package', compact('index','menu','pricings'));
+        return redirect('/packages');
     }
 
     public function test() {
