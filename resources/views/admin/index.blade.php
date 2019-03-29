@@ -87,7 +87,7 @@
                                 <tbody>
                                     @foreach($processes as $process)
                                     <tr>
-                                        <td><a href="pages/examples/invoice.html">{{$process->user->f_name}} {{$process->user->l_name}}</a></td>
+                                        <td>{{$process->user->f_name}} {{$process->user->l_name}}</td>
                                         <td>{{$process->filename}}</td>
                                         <td>@if(isset($process->mydataset->name)) {{$process->mydataset->name}} @endif</td>
                                         <td>{{$process->process_rows}}</td>
