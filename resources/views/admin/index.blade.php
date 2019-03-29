@@ -113,7 +113,7 @@
                         <span class="info-box-number">{{$total_dataset_amount}}</span>
         
                         <div class="progress">
-                            <div class="progress-bar" style="width: 50%"></div>
+                            <div class="progress-bar" style="width: 30%"></div>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                         <span class="info-box-number">{{$completed_processes}}</span>
         
                         <div class="progress">
-                            <div class="progress-bar" style="width: 20%"></div>
+                            <div class="progress-bar" style="width: 30%"></div>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                         <span class="info-box-number">{{$in_progress_processes}}</span>
         
                         <div class="progress">
-                            <div class="progress-bar" style="width: 70%"></div>
+                            <div class="progress-bar" style="width: 10%"></div>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                         <span class="info-box-number">{{$total_payments}}</span>
         
                         <div class="progress">
-                            <div class="progress-bar" style="width: 40%"></div>
+                            <div class="progress-bar" style="width: 30%"></div>
                         </div>
                     </div>
                 </div>
