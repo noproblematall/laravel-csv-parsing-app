@@ -10,7 +10,7 @@
     <section class="content-header">
         <h1>Payment management</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-credit-card"></i> Home</a></li>
+            <li><a href="{{route('admin.dashboard')}}"><i class="fa fa-credit-card"></i> Home</a></li>
             <li class="active">Payment management</li>
         </ol>
     </section>
@@ -18,28 +18,24 @@
         <div class="box box-info">
             <div class="box-header">
                 <div class="toolbar">
-                    <button class="btn btn-success" id="make-active">Make Active</button>
-                    <button class="btn btn-warning" id="make-inactive">Make Inactive</button>
-                    <button class="btn btn-danger" id="user-delete">Delete</button>
+                    <button class="btn btn-danger" id="payments-delete">
+                        <i class="fa fa-trash-o"></i>&nbsp;
+                        Delete
+                    </button>
                 </div>
                 <div class="clear"></div>
             </div>
 
             <div class="box-body">
-                <table id="package-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                <table id="payment-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>File Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Pacakge</th>
-                            <th>Processable</th>
-                            <th>Mobile</th>
-                            <th>Birthday</th>
-                            <th>Location</th>
-                            <th>Gender</th>
-                            <th>Member since</th>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Package Name</th>
+                            <th>Price</th>
+                            <th>Currency</th>
                             <th>Status</th>
                         </tr>
                     </thead>

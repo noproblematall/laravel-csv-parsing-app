@@ -54,6 +54,9 @@
     right: -400px;
     bottom: 80px;
 }
+/* .nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #981a36;
+} */
 
 .skin-blue .main-header .navbar {
     background-color: #981a36;
@@ -181,6 +184,9 @@ button.btn-custom:hover {
     padding-left: 20px;
 }
 input.form-control:focus {
+    border-color: #981a36;
+}
+textarea.form-control:focus {
     border-color: #981a36;
 }
 .btn-square {

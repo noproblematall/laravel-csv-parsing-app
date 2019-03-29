@@ -21,4 +21,34 @@ class PaymentController extends Controller
         $index = 'payment';
         return view('admin.payment', compact('index'));
     }
+
+    public function getPayment(Request $request) {
+        $payments = Payments::all();
+
+        $result = [];
+        $result['data'] = [];
+        $i = 0;
+        foreach($payments as $pay) {
+            $result['data'][$i][0] = $i+1;
+            $result['data'][$i][1] = "<span class='payment_id'>".$pay->id."</span>";
+            $result['data'][$i][2] = $pay->user->f_name.' '.$pay->user->l_name;
+            $result['data'][$i][3] = strtoupper($pay->package->name);
+            $result['data'][$i][4] = $pay->package->price;
+            $result['data'][$i][5] = 'USD';
+            if($pay->status == "succeeded") {
+                $result['data'][$i][6] = "<span class='label label-success inactive'>Succeeded</span>";
+            }
+            else {
+                $result['data'][$i][6] = "<span class='label label-danger inactive'>Failed</span>";
+            }
+            $i++;
+        }
+
+        return response()->json($result);
+    }
+
+    public function delete(Request $request) {
+        Payments::find($request->get('id'))->delete();
+        return 'success';
+    }
 }

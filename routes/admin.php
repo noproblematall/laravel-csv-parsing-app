@@ -33,10 +33,15 @@ Route::post('package/make_inactive', 'PackageController@makeInactive')->name('ad
 Route::get('dataset', 'DatasetController@index')->name('admin.dataset');
 
 Route::get('payment', 'PaymentController@index')->name('admin.payment');
+Route::get('payment/get', 'PaymentController@getPayment')->name('admin.payment_history');
+Route::post('payment/delete', 'PaymentController@delete')->name('admin.payment_delete');
 
 Route::get('contact', 'ContactController@index')->name('admin.contact');
 
 Route::get('settings', 'SettingController@index')->name('admin.setting');
+Route::post('settings/seo', 'SettingController@addSeo')->name('admin.seo');
+Route::post('settings/contact', 'SettingController@addContact')->name('admin.contact');
+Route::post('settings/other', 'SettingController@addOther')->name('admin.other');
 
 
 

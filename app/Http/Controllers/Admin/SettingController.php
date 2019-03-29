@@ -19,6 +19,11 @@ class SettingController extends Controller
 
     public function index() {
         $index = 'setting';
-        return view('admin.settings', compact('index'));
+        $tab = 'seo';
+        return view('admin.settings', compact('index','tab'));
+    }
+
+    public function addSeo(Request $request) {
+        
     }
 }
