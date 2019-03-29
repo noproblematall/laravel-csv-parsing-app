@@ -6219,4 +6219,118 @@ $(document).ready(function() {
         })
     })
 
+    $(".probootstrap-pricing").click(function() {
+        let elem = $(this);
+        if(elem.hasClass('selected')) {
+            elem.removeClass('selected');
+        }
+        else {
+            elem.addClass('selected');
+        }
+    })
+
+    $("#package-delete").click(function() {
+        let items = [];
+        $(".probootstrap-pricing.selected").each(function(index) {
+            let elem = $(this);
+            items[index] = elem.find('#_id').val();
+
+            $.ajax({
+                url: _base_url+'admin/package/delete',
+                type: 'post',
+                data: "_id="+elem.find('#_id').val()+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.parent().remove();
+                    }
+                }
+            })
+        })
+
+        if(items.length === 0) {
+            $("#no-selected-alert").animate({right: 0},'fast');
+            setTimeout(function() {
+                $("#no-selected-alert").animate({right: "-400px"});
+            },2000);
+            return false;
+        }
+    })
+
+    $('#pk-make-active').click(function() {
+        let items = [];
+        $(".probootstrap-pricing.selected").each(function(index) {
+            let elem = $(this);
+            items[index] = elem.find('#_id').val();
+
+            $.ajax({
+                url: _base_url+'admin/package/make_active',
+                type: 'post',
+                data: "_id="+elem.find('#_id').val()+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.find('#package-active').removeClass('label-danger');
+                        elem.find('#package-active').addClass('label-success');
+                        elem.find('#package-active').text('Active');
+                    }
+                }
+            })
+        })
+
+        if(items.length === 0) {
+            $("#no-selected-alert").animate({right: 0},'fast');
+            setTimeout(function() {
+                $("#no-selected-alert").animate({right: "-400px"});
+            },2000);
+            return false;
+        }
+    })
+
+    $('#pk-make-inactive').click(function() {
+        let items = [];
+        $(".probootstrap-pricing.selected").each(function(index) {
+            let elem = $(this);
+            items[index] = elem.find('#_id').val();
+
+            $.ajax({
+                url: _base_url+'admin/package/make_inactive',
+                type: 'post',
+                data: "_id="+elem.find('#_id').val()+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.find('#package-active').removeClass('label-success');
+                        elem.find('#package-active').addClass('label-danger');
+                        elem.find('#package-active').text('Inactive');
+                    }
+                }
+            })
+        })
+
+        if(items.length === 0) {
+            $("#no-selected-alert").animate({right: 0},'fast');
+            setTimeout(function() {
+                $("#no-selected-alert").animate({right: "-400px"});
+            },2000);
+            return false;
+        }
+    })
+
+    $("#pk-edit").click(function() {
+        let items = [];
+        $(".probootstrap-pricing.selected").each(function(index) {
+            let elem = $(this);
+
+            items[index] = elem.find('#_id').val();
+        })
+
+        if(items.length === 0) {
+            $("#no-selected-alert").animate({right: 0},'fast');
+            setTimeout(function() {
+                $("#no-selected-alert").animate({right: "-400px"});
+            },2000);
+            return false;
+        }
+
+        window.location = _base_url + "/admin/package/edit/"+items[0];
+    })
+
 })

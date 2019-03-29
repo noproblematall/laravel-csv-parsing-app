@@ -91,7 +91,7 @@
                                         <td>{{$process->filename}}</td>
                                         <td>@if(isset($process->mydataset->name)) {{$process->mydataset->name}} @endif</td>
                                         <td>{{$process->process_rows}}</td>
-                                        <td><span class="label {{ $process->status==1 ? 'label-success' : 'label-danger' }}">{{ $process->status==1 ? 'succeeded' : 'pending' }}</span></td>
+                                        <td><span class="label {{ $process->status==1 ? 'label-success' : 'label-danger' }}">{{ $process->status==1 ? 'completed' : 'pending' }}</span></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

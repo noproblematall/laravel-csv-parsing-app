@@ -36,6 +36,24 @@
 .center {
     margin: auto;
 }
+.main-footer {
+    background: #fff;
+    padding: 15px;
+    color: #444;
+    border-top: 1px solid #d2d6de;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.wrapper {
+    min-height: 100vh !important;
+}
+.alert-area {
+    width: 400px;
+    position: absolute;
+    right: -400px;
+    bottom: 80px;
+}
 
 .skin-blue .main-header .navbar {
     background-color: #981a36;
@@ -71,4 +89,106 @@ div.toolbar {
 }
 .box-header {
     border-bottom: 1px solid #f1f1f1;
+}
+.probootstrap-pricing {
+    text-align: center;
+    padding: 0 30px;
+    margin-bottom: 30px;
+    border: 1px solid #ebebeb;
+    font-family: "Open Sans",Arial,sans-serif;
+    cursor: pointer;
+}
+div.probootstrap-pricing:hover {
+    background-color: #f1f1f1 !important;
+}
+div.probootstrap-pricing.selected {
+    border: 1px solid #981a36;
+}
+.probootstrap-pricing h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: #000;
+    margin-bottom: 0;
+}
+.probootstrap-pricing .probootstrap-note {
+    color: #bdbdbd;
+    font-style: italic;
+    font-size: 14px;
+}
+.probootstrap-list {
+    padding: 0;
+    margin: 0;
+}
+.probootstrap-pricing .probootstrap-price strong {
+    font-size: 4rem;
+    font-weight: 300;
+    color: #981a36;
+}
+.mb50 {
+    margin-bottom: 50px!important;
+}
+.mb20 {
+    margin-bottom: 20px!important;
+}
+.mt50 {
+    margin-top: 50px!important;
+}
+.btn-custom {
+    background-color: #981a36;
+    color: #fff;
+}
+a.btn-custom:hover {
+    background-color: #6d1226;
+    color: #fff;
+}
+button.btn-custom:hover {
+    background-color: #6d1226;
+    color: #fff;
+}
+.justify-content-center {
+    -ms-flex-pack: center!important;
+    justify-content: center!important;
+}
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.probootstrap-list li {
+    list-style-type: none;
+    position: relative;
+}
+.probootstrap-list li {
+    margin: 0 0 10px;
+    padding: 0;
+    position: relative;
+    list-style: none;
+}
+.probootstrap-check {
+    color: #981a36;
+}
+.probootstrap-check i {
+    position: absolute;
+    top: 0.2em;
+}
+.probootstrap-check span {
+    display: inline-block;
+    color: #73767c;
+    padding-left: 20px;
+}
+input.form-control:focus {
+    border-color: #981a36;
+}
+.btn-square {
+    border-radius: 0;
+}
+#new_package_form button {
+    margin-left: 20px;
+}
+#package-active {
+    font-size: 1.5rem;
 }

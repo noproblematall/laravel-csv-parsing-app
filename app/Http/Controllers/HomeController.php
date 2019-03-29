@@ -81,7 +81,7 @@ class HomeController extends Controller
         $index = "none-fixed-footer";
         $menu = 'package';
 
-        $pricings = Pricing::all();
+        $pricings = Pricing::where('active',1)->get();
 
         return view('package', compact('index','menu','pricings'));
     }

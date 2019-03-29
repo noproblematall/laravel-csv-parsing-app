@@ -19,6 +19,67 @@ class PackageController extends Controller
 
     public function index() {
         $index = 'package';
-        return view('admin.package', compact('index'));
+        $pricings = Pricing::all();
+        return view('admin.package', compact('index','pricings'));
+    }
+
+    public function pre_add(Request $request) {
+        $index = 'package';
+        return view('admin.new_package', compact('index'));
+    }
+
+    public function add(Request $request) {
+        $price = new Pricing;
+        $price->name = $request->get('title');
+        $price->price = $request->get('price');
+        $price->rows = $request->get('rows');
+        $price->description = $request->get('description');
+        $price->active = $request->get('active');
+        $price->save();
+
+        $index = 'package';
+        $pricings = Pricing::all();
+
+        return redirect('admin/package');
+    }
+
+    public function pre_edit(Request $request,$id) {
+        $package = Pricing::where('id','=',$id)->first();
+
+        return view('admin.pk_edit', compact('package'));
+    }
+
+    public function edit(Request $request) {
+        $package = Pricing::where('id',$request->get('id'))->first();
+        $package->name = $request->get('title');
+        $package->price = $request->get('price');
+        $package->rows = $request->get('rows');
+        $package->description = $request->get('description');
+        $package->active = $request->get('active');
+        $package->save();
+
+        return back();
+    }
+
+    public function delete(Request $request) {
+        Pricing::find($request->get('_id'))->delete();
+
+        return 'success';
+    }
+
+    public function makeActive(Request $request) {
+        $pricing = Pricing::find($request->get('_id'));
+        $pricing->active = 1;
+        $pricing->save();
+
+        return 'success';
+    }
+
+    public function makeInactive(Request $request) {
+        $pricing = Pricing::find($request->get('_id'));
+        $pricing->active = 0;
+        $pricing->save();
+
+        return 'success';
     }
 }

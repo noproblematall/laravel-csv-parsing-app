@@ -19,6 +19,7 @@ class CreatePricingsTable extends Migration
             $table->float('price');
             $table->bigInteger('rows');
             $table->string('description');
+            $table->string('active');
             $table->timestamps();
         });
     }

@@ -22,6 +22,13 @@ Route::post('make_inactive', 'UserController@makeInactive')->name('admin.make_in
 Route::post('user_delete', 'UserController@delete')->name('admin.user_delete');
 
 Route::get('package', 'PackageController@index')->name('admin.package');
+Route::get('package/add', 'PackageController@pre_add')->name('admin.preadd_package');
+Route::post('package/add', 'PackageController@add')->name('admin.add_package');
+Route::get('package/edit/{id}', 'PackageController@pre_edit')->name('admin.pre_pk_edit');
+Route::post('package/edit', 'PackageController@edit')->name('admin.pk_edit');
+Route::post('package/delete', 'PackageController@delete')->name('admin.delete_pacakge');
+Route::post('package/make_active', 'PackageController@makeActive')->name('admin.pk_make_active');
+Route::post('package/make_inactive', 'PackageController@makeInactive')->name('admin.pk_make_inactive');
 
 Route::get('dataset', 'DatasetController@index')->name('admin.dataset');
 

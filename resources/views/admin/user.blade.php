@@ -10,7 +10,7 @@
     <section class="content-header">
         <h1>User management</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-users"></i> Home</a></li>
+            <li><a href="{{route('admin.home')}}"><i class="fa fa-users"></i> Home</a></li>
             <li class="active">User management</li>
         </ol>
     </section>
@@ -18,9 +18,18 @@
         <div class="box box-info">
             <div class="box-header">
                 <div class="toolbar">
-                    <button class="btn btn-success" id="make-active">Make Active</button>
-                    <button class="btn btn-warning" id="make-inactive">Make Inactive</button>
-                    <button class="btn btn-danger" id="user-delete">Delete</button>
+                    <button class="btn btn-success" id="make-active">
+                        <i class="fa fa-unlock"></i>&nbsp;
+                        Make Active
+                    </button>
+                    <button class="btn btn-warning" id="make-inactive">
+                        <i class="fa fa-lock"></i>&nbsp;
+                        Make Inactive
+                    </button>
+                    <button class="btn btn-danger" id="user-delete">
+                        <i class="fa fa-trash-o"></i>&nbsp;
+                        Delete
+                    </button>
                 </div>
                 <div class="clear"></div>
             </div>
