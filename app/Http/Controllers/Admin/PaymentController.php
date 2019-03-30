@@ -19,7 +19,8 @@ class PaymentController extends Controller
 
     public function index() {
         $index = 'payment';
-        return view('admin.payment', compact('index'));
+        $title = 'Payment History';
+        return view('admin.payment', compact('index','title'));
     }
 
     public function getPayment(Request $request) {

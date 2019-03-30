@@ -19,6 +19,7 @@ class IndexController extends Controller
 
     public function index() {
         $index = 'home';
+        $title = 'Dashboard';
 
         $payments = Payments::all();
         $total_earnings = 0;
@@ -47,7 +48,7 @@ class IndexController extends Controller
         $in_progress_processes = Filelist::where('status','=',0)->get()->count();
         $total_payments = Payments::all()->count();
 
-        return view('admin.index', compact('index','total_earnings','total_members','new_members','datasets_count','processes','total_dataset_amount','completed_processes','in_progress_processes','total_payments'));
+        return view('admin.index', compact('index','title','total_earnings','total_members','new_members','datasets_count','processes','total_dataset_amount','completed_processes','in_progress_processes','total_payments'));
     }
 
     public function download(Request $request) {

@@ -14,7 +14,8 @@ class ProcessController extends Controller
 
     public function index() {
         $index = 'process';
-        return view('admin.process', compact('index'));
+        $title = 'Process management';
+        return view('admin.process', compact('index','title'));
     }
 
     public function get(Request $request) {

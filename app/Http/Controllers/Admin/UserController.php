@@ -19,7 +19,8 @@ class UserController extends Controller
 
     public function index() {
         $index = 'user';
-        return view('admin.user', compact('index'));
+        $title = 'User management';
+        return view('admin.user', compact('index','title'));
     }
 
     public function getUserList() {

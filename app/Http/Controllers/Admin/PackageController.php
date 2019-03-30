@@ -19,13 +19,15 @@ class PackageController extends Controller
 
     public function index() {
         $index = 'package';
+        $title = 'Package management';
         $pricings = Pricing::all();
-        return view('admin.package', compact('index','pricings'));
+        return view('admin.package', compact('index','pricings','title'));
     }
 
     public function pre_add(Request $request) {
         $index = 'package';
-        return view('admin.new_package', compact('index'));
+        $title = 'Package management';
+        return view('admin.new_package', compact('index','title'));
     }
 
     public function add(Request $request) {
@@ -45,8 +47,9 @@ class PackageController extends Controller
 
     public function pre_edit(Request $request,$id) {
         $package = Pricing::where('id','=',$id)->first();
+        $title = 'Package management';
 
-        return view('admin.pk_edit', compact('package'));
+        return view('admin.pk_edit', compact('package','title'));
     }
 
     public function edit(Request $request) {
