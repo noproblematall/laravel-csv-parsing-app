@@ -242,7 +242,7 @@
 		navbarState();
 		stellarInit();
 		clickMenu();
-		// navigationSection();
+		navigationSection();
 		magnificPopupControl();
 		smoothScroll();
 	});
