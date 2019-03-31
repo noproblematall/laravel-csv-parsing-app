@@ -761,3 +761,66 @@ footer {
 #active-alert {
     width: 100%;
 }
+#pay-now-btn {
+    font-size: 1.2em;
+    margin: 20px 0;
+    font-family: Arial;
+}
+.credit-card-icons .card {
+    background-image: url(../img/8bca1rltjmsti0v31srweuz2z.png);
+    background-repeat: no-repeat;
+    background-size: 348px 28px;
+    display: inline-block;
+    margin-left: 5px;
+}
+.credit-card-icons .card.hidden {
+    display: none;
+}
+.card.AMERICAN_EXPRESS {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-position: 0% 0;
+    height: 28px;
+    width: 48px;
+}
+.card.VISA {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-position: 100% 0;
+    height: 28px;
+    width: 48px;
+}
+.card.MASTERCARD {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-position: 66.66667% 0;
+    height: 28px;
+    width: 48px;
+}
+.card.DISCOVER {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-position: 33.33333% 0;
+    height: 28px;
+    width: 48px;
+}
+.card.JCB {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-position: 50% 0;
+    height: 28px;
+    width: 48px;
+}
+.card.DINERS_CLUB {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-position: 16.66667% 0;
+    height: 28px;
+    width: 48px;
+}

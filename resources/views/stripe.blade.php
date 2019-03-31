@@ -27,11 +27,20 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default credit-card-box">
-                <div class="panel-heading display-table" >
-                    <div class="row display-tr" >
-                        <h3 class="panel-title display-td" >Payment Details</h3>
-                        <div class="display-td" >                            
-                            <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                <div class="panel-heading" >
+                    <div class="row" style="height: 25px;">
+                        <div class="col-sm-4">
+                            <h1 class="panel-title">Payment Details</h1>
+                        </div>
+                        <div class="col-sm-8">                            
+                            <ul class="credit-card-icons pull-right">
+                                <li class="card AMERICAN_EXPRESS">AMERICAN_EXPRESS</li>
+                                <li class="card MASTERCARD">MASTERCARD</li>
+                                <li class="card VISA">VISA</li>
+                                <li class="card DISCOVER">DISCOVER</li>
+                                <li class="card JCB hidden">JCB</li>
+                                <li class="card DINERS_CLUB hidden">DINERS_CLUB</li>
+                            </ul>
                         </div>
                     </div>                    
                 </div>
@@ -60,23 +69,59 @@
                         <div class='form-row row'>
                             <div class='col-xs-12 col-md-4 form-group cvc required'>
                                 <label class='control-label'>CVC</label>
-                                <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' />
+                                <input autocomplete='off' class='form-control card-cvc' size='4' type='text' />
                             </div>
                             <div class='col-xs-12 col-md-4 form-group expiration required'>
                                 <label class='control-label'>Expiration Month</label>
-                                <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text' />
+                                <select class="form-control card-expiry-month">
+                                    <option value="">MM</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
                             </div>
                             <div class='col-xs-12 col-md-4 form-group expiration required'>
                                 <label class='control-label'>Expiration Year</label>
-                                <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+                                <select class="form-control card-expiry-year">
+                                    <option value="">YYYY</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                    <option value="2031">2031</option>
+                                    <option value="2032">2032</option>
+                                    <option value="2033">2033</option>
+                                    <option value="2034">2034</option>
+                                    <option value="2035">2035</option>
+                                    <option value="2036">2036</option>
+                                    <option value="2037">2037</option>
+                                </select>
                             </div>
                         </div>
   
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">
+                                <button class="btn btn-primary btn-lg btn-block" id="pay-now-btn" type="submit">
                                     <i class="fas fa-credit-card"></i>&nbsp;
-                                    Pay Now ( ${{$pricing->price}} )
+                                    <strong>Pay Now  ${{$pricing->price}} USD </strong>
                                 </button>
                             </div>
                         </div>
@@ -102,7 +147,7 @@ $(function() {
   $('form.require-validation').bind('submit', function(e) {
     var $form         = $(".require-validation"),
         inputSelector = ['input[type=email]', 'input[type=password]',
-                         'input[type=text]', 'input[type=file]',
+                         'input[type=text]', 'select', 'input[type=file]',
                          'textarea'].join(', '),
         $inputs       = $form.find('.required').find(inputSelector),
         $errorMessage = $form.find('div.error'),
