@@ -175,7 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         \Pion\Laravel\ChunkUpload\Providers\ChunkUploadServiceProvider::class,
-        Spatie\Geocoder\GeocoderServiceProvider::class
+        Spatie\Geocoder\GeocoderServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
 
     ],
 

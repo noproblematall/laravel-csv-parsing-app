@@ -12,7 +12,7 @@ use Session;
 class IndexController extends Controller
 {
     public function __contruct() {
-        parent::__construct();
+
     }
 
     public function index() {

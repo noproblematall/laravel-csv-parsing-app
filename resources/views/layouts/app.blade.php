@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{$settings->app_name}} | {{$subpage}}</title>
+  <title>{{$settings->app_name}} | @if(isset($subpage)){{$subpage}} @else Login @endif</title>
   <meta name="title" content="{{$settings->meta_title}}" />
   <meta name="description" content="{{$settings->meta_description}}" />
   <meta name="keywords" content="{{$settings->meta_keywords}}" />

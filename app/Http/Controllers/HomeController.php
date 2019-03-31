@@ -28,7 +28,6 @@ class HomeController extends Controller
     protected $processor;
 
     public function __construct(ProcessController $processor) {
-        parent::__construct();
         $this->middleware(['auth','verified']);
         $this->processor = $processor;
     }

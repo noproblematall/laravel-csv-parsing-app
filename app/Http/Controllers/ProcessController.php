@@ -29,7 +29,6 @@ class ProcessController extends Controller
 
     public function __construct(WorkingendController $workingender)
     {
-        parent::__construct();
         $this->middleware(['auth','verified']);
         $this->workingender = $workingender;
     }
