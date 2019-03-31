@@ -688,10 +688,7 @@ footer {
     width: 202px;
     height: 202px;
 }
-#brand-img{
-    width: 202px;
-    height: 202px;
-}
+
 
 .none-fixed-footer .probootstrap-navbar.scrolled.awake {
     -webkit-transform: translateY(0);

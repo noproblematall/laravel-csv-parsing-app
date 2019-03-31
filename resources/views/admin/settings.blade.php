@@ -64,23 +64,31 @@
                                         </div>
                                         <br />
                                         <div class="row">
+                                            <div class="col-md-1 text-right"><b>App Name</b></div>
+                                            <div class="col-md-11">
+                                                <input type="text" class="form-control" name="app_name" id="app_name" value="{{$settings->app_name}}" placeholder="App Name" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
                                             <div class="col-md-1 text-right"><b>Meta Title</b></div>
                                             <div class="col-md-11">
-                                                <input type="text" class="form-control" name="meta_title" id="meta_title" placeholder="Meta Title" />
+                                                <input type="text" class="form-control" name="meta_title" id="meta_title" value="{{$settings->meta_title}}" placeholder="Meta Title" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Meta Keyawords</b></div>
                                             <div class="col-md-11">
-                                                <textarea type="text" class="form-control" name="meta_key" id="meta_key" placeholder="Meta Keyawords"></textarea>
+                                                <p>( * Please enter each item separated by a commas. )</p>
+                                                <textarea type="text" class="form-control" name="meta_key" id="meta_key" placeholder="Meta Keyawords">{{$settings->meta_keywords}}</textarea>
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Meta Description</b></div>
                                             <div class="col-md-11">
-                                                <textarea type="text" class="form-control" name="meta_des" id="meta_des" placeholder="Meta Description"></textarea>
+                                                <textarea type="text" class="form-control" name="meta_des" id="meta_des" placeholder="Meta Description">{{$settings->meta_description}}</textarea>
                                             </div>
                                         </div>
                                         <br />
@@ -101,28 +109,28 @@
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Email</b></div>
                                             <div class="col-md-11">
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" />
+                                                <input type="email" class="form-control" name="email" id="email" value="{{$settings->email}}" placeholder="Email" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Phone</b></div>
                                             <div class="col-md-11">
-                                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" />
+                                                <input type="text" class="form-control" name="phone" id="phone" value="{{$settings->phone}}" placeholder="Phone" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Fax</b></div>
                                             <div class="col-md-11">
-                                                <input type="text" class="form-control" name="fax" id="fax" placeholder="Fax" />
+                                                <input type="text" class="form-control" name="fax" id="fax" value="{{$settings->fax}}" placeholder="Fax" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Address</b></div>
                                             <div class="col-md-11">
-                                                <textarea type="text" class="form-control" name="address" id="address" placeholder="Address"></textarea>
+                                                <textarea type="text" class="form-control" name="address" id="address" rows=3 placeholder="Address">{{$settings->address}}</textarea>
                                             </div>
                                         </div>
                                         <br />
@@ -143,42 +151,42 @@
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Banner Text</b></div>
                                             <div class="col-md-10">
-                                                <textarea type="text" class="form-control" name="banner" id="banner" placeholder="Banner Text"></textarea>
+                                                <textarea type="text" class="form-control" name="banner" id="banner" placeholder="Banner Text">{{$settings->banner_text}}</textarea>
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Package Page Title</b></div>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control" name="pk_title" id="pk_title" placeholder="Package Page Title" />
+                                                <input type="text" class="form-control" name="pk_title" id="pk_title" value="{{$settings->pk_title}}" placeholder="Package Page Title" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Package Page Text</b></div>
                                             <div class="col-md-10">
-                                                <textarea type="text" class="form-control" name="pk_text" id="pk_text" placeholder="Package Page Text"></textarea>
+                                                <textarea type="text" class="form-control" name="pk_text" id="pk_text" placeholder="Package Page Text">{{$settings->pk_text}}</textarea>
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Middle Section Title</b></div>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control" name="md_title" id="md_title" placeholder="Middle Section Title" />
+                                                <input type="text" class="form-control" name="md_title" id="md_title" value="{{$settings->md_title}}" placeholder="Middle Section Title" />
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Middle Section Text</b></div>
                                             <div class="col-md-10">
-                                                <textarea type="text" class="form-control" name="md_text" id="md_text" placeholder="Middle Section Text"></textarea>
+                                                <textarea type="text" class="form-control" name="md_text" id="md_text" placeholder="Middle Section Text">{{$settings->md_text}}</textarea>
                                             </div>
                                         </div>
                                         <br />
                                         <div class="row">
                                             <div class="col-md-2 text-right"><b>Footer Text</b></div>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control" name="ft_text" id="ft_text" placeholder="Footer Text" />
+                                                <input type="text" class="form-control" name="ft_text" id="ft_text" value="{{$settings->foot_text}}" placeholder="Footer Text" />
                                             </div>
                                         </div>
                                         <br />

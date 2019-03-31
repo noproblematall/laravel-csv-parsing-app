@@ -9,8 +9,7 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
 <div class="container">
   <div class="row intro-text">
     <div class="col-md-8 col-md-offset-2 text-center">
-      <h1 class="probootstrap-heading probootstrap-animate">Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-      </h1>
+      <h1 class="probootstrap-heading probootstrap-animate">{{$settings->banner_text}}</h1>
       @guest
       <div class="probootstrap-subheading center">
         <p class="probootstrap-animate"><a href="{{ route('register') }}" role="button"
@@ -31,10 +30,8 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
   <div class="container">
     <div class="row text-center mb100">
       <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
-        <h2 class="mb30 text-black probootstrap-heading">Choose the plan that’s right for your business </h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
+        <h2 class="mb30 text-black probootstrap-heading">{{$settings->pk_title}}</h2>
+        <p>{{$settings->pk_text}}</p>
       </div>
     </div>
     <!-- END row -->
@@ -67,10 +64,8 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-        <h2 class="probootstrap-heading">Join With Over 100K Members</h2>
-        <p class="probootstrap-sub-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-          ut aliquip ex ea commodo consequat. </p>
+        <h2 class="probootstrap-heading">{{$settings->md_title}}</h2>
+        <p class="probootstrap-sub-heading">{{$settings->md_text}}</p>
         @guest
           <p><a href="{{ route('register') }}" class="btn btn-black">Get Started</a></p>
         @else
@@ -116,21 +111,19 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
         <ul class="probootstrap-contact-details">
           <li>
             <span class="text-uppercase">Email</span>
-            <a href="mailto:admin@admin.com" class="to-email">info@admin.com</a>
+            <a href="mailto:{{$settings->email}}" class="to-email">{{$settings->email}}</a>
           </li>
           <li>
             <span class="text-uppercase">Phone</span>
-            +30 976 1382 9921
+            {{$settings->phone}}
           </li>
           <li>
             <span class="text-uppercase">Fax</span>
-            +30 976 1382 9922
+            {{$settings->fax}}
           </li>
           <li>
             <span class="text-uppercase">Address</span>
-            San Francisco, CA <br>
-            4th Floor8 Lower <br>
-            San Francisco street, M1 50F
+            <pre>{{$settings->address}}</pre>
           </li>
         </ul>
       </div>

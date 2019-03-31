@@ -41,21 +41,19 @@
                 <ul class="probootstrap-contact-details">
                     <li>
                         <span class="text-uppercase mytext-dark-blue">Email:</span>
-                        <a href="mailto:admin@admin.com" class="to-email">info@admin.com</a>
+                        <a href="mailto:{{$settings->email}}" class="to-email">{{$settings->email}}</a>
                     </li>
                     <li>
                     <span class="text-uppercase mytext-dark-blue">Phone:</span>
-                    +30 976 1382 9921
+                    {{$settings->phone}}
                     </li>
                     <li>
                     <span class="text-uppercase mytext-dark-blue">Fax:</span>
-                    +30 976 1382 9922
+                    {{$settings->fax}}
                     </li>
                     <li>
                     <span class="text-uppercase mytext-dark-blue">Address:</span>
-                    San Francisco, CA <br>
-                    4th Floor8 Lower <br>
-                    San Francisco street, M1 50F
+                    <pre>{{$settings->address}}</pre>
                     </li>
                 </ul>
             </div>

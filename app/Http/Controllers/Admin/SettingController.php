@@ -17,7 +17,8 @@ class SettingController extends Controller
         $index = 'setting';
         $title = 'Settings management';
         $tab = 'seo';
-        return view('admin.settings', compact('index','tab','title'));
+        $settings = Settings::first();
+        return view('admin.settings', compact('index','tab','title','settings'));
     }
 
     public function addSeo(Request $request) {
@@ -34,11 +35,17 @@ class SettingController extends Controller
             $setting->save();
         }
 
-        if(null !== $request->get('fav')) {
+        if(null !== $request->file('fav')) {
             $fav = time().'.'.$request->file('fav')->getClientOriginalExtension();
             $request->file('fav')->move(public_path('/assets/favicon'), $fav);
             $setting = Settings::where('id',1)->first();
             $setting->fav_icon = $fav;
+            $setting->save();
+        }
+
+        if(null !== $request->get('meta_title')) {
+            $setting = Settings::where('id',1)->first();
+            $setting->app_name = $request->get('app_name');
             $setting->save();
         }
 
@@ -60,9 +67,11 @@ class SettingController extends Controller
             $setting->save();
         }
 
+        $index = 'setting';
+        $title = 'Settings management';
         $tab = 'seo';
-
-        return back()->with('tab',$tab);
+        $settings = Settings::first();
+        return view('admin.settings', compact('index','tab','title','settings'));
     }
 
     public function addContact(Request $request) {
@@ -87,9 +96,12 @@ class SettingController extends Controller
             $setting->save();
         }
 
+        $index = 'setting';
+        $title = 'Settings management';
         $tab = 'contact';
+        $settings = Settings::first();
 
-        return back()->with('tab',$tab);
+        return view('admin.settings', compact('index','tab','title','settings'));
     }
 
     public function addOther(Request $request) {
@@ -124,8 +136,11 @@ class SettingController extends Controller
             $setting->save();
         }
 
+        $index = 'setting';
+        $title = 'Settings management';
         $tab = 'other';
+        $settings = Settings::first();
 
-        return back()->with('tab',$tab);
+        return view('admin.settings', compact('index','tab','title','settings'));
     }
 }

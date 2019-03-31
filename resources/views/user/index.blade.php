@@ -12,12 +12,12 @@
     <div class="row">
         <div class="col-sm-3 mobile-hide">
             <div class="text-center" id="brand-img">
-                
+                <img src="{{asset('assets/logo').'/'.$settings->logo}}" width="202" height="101" style="margin-top: -15px;" alt="logo">
             </div>
             <hr><br>
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Website</strong> <i class="fas fa-link"></i></div>
-                <div class="panel-body text-center"><a href="{{config('app.url')}}">{{config('app.name')}}</a></div>
+                <div class="panel-body text-center"><a href="{{config('app.url')}}">{{$settings->app_name}}</a></div>
             </div>
             <ul class="list-group mytext-dark-blue">
                 <li class="list-group-item text-muted mytext-dark-blue"><strong>Activity</strong> <i class="fas fa-tachometer-alt"></i></li>

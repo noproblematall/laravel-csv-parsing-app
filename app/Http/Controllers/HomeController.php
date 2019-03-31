@@ -28,6 +28,7 @@ class HomeController extends Controller
     protected $processor;
 
     public function __construct(ProcessController $processor) {
+        parent::__construct();
         $this->middleware(['auth','verified']);
         $this->processor = $processor;
     }
@@ -40,41 +41,17 @@ class HomeController extends Controller
     public function upload() {
         $index = "index-1";
         $menu = 'working_area';
+        $subpage = 'Working Area';
         
-        return view('upload', compact('index','menu'));
-    }
-
-
-    public function info() {
-        phpinfo();
+        return view('upload', compact('index','menu','subpage'));
     }
 
     public function process(Request $request) {
         $index = "index-1";
         $menu = 'working_area';
+        $subpage = 'Working Area';
 
-        return view('getcontact', compact('index','menu'));
-    }
-
-    public function contact(Request $request) {
-        $index = "index-1";
-        $menu = 'contact';
-        return view('contact', compact('index','menu'));
-    }
-
-    public function do_contact(Request $request) {
-        $data = [];
-        $data['name'] = $request->get('name');
-        $data['email'] = $request->get('email');
-        $data['phone'] = $request->get('phone');
-        $data['message'] = $request->get('message');
-
-        $user = User::where('role','=','admin')->first();
-        $user->notify(new ContactUs($data));
-
-        Session::flash('success', 'Your message sent successfully!');
-
-        return back();
+        return view('getcontact', compact('index','menu','subpage'));
     }
 
     public function package(Request $request) {
@@ -82,8 +59,9 @@ class HomeController extends Controller
         $menu = 'package';
 
         $pricings = Pricing::where('active',1)->get();
+        $subpage = 'Pricing';
 
-        return view('package', compact('index','menu','pricings'));
+        return view('package', compact('index','menu','pricings','subpage'));
     }
 
     public function fileUploadPost(Request $request) {
@@ -274,5 +252,10 @@ class HomeController extends Controller
         session()->forget('header_info');
 
         echo "success";
+    }
+
+
+    public function info() {
+        phpinfo();
     }
 }

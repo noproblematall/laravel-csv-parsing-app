@@ -13,6 +13,7 @@ use App\Payments;
 class PricingController extends Controller
 {
     public function __construct() {
+        parent::__construct();
         $this->middleware(['auth','verified']);
     }
 
@@ -21,8 +22,9 @@ class PricingController extends Controller
         $pricing_id = $request->get('_id');
 
         $pricing = Pricing::where('id','=',$pricing_id)->first();
+        $subpage = 'Payment';
 
-        return view('stripe', compact('index','pricing'));
+        return view('stripe', compact('index','pricing','subpage'));
     }
 
     public function stripePost(Request $request) {

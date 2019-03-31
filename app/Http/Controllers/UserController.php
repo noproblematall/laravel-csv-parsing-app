@@ -17,6 +17,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
+        parent::__construct();
         $this->middleware(['auth','verified']);
     }
 
@@ -50,7 +51,9 @@ class UserController extends Controller
 
         $active = 'completed';
         $menu = 'dashboard';
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user'));
+        $subpage = 'User Dashboard';
+
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage'));
     }
 
     public function personal_info() {
@@ -82,7 +85,9 @@ class UserController extends Controller
 
         $active = 'info';
         $menu = 'dashboard';
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user'));
+        $subpage = 'User Dashboard';
+
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage'));
     }
 
     public function change_pwd() {
@@ -114,7 +119,9 @@ class UserController extends Controller
         
         $active = 'chang_pwd';
         $menu = 'dashboard';
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user'));
+        $subpage = 'User Dashboard';
+
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage'));
     }
 
     public function payment_history() {
@@ -145,7 +152,9 @@ class UserController extends Controller
         
         $active = 'payment';
         $menu = 'dashboard';
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user'));
+        $subpage = 'User Dashboard';
+        
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage'));
     }
 
     public function getProcessingList() {

@@ -4,10 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>App title | Homepage</title>
-  <meta name="description" content="web app to upload and parse any csv" />
-  <meta name="keywords" content="upload csv,parse csv" />
+  <title>{{$settings->app_name}} | {{$subpage}}</title>
+  <meta name="title" content="{{$settings->meta_title}}" />
+  <meta name="description" content="{{$settings->meta_description}}" />
+  <meta name="keywords" content="{{$settings->meta_keywords}}" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="shortcut icon" href="{{asset('assets/favicon').'/'.$settings->fav_icon}}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-free-5.7.2-web/css/all.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/styles-merged.css') }}" />
@@ -35,7 +37,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/" title="Logo">Logo</a>
+        <a class="navbar-brand" href="/" title="Logo">
+          <img src="{{asset('assets/logo').'/'.$settings->logo}}" width="100" height="50" style="margin-top: -15px;" alt="logo">
+        </a>
       </div>
 
       <div id="navbar-collapse" class="navbar-collapse collapse">
@@ -93,9 +97,7 @@
   <footer class="probootstrap-footer">
     <div class="container text-center">
       <div class="row">
-        <div class="col-md-12">
-          &copy; 2019 All Rights Reserved.
-        </div>
+        <div class="col-md-12">{{$settings->foot_text}}</div>
       </div>
     </div>
   </footer>
