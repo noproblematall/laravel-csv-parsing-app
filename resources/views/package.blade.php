@@ -21,10 +21,8 @@
         @endif
         <div class="row justify-content-center text-center">
             <div class="col-md-8">
-                <h2 class="mb30 text-black title">Choose the plan that’s right for your business </h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
+                <h2 class="mb30 text-black title">{{$settings->pk_title}}</h2>
+                <p>{{$settings->pk_text}}</p>
             </div>
         </div>
         <!-- END row -->
