@@ -38,7 +38,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/" title="Logo">
-          <img src="{{asset('assets/logo').'/'.$settings->logo}}" width="100" height="50" style="margin-top: -15px;" alt="logo">
+          <img src="{{asset('assets/logo').'/'.$settings->logo}}" width="220" height="42" style="margin-top: -10px;" alt="logo">
         </a>
       </div>
 

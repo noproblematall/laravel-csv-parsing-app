@@ -28,8 +28,8 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
 
 <section class="probootstrap-section" data-section="pricing">
   <div class="container">
-    <div class="row text-center mb100">
-      <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
+    <div class="row justify-content-center text-center mb100">
+      <div class="col-md-5 probootstrap-section-heading">
         <h2 class="mb30 text-black probootstrap-heading">{{$settings->pk_title}}</h2>
         <p>{{$settings->pk_text}}</p>
       </div>
