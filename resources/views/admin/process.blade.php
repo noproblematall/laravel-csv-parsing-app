@@ -18,7 +18,7 @@
         <div class="box box-info">
             <div class="box-header">
                 <div class="toolbar">
-                    <a href="{{route('working_area')}}" class="btn btn-custom">
+                    <a href="{{route('working_area')}}" class="btn btn-custom" target="_blank">
                         <i class="fa fa-plus"></i>&nbsp;
                         Place New Process
                     </a>

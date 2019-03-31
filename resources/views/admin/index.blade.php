@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="box-footer clearfix">
-                        <a href="{{ route('working_area') }}" class="btn btn-sm btn-info btn-flat pull-left">Place New Process</a>
+                        <a href="{{ route('working_area') }}" class="btn btn-sm btn-info btn-flat pull-left" target="_blank">Place New Process</a>
                         <a href="{{ route('admin.process') }}" class="btn btn-sm btn-default btn-flat pull-right">View All Processes</a>
                     </div>
                 </div>

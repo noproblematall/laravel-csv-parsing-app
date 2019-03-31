@@ -21,7 +21,7 @@
 <input type="hidden" name="_base_url" value="{{asset('/')}}" />
 <div class="wrapper">
     <header class="main-header">
-        <a href="{{route('home')}}" class="logo">
+        <a href="{{route('home')}}" class="logo" target="_blank">
             <span class="logo-mini"><b>AP</b></span>
             <span class="logo-lg"><b>Admin Panel</b></span>
         </a>
