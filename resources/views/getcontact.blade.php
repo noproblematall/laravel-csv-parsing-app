@@ -59,9 +59,9 @@
                             <br>
                             <br>
                             <h4 class="mytext-dark-blue underline">If you want to process more rows than your current membership plan, upgrade now!</h4>
-                            <button type="button" id="upgrade-membership-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
+                            <a href={{ route('package') }} id="upgrade-membership-btn" class="btn btn-lg btn-primary btn-block signup-btn mb20">
                                 <span class="btn-label">Upgrade membership
-                            </button>
+                            </a>
                         </div>
                     </div>
 
