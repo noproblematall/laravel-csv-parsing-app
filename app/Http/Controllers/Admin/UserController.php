@@ -25,9 +25,7 @@ class UserController extends Controller
     }
 
     public function getUserList() {
-        $users = User::where([
-            ['id','!=',Auth::user()->id],
-        ])->get();
+        $users = User::where('id','!=',Auth::user()->id)->get();
 
         $result = [];
         $result['data'] = [];
