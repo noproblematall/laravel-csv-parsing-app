@@ -190,26 +190,29 @@ class HomeController extends Controller
 
         $total_process_rows = 0;
 
-        if(null !== Auth::user()->pricing) {
-            $current_plan = Auth::user()->package->rows;
-            if(null !== Auth::user()->processed) {
-                $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+        if(Auth::user()->role != 'admin') {
+            if(null !== Auth::user()->pricing) {
+                $current_plan = Auth::user()->package->rows;
+                if(null !== Auth::user()->processed) {
+                    $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
+                }
+                else {
+                    $processable_rows = Auth::user()->package->rows - 0;
+                }
             }
             else {
-                $processable_rows = Auth::user()->package->rows - 0;
+                $processable_rows = 0;
+            }
+    
+            foreach($process_info as $item) {
+                $total_process_rows += $item['process_count'];
+            }
+    
+            if($total_process_rows > $processable_rows) {
+                return response()->json('exceeded_requests');
             }
         }
-        else {
-            $processable_rows = 0;
-        }
 
-        foreach($process_info as $item) {
-            $total_process_rows += $item['process_count'];
-        }
-
-        if($total_process_rows > $processable_rows) {
-            return response()->json('exceeded_requests');
-        }
 
         $file_count = 0;
         foreach($process_info as $item) {
