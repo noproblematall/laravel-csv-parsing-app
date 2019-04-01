@@ -10,6 +10,7 @@ use App\Pricing;
 use App\User;
 use App\Dataset;
 use DB;
+use Auth;
 
 class UserController extends Controller
 {
@@ -25,7 +26,7 @@ class UserController extends Controller
 
     public function getUserList() {
         $users = User::where([
-            ['role','!=','admin'],
+            ['id','!=',Auth::user()->id],
         ])->get();
 
         $result = [];
