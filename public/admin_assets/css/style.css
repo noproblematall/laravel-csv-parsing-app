@@ -187,6 +187,9 @@ button.btn-custom:hover {
 input.form-control:focus {
     border-color: #981a36;
 }
+select.form-control:focus {
+    border-color: #981a36 !important;
+}
 textarea.form-control:focus {
     border-color: #981a36;
 }

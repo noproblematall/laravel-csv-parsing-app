@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/Ionicons/css/ionicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/jvectormap/jquery-jvectormap.css') }}">
     <link rel="stylesheet" href="{{ asset('admin_assets/css/AdminLTE.min.css')}}">
     <link rel="stylesheet" href="{{ asset('admin_assets/css/skins/_all-skins.min.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -137,15 +136,7 @@
 
   <script src="{{ asset('admin_assets/bower_components/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{ asset('admin_assets/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-  <script src="{{ asset('admin_assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
-  <script src="{{ asset('admin_assets/js/adminlte.min.js')}}"></script>
-  <script src="{{ asset('admin_assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
-  <script src="{{ asset('admin_assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
-  <script src="{{ asset('admin_assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
-  <script src="{{ asset('admin_assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-  <script src="{{ asset('admin_assets/bower_components/chart.js/Chart.js')}}"></script>
-  <script src="{{ asset('admin_assets/js/pages/dashboard2.js')}}"></script>
-  <script src="{{ asset('admin_assets/js/demo.js')}}"></script>
+
   @yield('scripts')
 </body>
 

@@ -21,9 +21,10 @@ class PricingController extends Controller
         $pricing_id = $request->get('_id');
 
         $pricing = Pricing::where('id','=',$pricing_id)->first();
+        $menu = 'package';
         $subpage = 'Payment';
 
-        return view('stripe', compact('index','pricing','subpage'));
+        return view('stripe', compact('index','pricing','menu','subpage'));
     }
 
     public function stripePost(Request $request) {
