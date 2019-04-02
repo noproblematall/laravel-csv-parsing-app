@@ -127,12 +127,11 @@
         </section>
     </aside>
     
-        @yield('content')
-        <!-- /.content-wrapper -->
-    
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2019 </strong> All rights reserved.
-        </footer>
+    @yield('content')
+
+    <footer class="main-footer">
+        <strong>Copyright &copy; 2019 </strong> All rights reserved.
+    </footer>
 
   <script src="{{ asset('admin_assets/bower_components/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{ asset('admin_assets/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
