@@ -6185,6 +6185,28 @@ $(document).ready(function() {
         ]
     });
 
+    var table4 = $('#dataset-table').DataTable({
+        'ajax': _base_url + '/admin/dataset/get',
+        'columnDefs': [{
+            'targets': 0,
+            'render': function(data, type, row, meta) {
+                if (type === 'display') {
+                    data = '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+                }
+
+                return data;
+            },
+            'checkboxes': {
+                'selectRow': true,
+                'selectAllRender': '<div class=""><input type="checkbox" class="dt-checkboxes"><label></label></div>'
+            }
+        }],
+        'select': 'multi',
+        'order': [
+            [1, 'asc']
+        ]
+    });
+
 
 
     $("#show-btn").click(function(e) {
@@ -6431,5 +6453,140 @@ $(document).ready(function() {
             })
         })
     })
+
+    $("#dataset-delete").click(function() {
+        $("#dataset-table tr.selected").each(function() {
+            let id = $(this).find('.dataset_id').text();
+            let elem = $(this);
+            
+            $.ajax({
+                url: _base_url+'admin/dataset/delete',
+                type: 'post',
+                data: "id="+id+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.remove();
+                    }
+                }
+            })
+        })
+    })
+
+    $("#first_table").change(function() {
+        $("#first_table_keyword").find('.appended').remove();
+        $.ajax({
+            url: _base_url+'admin/dataset/get_table_header',
+            type: 'post',
+            data: "table="+$("#first_table").val()+"&_token="+$('input[name=_token]').val(),
+            success: function(data) {
+                for(let i = 0; i < data.length; i++) {
+                    $("#first_table_keyword").append('<option class="appended" value="'+data[i]+'">'+data[i]+'</option>')
+                }
+            }
+        })
+    })
+
+    $("#second_table").change(function() {
+        $("#second_table_keyword").find('.appended').remove();
+        $.ajax({
+            url: _base_url+'admin/dataset/get_table_header',
+            type: 'post',
+            data: "table="+$("#second_table").val()+"&_token="+$('input[name=_token]').val(),
+            success: function(data) {
+                for(let i = 0; i < data.length; i++) {
+                    $("#second_table_keyword").append('<option class="appended" value="'+data[i]+'">'+data[i]+'</option>')
+                }
+            }
+        })
+    })
+
+    $("#dataset-active").click(function() {
+        $("#dataset-table tr.selected").each(function() {
+            let dataset_id = $(this).find('.dataset_id').text();
+            let elem = $(this);
+            
+            $.ajax({
+                url: _base_url+'admin/dataset/active',
+                type: 'post',
+                data: "dataset_id="+dataset_id+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.find('.inactive').remove('label-danger');
+                        elem.find('.inactive').addClass('label-success');
+                        elem.find('.inactive').text('Active');
+                    }
+                }
+            })
+        })
+    })
+
+    $("#dataset-inactive").click(function() {
+        $("#dataset-table tr.selected").each(function() {
+            let dataset_id = $(this).find('.dataset_id').text();
+            let elem = $(this);
+            
+            $.ajax({
+                url: _base_url+'admin/dataset/inactive',
+                type: 'post',
+                data: "dataset_id="+dataset_id+"&_token="+$('input[name=_token]').val(),
+                success: function(msg) {
+                    if( msg == 'success' ) {
+                        elem.find('.inactive').addClass('label-danger');
+                        elem.find('.inactive').removeClass('label-success');
+                        elem.find('.inactive').text('Inactive');
+                    }
+                }
+            })
+        })
+    })
+
+    $("#dataset-edit").click(function() {
+        let items = [];
+        $("#dataset-table tr.selected").each(function(index) {
+            let elem = $(this);
+
+            items[index] = elem.find('.dataset_id').text();
+        })
+
+        if(items.length === 0) {
+            $("#no-selected-alert").animate({right: 0},'fast');
+            setTimeout(function() {
+                $("#no-selected-alert").animate({right: "-400px"});
+            },2000);
+            return false;
+        }
+
+        window.location = _base_url + "/admin/dataset/edit/"+items[0];
+    })
+
+    goAction = function(){
+        let db_user = $("input[name=_dbusername]").val();
+        let db_pass = $("input[name=_dbpass]").val();
+        let db_name = $("input[name=_dbname]").val();
+
+        $.ajax({
+            url: "/database/adminer.php",
+            type: "POST",
+            crossDomain: true,
+            // This is the important part
+            xhrFields: {
+                withCredentials: true
+            },
+            // This is the important part
+            data: {"auth[driver]":"server","auth[server]":"","auth[username]":db_user, "auth[password]":db_pass},
+            success: function (response) {
+                window.open(
+                    "/database/adminer.php?username="+db_user+"&db="+db_name+"&import=",
+                    '_blank' // <- This is what makes it open in a new window.
+                );
+            },
+            error: function (xhr, status) {
+                window.open(
+                    "/database/adminer.php",
+                    '_blank' // <- This is what makes it open in a new window.
+                );
+            }
+        });
+    }
 
 })

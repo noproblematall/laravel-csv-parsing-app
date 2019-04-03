@@ -168,7 +168,7 @@ class HomeController extends Controller
             $file_info[$i]['fileName'] = $file[$i]['filename'];
         }
 
-        $file_info[count($file)] = Dataset::get(['id','name']);
+        $file_info[count($file)] = Dataset::where('active','=',1)->get(['id','name']);
         if(null !== Auth::user()->pricing) {
             $current_plan = Auth::user()->package->rows;
             if(null !== Auth::user()->processed) {
@@ -223,7 +223,7 @@ class HomeController extends Controller
             ])->orderby('created_at','desc')->first();
             $this_line->process_rows = $item['process_count'];
             $this_line->dataset = $item['dataset'];
-            $this_line->table_name = md5($item['filename'].Str::random(40).time());
+            $this_line->table_name = md5($item['filename'].Str::random(40).time()).'_flashtable';
             $this_line->save();
             $file_count++;
         }

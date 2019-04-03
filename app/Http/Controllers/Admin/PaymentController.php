@@ -51,6 +51,7 @@ class PaymentController extends Controller
 
     public function delete(Request $request) {
         Payments::find($request->get('id'))->delete();
+        Filelist::where('dataset','=',$request->get('id'))->delete();
         return 'success';
     }
 }

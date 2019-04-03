@@ -33,6 +33,15 @@ Route::post('package/make_active', 'PackageController@makeActive')->name('admin.
 Route::post('package/make_inactive', 'PackageController@makeInactive')->name('admin.pk_make_inactive');
 
 Route::get('dataset', 'DatasetController@index')->name('admin.dataset');
+Route::get('dataset/add', 'DatasetController@add')->name('admin.dataset.add');
+Route::post('dataset/add', 'DatasetController@addPost')->name('admin.dataset.add.post');
+Route::get('dataset/get', 'DatasetController@get')->name('admin.dataset.get');
+Route::post('dataset/get_table_header', 'DatasetController@get_table_header')->name('admin.dataset.get_table_header');
+Route::post('dataset/delete', 'DatasetController@delete')->name('admin.dataset.delete');
+Route::post('dataset/active', 'DatasetController@active')->name('admin.dataset.active');
+Route::post('dataset/inactive', 'DatasetController@inactive')->name('admin.dataset.inactive');
+Route::get('dataset/edit/{id}', 'DatasetController@edit')->name('admin.dataset.edit');
+Route::post('dataset/edit', 'DatasetController@editPost')->name('admin.dataset.edit.post');
 
 Route::get('payment', 'PaymentController@index')->name('admin.payment');
 Route::get('payment/get', 'PaymentController@getPayment')->name('admin.payment_history');
