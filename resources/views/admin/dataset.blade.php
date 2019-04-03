@@ -26,24 +26,7 @@
             </div>
 
             <div class="box-body">
-                <table id="package-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>File Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Pacakge</th>
-                            <th>Processable</th>
-                            <th>Mobile</th>
-                            <th>Birthday</th>
-                            <th>Location</th>
-                            <th>Gender</th>
-                            <th>Member since</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                </table>
+
             </div>
         </div>
     </section>
