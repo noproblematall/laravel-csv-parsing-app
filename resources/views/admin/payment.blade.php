@@ -37,6 +37,7 @@
                             <th>Price</th>
                             <th>Currency</th>
                             <th>Status</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                 </table>

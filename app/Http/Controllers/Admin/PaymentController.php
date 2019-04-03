@@ -35,13 +35,14 @@ class PaymentController extends Controller
             $result['data'][$i][2] = $pay->user->f_name.' '.$pay->user->l_name;
             $result['data'][$i][3] = strtoupper($pay->package->name);
             $result['data'][$i][4] = $pay->package->price;
-            $result['data'][$i][5] = 'USD';
+            $result['data'][$i][5] = 'CAD';
             if($pay->status == "succeeded") {
                 $result['data'][$i][6] = "<span class='label label-success inactive'>Succeeded</span>";
             }
             else {
                 $result['data'][$i][6] = "<span class='label label-danger inactive'>Failed</span>";
             }
+            $result['data'][$i][6] = $pay->created_at;
             $i++;
         }
 
