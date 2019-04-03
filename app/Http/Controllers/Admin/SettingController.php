@@ -67,6 +67,12 @@ class SettingController extends Controller
             $setting->save();
         }
 
+        if(null !== $request->get('google_analytics')) {
+            $setting = Settings::where('id',1)->first();
+            $setting->google_analytics = $request->get('google_analytics');
+            $setting->save();
+        }
+
         $index = 'setting';
         $title = 'Settings management';
         $tab = 'seo';
