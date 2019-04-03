@@ -42,7 +42,7 @@ class PaymentController extends Controller
             else {
                 $result['data'][$i][6] = "<span class='label label-danger inactive'>Failed</span>";
             }
-            $result['data'][$i][6] = $pay->created_at;
+            $result['data'][$i][7] = $pay->created_at;
             $i++;
         }
 
