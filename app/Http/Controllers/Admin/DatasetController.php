@@ -19,6 +19,8 @@ class DatasetController extends Controller
 
     public function index() {
         $index = 'dataset';
-        return view('admin.dataset', compact('index'));
+        $title = 'Dataset management';
+
+        return view('admin.dataset', compact('index','title'));
     }
 }
