@@ -92,6 +92,13 @@
                                             </div>
                                         </div>
                                         <br />
+                                        <div class="row">
+                                            <div class="col-md-1 text-right"><b>Google analytics code</b></div>
+                                            <div class="col-md-11">
+                                                <textarea type="text" class="form-control" name="google_analytics" id="google_analytics" placeholder="Meta Description">{{$settings->google_analytics}}</textarea>
+                                            </div>
+                                        </div>
+                                        <br />
                                         <hr />
                                         <div class="row">
                                             <div class="col-md-1"></div>
