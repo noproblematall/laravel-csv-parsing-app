@@ -93,11 +93,11 @@
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
-                {{-- <li class="{{ $index==='dataset' ? 'active' : null }}">
+                <li class="{{ $index==='dataset' ? 'active' : null }}">
                     <a href="{{ route('admin.dataset') }}">
                         <i class="fa fa-database"></i> <span>Dataset management</span>
                     </a>
-                </li> --}}
+                </li>
                 <li class="{{ $index==='user' ? 'active' : null }}">
                     <a href="{{ route('admin.user') }}">
                         <i class="fa fa-users"></i> <span>User management</span>
