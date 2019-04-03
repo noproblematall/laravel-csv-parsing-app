@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/fonts/icomoon/style.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+
+  {{$settings->google_analytics}}
+
   @yield('styles')
   <!--[if lt IE 9]>
       <script src="js/vendor/html5shiv.min.js"></script>
