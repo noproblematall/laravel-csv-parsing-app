@@ -28,5 +28,10 @@ class ViewServiceProvider extends ServiceProvider
             '*',
             'App\Http\View\Composers\SettingsComposer'
         );
+
+        View::composer(
+            '*',
+            'App\Http\View\Composers\AdminComposer'
+        );
     }
 }

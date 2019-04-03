@@ -42,7 +42,7 @@ class UserController extends Controller
                     $result['data'][$i][5] = $user->package->rows - $user->processed;
                 }
                 else {
-                    $result['data'][$i][4] = $user->package->name;
+                    $result['data'][$i][4] = strtoupper($user->package->name);
                     $result['data'][$i][5] = $user->package->rows - 0;
                 }
             }
@@ -63,7 +63,7 @@ class UserController extends Controller
             else {
                 $result['data'][$i][9] = '';
             }
-            $result['data'][$i][10] = $user->created_at;
+            $result['data'][$i][10] = date($user->created_at);
             if($user->active) {
                 $result['data'][$i][11] = "<span class='label label-success inactive'>Active</span>";
             }
@@ -75,6 +75,31 @@ class UserController extends Controller
         }
 
         return response()->json($result);
+    }
+
+    public function pre_edit(Request $request,$id) {
+        $user = User::where('email','=',$id)->first();
+        $packages = Pricing::where('active','=',1)->get();
+        
+        $index = 'user';
+        $title = 'User management';
+
+        return view('admin.pre_user_edit', compact('index','user','title','packages'));
+    }
+
+    public function edit(Request $request) {
+        $user = User::where('email','=',$request->get('email'))->first();
+        $user->f_name = $request->get('first_name');
+        $user->l_name = $request->get('last_name');
+        $user->birthday = $request->get('birth');
+        $user->mobile = $request->get('mobile');
+        $user->location = $request->get('location');
+        $user->pricing = $request->get('package');
+        $user->processed = $request->get('processed');
+
+        $user->save();
+
+        return back();
     }
 
     public function makeActive(Request $request) {
@@ -94,6 +119,9 @@ class UserController extends Controller
     }
 
     public function delete(Request $request) {
+        $id = User::where('email','=',$request->get('user_id'))->first()->id;
+        Filelist::where('user_id','=',$id)->delete();
+        Payments::where('user_id','=',$id)->delete();
         User::where('email','=',$request->get('user_id'))->delete();
 
         return "success";

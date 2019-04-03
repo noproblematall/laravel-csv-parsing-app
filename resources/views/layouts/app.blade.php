@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{ asset('assets/fonts/icomoon/style.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 
-  {{$settings->google_analytics}}
+  {!!$settings->google_analytics!!}
 
   @yield('styles')
   <!--[if lt IE 9]>
@@ -100,7 +100,7 @@
   <footer class="probootstrap-footer">
     <div class="container text-center">
       <div class="row">
-        <div class="col-md-12">{{$settings->foot_text}}</div>
+        <div class="col-md-12">{!!$settings->foot_text!!}</div>
       </div>
     </div>
   </footer>
@@ -210,19 +210,14 @@
                     </select>
                   </div>
                 </div>
-                <label>Gender : </label>
-                <label class="radio-inline">
-                  <input type="radio" name="gender" value="M" id=male />Male
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="gender" value="F" id=female />Female
-                </label>
-                <br />
-                <span class="help-block">By clicking Create my account, you agree to our Terms and that you have read our Data Use
-                  Policy, including our Cookie Use.</span>
+                <div class="m20">
+                  <input type="checkbox" name="term" id="term" required>
+                  &nbsp;
+                  <label for="term">{!!$settings->terms_text!!}</label>
+                </div>
                 <button class="btn btn-lg btn-primary btn-block signup-btn mb20" type="submit">
                     <span class="signup-btn-text">Create my account</span><div class="spinner-border alert-white center hide" id="signup-spinner"></div>
-                </button>
+                </button> 
                 <p class="text-center mb10">Already have an account? <a href="#" id="to-signin">Sign in here</a>.</p>
               </form>
             </div>

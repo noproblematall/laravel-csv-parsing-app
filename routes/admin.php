@@ -20,6 +20,8 @@ Route::get('get_user_list', 'UserController@getUserList')->name('admin.user_list
 Route::post('make_active', 'UserController@makeActive')->name('admin.make_active');
 Route::post('make_inactive', 'UserController@makeInactive')->name('admin.make_inactive');
 Route::post('user_delete', 'UserController@delete')->name('admin.user_delete');
+Route::get('user/edit/{id}', 'UserController@pre_edit')->name('admin.pre_user_edit');
+Route::post('user/edit', 'UserController@edit')->name('admin.user.edit');
 
 Route::get('package', 'PackageController@index')->name('admin.package');
 Route::get('package/add', 'PackageController@pre_add')->name('admin.preadd_package');

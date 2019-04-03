@@ -36,7 +36,7 @@ class PricingController extends Controller
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $paid = Stripe\Charge::create ([
             "amount" => 100 * $pricing->price,
-            "currency" => "usd",
+            "currency" => "cad",
             "source" => $request->stripeToken,
             "description" => "Package(".$pricing->name.") purchase payment from ".$customer." customer."
         ]);

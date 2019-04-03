@@ -206,3 +206,6 @@ textarea.form-control:focus {
     display: block;
     margin: auto;
 }
+#user-edit-form button {
+    margin-right: 20px;
+}

@@ -4,6 +4,10 @@ body {
 .pb20 {
     padding-bottom: 20px !important;
 }
+.m20 {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
 @keyframes spinner-border {
     to { transform: rotate(360deg); }
 }

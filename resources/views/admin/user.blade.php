@@ -26,6 +26,10 @@
                         <i class="fa fa-lock"></i>&nbsp;
                         Make Inactive
                     </button>
+                    <button class="btn btn-primary" id="user-edit">
+                        <i class="fa fa-edit"></i>&nbsp;
+                        Edit
+                    </button>
                     <button class="btn btn-danger" id="user-delete">
                         <i class="fa fa-trash-o"></i>&nbsp;
                         Delete
@@ -56,6 +60,13 @@
             </div>
         </div>
     </section>
+    <div class="alert-area" id="no-selected-alert">
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+            You have to select an at least one item.
+        </div>
+    </div>
 </div>
 @endsection
 @section('scripts')

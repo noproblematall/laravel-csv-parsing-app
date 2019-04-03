@@ -96,26 +96,45 @@
                 <li class="{{ $index==='dataset' ? 'active' : null }}">
                     <a href="{{ route('admin.dataset') }}">
                         <i class="fa fa-database"></i> <span>Dataset management</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-red">{{$admin['dataset_inactive']}}</small>
+                            <small class="label pull-right bg-green">{{$admin['dataset_active']}}</small>
+                        </span>
                     </a>
                 </li>
                 <li class="{{ $index==='user' ? 'active' : null }}">
                     <a href="{{ route('admin.user') }}">
                         <i class="fa fa-users"></i> <span>User management</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-red">{{$admin['user_inactive']}}</small>
+                            <small class="label pull-right bg-green">{{$admin['user_active']}}</small>
+                        </span>
                     </a>
                 </li>
                 <li class="{{ $index==='package' ? 'active' : null }}">
                     <a href="{{ route('admin.package') }}">
                         <i class="fa fa-user-md"></i> <span>Package management</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-red">{{$admin['package_inactive']}}</small>
+                            <small class="label pull-right bg-green">{{$admin['package_active']}}</small>
+                        </span>
                     </a>
                 </li>
                 <li class="{{ $index==='process' ? 'active' : null }}">
                     <a href="{{ route('admin.process') }}">
                         <i class="fa fa-th-list"></i> <span>Process management</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-blue">{{$admin['process_inactive']}}</small>
+                            <small class="label pull-right bg-green">{{$admin['process_active']}}</small>
+                        </span>
                     </a>
                 </li>
                 <li class="{{ $index==='payment' ? 'active' : null }}">
                     <a href="{{ route('admin.payment') }}">
                         <i class="fa fa-credit-card"></i> <span>Payment history</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-green">{{$admin['payment']}}</small>
+                        </span>
                     </a>
                 </li>
                 <li class="{{ $index==='setting' ? 'active' : null }}">

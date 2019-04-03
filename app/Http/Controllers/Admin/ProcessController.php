@@ -56,7 +56,7 @@ class ProcessController extends Controller
                     $result['data'][$i][8] = "";
                 }
             }
-            $result['data'][$i][7] = $item->created_at;
+            $result['data'][$i][7] = date($item->created_at);
             $i++;
         }
 

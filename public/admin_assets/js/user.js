@@ -6159,7 +6159,7 @@ $(document).ready(function() {
         }],
         'select': 'multi',
         'order': [
-            [1, 'asc']
+            [7, 'desc']
         ]
     });
 
@@ -6261,6 +6261,25 @@ $(document).ready(function() {
                 }
             })
         })
+    })
+
+    $("#user-edit").click(function() {
+        let items = [];
+        $("#user-table tr.selected").each(function(index) {
+            let elem = $(this);
+
+            items[index] = elem.find('.email').text();
+        })
+
+        if(items.length === 0) {
+            $("#no-selected-alert").animate({right: 0},'fast');
+            setTimeout(function() {
+                $("#no-selected-alert").animate({right: "-400px"});
+            },2000);
+            return false;
+        }
+
+        window.location = _base_url + "/admin/user/edit/"+items[0];
     })
 
     $("#payments-delete").click(function() {

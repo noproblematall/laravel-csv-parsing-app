@@ -21,8 +21,8 @@
         @endif
         <div class="row justify-content-center text-center">
             <div class="col-md-8">
-                <h2 class="mb30 text-black title">{{$settings->pk_title}}</h2>
-                <p>{{$settings->pk_text}}</p>
+                <h2 class="mb30 text-black title">{!!$settings->pk_title!!}</h2>
+                <p>{!!$settings->pk_text!!}</p>
             </div>
         </div>
         <!-- END row -->

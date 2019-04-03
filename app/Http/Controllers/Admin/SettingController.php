@@ -91,11 +91,6 @@ class SettingController extends Controller
             $setting->phone = $request->get('phone');
             $setting->save();
         }
-        if(null !== $request->get('fax')) {
-            $setting = Settings::where('id',1)->first();
-            $setting->fax = $request->get('fax');
-            $setting->save();
-        }
         if(null !== $request->get('address')) {
             $setting = Settings::where('id',1)->first();
             $setting->address = $request->get('address');
@@ -139,6 +134,11 @@ class SettingController extends Controller
         if(null !== $request->get('ft_text')) {
             $setting = Settings::where('id',1)->first();
             $setting->foot_text = $request->get('ft_text');
+            $setting->save();
+        }
+        if(null !== $request->get('terms_text')) {
+            $setting = Settings::where('id',1)->first();
+            $setting->terms_text = $request->get('terms_text');
             $setting->save();
         }
 

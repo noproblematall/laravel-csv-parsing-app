@@ -28,7 +28,7 @@ class IndexController extends Controller
             $total_earnings += $payment->package->price;
         }
 
-        $total_members = User::all()->count();
+        $total_members = User::all()->count()-1;
 
         $new_members = 0;
         $new_members = User::where('active',0)->get()->count();

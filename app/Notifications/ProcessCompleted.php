@@ -44,11 +44,14 @@ class ProcessCompleted extends Notification
     {
         $url = url('/download/'.$this->data->table_name);
         $filename = $this->data->filename;
+        $time = $this->data->created_at;
         return (new MailMessage)
-                    ->subject('Process completed')
-                    ->line('Your process is completed about '.$filename.' file.')
-                    ->action('Sign in now!', url('/login'))
-                    ->line('Thank you for using our application!');
+                    ->subject(env('MAIL_SUBJECT_COMPLETION'))
+                    ->line(env('MAIL_FIRST_TEXT_COMPLETION'))
+                    ->line('FileName: '.$filename)
+                    ->line('Date: '.$time)
+                    ->action(env('MAIL_BUTTON_TEXT_COMPLETION'), url('/login'))
+                    ->line(env('MAIL_SECOND_TEXT_COMPLETION'));
     }
 
     /**

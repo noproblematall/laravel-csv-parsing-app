@@ -53,5 +53,5 @@ Route::post('stripe', 'PricingController@stripePost')->name('stripe.post')->midd
 
 
 
-Route::get('test','PricingController@test');
+Route::get('test','WorkingendController@test1');
 Route::get('info','HomeController@info');

@@ -95,7 +95,7 @@
                                         <div class="row">
                                             <div class="col-md-1 text-right"><b>Google analytics code</b></div>
                                             <div class="col-md-11">
-                                                <textarea type="text" class="form-control" name="google_analytics" id="google_analytics" placeholder="Google_analytics">{{$settings->google_analytics}}</textarea>
+                                                <textarea type="text" class="form-control" name="google_analytics" id="google_analytics" rows=6 placeholder="Google_analytics">{{$settings->google_analytics}}</textarea>
                                             </div>
                                         </div>
                                         <br />
@@ -124,13 +124,6 @@
                                             <div class="col-md-1 text-right"><b>Phone</b></div>
                                             <div class="col-md-11">
                                                 <input type="text" class="form-control" name="phone" id="phone" value="{{$settings->phone}}" placeholder="Phone" />
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div class="row">
-                                            <div class="col-md-1 text-right"><b>Fax</b></div>
-                                            <div class="col-md-11">
-                                                <input type="text" class="form-control" name="fax" id="fax" value="{{$settings->fax}}" placeholder="Fax" />
                                             </div>
                                         </div>
                                         <br />
@@ -194,6 +187,13 @@
                                             <div class="col-md-2 text-right"><b>Footer Text</b></div>
                                             <div class="col-md-10">
                                                 <input type="text" class="form-control" name="ft_text" id="ft_text" value="{{$settings->foot_text}}" placeholder="Footer Text" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-2 text-right"><b>Terms & Condition Text</b></div>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" name="terms_text" id="terms_text" value="{{$settings->terms_text}}" placeholder="Terms & Condition Text" />
                                             </div>
                                         </div>
                                         <br />

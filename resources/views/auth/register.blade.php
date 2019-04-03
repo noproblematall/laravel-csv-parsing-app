@@ -97,16 +97,13 @@
                         </select>
                     </div>
                 </div>
-                <label>Gender : </label>
-                <label class="radio-inline">
-                    <input type="radio" name="gender" value="M" id=male />Male
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="gender" value="F" id=female />Female
-                </label>
-                <br />
-                <span class="help-block">By clicking Create my account, you agree to our Terms and that you have read our Data Use
-                    Policy, including our Cookie Use.</span>
+                
+                <div class="m20">
+                    <input type="checkbox" name="term" id="term" required>
+                    &nbsp;
+                    <label for="term">{!!$settings->terms_text!!}</label>
+                </div>
+
                 <button class="btn btn-lg btn-primary btn-block signup-btn mb20" type="submit">
                     <span class="signup-btn-text">Create my account</span><div class="spinner-border alert-white center hide" id="signup-spinner"></div>
                 </button>

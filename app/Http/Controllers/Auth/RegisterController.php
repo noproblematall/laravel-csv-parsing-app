@@ -68,13 +68,19 @@ class RegisterController extends Controller
         if(!isset($data['gender'])) {
             $data['gender'] = "";
         }
+        if($data['year'] != "") {
+            $birth = $data['month'].'/'.$data['day'].'/'.$data['year'];
+        }
+        else {
+            $birth = "";
+        }
         return User::create([
             'f_name' => $data['f_name'],
             'l_name' => $data['l_name'],
             'email' => $data['email'],
             'role' => 'user',
             'active' => 0,
-            'birthday' => $data['month'].'/'.$data['day'].'/'.$data['year'],
+            'birthday' => $birth,
             'gender' => $data['gender'],
             'password' => Hash::make($data['password']),
         ]);

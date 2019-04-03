@@ -9,7 +9,7 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
 <div class="container">
   <div class="row intro-text">
     <div class="col-md-8 col-md-offset-2 text-center">
-      <h1 class="probootstrap-heading probootstrap-animate">{{$settings->banner_text}}</h1>
+      {!!$settings->banner_text!!}
       @guest
       <div class="probootstrap-subheading center">
         <p class="probootstrap-animate"><a href="{{ route('register') }}" role="button"
@@ -30,8 +30,8 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
   <div class="container">
     <div class="row justify-content-center text-center mb100">
       <div class="col-md-8 probootstrap-section-heading">
-        <h2 class="mb30 text-black probootstrap-heading">{{$settings->pk_title}}</h2>
-        <p>{{$settings->pk_text}}</p>
+        {!!$settings->pk_title!!}
+        {!!$settings->pk_text!!}
       </div>
     </div>
     <!-- END row -->
@@ -64,8 +64,8 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-        <h2 class="probootstrap-heading">{{$settings->md_title}}</h2>
-        <p class="probootstrap-sub-heading">{{$settings->md_text}}</p>
+        {!!$settings->md_title!!}
+        {!!$settings->md_text!!}
         @guest
           <p><a href="{{ route('register') }}" class="btn btn-black">Get Started</a></p>
         @else
@@ -116,10 +116,6 @@ style="background-image: url(./assets/img/image_1.jpg);" data-section="home" dat
           <li>
             <span class="text-uppercase">Phone</span>
             {{$settings->phone}}
-          </li>
-          <li>
-            <span class="text-uppercase">Fax</span>
-            {{$settings->fax}}
           </li>
           <li>
             <span class="text-uppercase">Address</span>
