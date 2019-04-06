@@ -7,9 +7,6 @@
 @endsection
 @section('content')
 <div class="content-wrapper">
-<input type="hidden" name="_dbusername" value="{{env('DB_USERNAME')}}">
-<input type="hidden" name="_dbpass" value="{{env('DB_PASSWORD')}}">
-<input type="hidden" name="_dbname" value="{{env('DB_DATABASE')}}">
 @csrf
     <section class="content-header">
         <h1>Dataset management</h1>
@@ -22,10 +19,6 @@
         <div class="box box-info">
             <div class="box-header">
                 <div class="toolbar">
-                    <a href="#" class="btn btn-custom" target="_black" id="sql-import">
-                        <i class="fa fa-upload"></i>&nbsp;
-                        Import new resource(*.sql)
-                    </a>
                     <a href="{{ route('admin.dataset.add') }}" class="btn btn-custom" id="dataset-add">
                         <i class="fa fa-plus"></i>&nbsp;
                         Add New Dataset

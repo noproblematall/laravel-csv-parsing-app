@@ -6559,36 +6559,36 @@ $(document).ready(function() {
         window.location = _base_url + "/admin/dataset/edit/"+items[0];
     })
 
-    $("#sql-import").click(function(e) {
-        e.preventDefault();
+    // $("#sql-import").click(function(e) {
+    //     e.preventDefault();
 
-        let db_user = $("input[name=_dbusername]").val();
-        let db_pass = $("input[name=_dbpass]").val();
-        let db_name = $("input[name=_dbname]").val();
+    //     let db_user = $("input[name=_dbusername]").val();
+    //     let db_pass = $("input[name=_dbpass]").val();
+    //     let db_name = $("input[name=_dbname]").val();
 
-        $.ajax({
-            url: "/database/adminer.php",
-            type: "POST",
-            crossDomain: true,
-            // This is the important part
-            xhrFields: {
-                withCredentials: true
-            },
-            // This is the important part
-            data: {"auth[driver]":"server","auth[server]":"","auth[username]":db_user, "auth[password]":db_pass},
-            success: function (response) {
-                window.open(
-                    "/database/adminer.php?username="+db_user+"&db="+db_name+"&import=",
-                    '_blank' // <- This is what makes it open in a new window.
-                );
-            },
-            error: function (xhr, status) {
-                window.open(
-                    "/database/adminer.php",
-                    '_blank' // <- This is what makes it open in a new window.
-                );
-            }
-        });
-    })
+    //     $.ajax({
+    //         url: "/database/adminer.php",
+    //         type: "POST",
+    //         crossDomain: true,
+    //         // This is the important part
+    //         xhrFields: {
+    //             withCredentials: true
+    //         },
+    //         // This is the important part
+    //         data: {"auth[driver]":"server","auth[server]":"","auth[username]":db_user, "auth[password]":db_pass},
+    //         success: function (response) {
+    //             window.open(
+    //                 "/database/adminer.php?username="+db_user+"&db="+db_name+"&import=",
+    //                 '_blank' // <- This is what makes it open in a new window.
+    //             );
+    //         },
+    //         error: function (xhr, status) {
+    //             window.open(
+    //                 "/database/adminer.php",
+    //                 '_blank' // <- This is what makes it open in a new window.
+    //             );
+    //         }
+    //     });
+    // })
 
 })
