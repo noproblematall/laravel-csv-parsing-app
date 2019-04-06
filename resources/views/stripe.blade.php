@@ -32,7 +32,7 @@
                         <div class="col-sm-4">
                             <h1 class="panel-title">Payment Details</h1>
                         </div>
-                        <div class="col-sm-8">                            
+                        <div class="col-sm-8">
                             <ul class="credit-card-icons pull-right">
                                 <li class="card AMERICAN_EXPRESS">AMERICAN_EXPRESS</li>
                                 <li class="card MASTERCARD">MASTERCARD</li>
@@ -121,7 +121,7 @@
                             <div class="col-xs-12">
                                 <button class="btn btn-primary btn-lg btn-block" id="pay-now-btn" type="submit">
                                     <i class="fas fa-credit-card"></i>&nbsp;
-                                    <strong>Pay Now  ${{$pricing->price}} USD </strong>
+                                    <strong>Pay Now  ${{$pricing->price}} CAD </strong>
                                 </button>
                             </div>
                         </div>

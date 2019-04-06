@@ -48,10 +48,6 @@
                     {{$settings->phone}}
                     </li>
                     <li>
-                    <span class="text-uppercase mytext-dark-blue">Fax:</span>
-                    {{$settings->fax}}
-                    </li>
-                    <li>
                     <span class="text-uppercase mytext-dark-blue">Address:</span>
                     <pre>{{$settings->address}}</pre>
                     </li>

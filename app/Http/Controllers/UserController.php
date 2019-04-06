@@ -32,7 +32,7 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
-        if(null !== Auth::user()->pricing) {
+        if(null !== Auth::user()->pricing && 0 !== Auth::user()->pricing) {
             $current_plan = Auth::user()->package->rows;
             if(null !== Auth::user()->processed) {
                 $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
@@ -51,8 +51,17 @@ class UserController extends Controller
         $active = 'completed';
         $menu = 'dashboard';
         $subpage = 'User Dashboard';
+        if($user->birthday == "") {
+            $birth[0] = "";
+            $birth[1] = "";
+            $birth[2] = "";
+        }
+        else {
+            $birth = explode('/',$user->birthday);
+        }
+        
 
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage'));
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage','birth'));
     }
 
     public function personal_info() {
@@ -66,7 +75,7 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
-        if(null !== Auth::user()->pricing) {
+        if(null !== Auth::user()->pricing && 0 !== Auth::user()->pricing) {
             $current_plan = Auth::user()->package->rows;
             if(null !== Auth::user()->processed) {
                 $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
@@ -82,11 +91,20 @@ class UserController extends Controller
 
         $user = User::where('id','=',Auth::user()->id)->first();
 
+        if($user->birthday == "") {
+            $birth[0] = "";
+            $birth[1] = "";
+            $birth[2] = "";
+        }
+        else {
+            $birth = explode('/',$user->birthday);
+        }
+
         $active = 'info';
         $menu = 'dashboard';
         $subpage = 'User Dashboard';
 
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage'));
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage','birth'));
     }
 
     public function change_pwd() {
@@ -256,7 +274,7 @@ class UserController extends Controller
             $result['data'][$i][0] = $i+1;
             $result['data'][$i][1] = date($item->created_at);
             $result['data'][$i][2] = strtoupper($item->package->name).' package purchase payment.';
-            $result['data'][$i][3] = 'USD';
+            $result['data'][$i][3] = 'CAD';
             $result['data'][$i][4] = $item->package->price;
             $i++;
         }
@@ -283,10 +301,21 @@ class UserController extends Controller
     }
 
     public function set_personal_info(Request $request) {
+        if($request->get('year') != "") {
+            if($request->get('day') < 10) {
+                $birth = $request->get('month').'/0'.$request->get('day').'/'.$request->get('year');
+            }
+            else {
+                $birth = $request->get('month').'/'.$request->get('day').'/'.$request->get('year');
+            }
+        }
+        else {
+            $birth = "";
+        }
         $user = User::where('id','=',Auth::user()->id)->first();
         $user->f_name = $request->get('first_name');
         $user->l_name = $request->get('last_name');
-        $user->birthday = $request->get('birth');
+        $user->birthday = $birth;
         $user->mobile = $request->get('mobile');
         $user->location = $request->get('location');
 

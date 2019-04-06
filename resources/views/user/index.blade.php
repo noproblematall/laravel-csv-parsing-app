@@ -151,8 +151,97 @@
                                 <label for="mobile">
                                     <h4 class="mb10">Birthday</h4>
                                 </label>
-                                <input type="text" class="form-control" name="birth" id="birth"
-                                    placeholder="enter mobile number" value="{{$user->birthday}}" title="enter your birthday if any.">
+                                <div class="row">
+                                    <div class="col-xs-4 col-md-4">
+                                      <select name="month" class="form-control input-lg">
+                                            <option value="">Month</option>
+                                        @if($birth[0] == '01')                                        
+                                            <option value="01" selected>Jan</option>
+                                        @else
+                                            <option value="01">Jan</option>
+                                        @endif
+                                        @if($birth[0] == '02')                                        
+                                            <option value="02" selected>Feb</option>
+                                        @else
+                                            <option value="02">Feb</option>
+                                        @endif
+                                        @if($birth[0] == '03')                                        
+                                            <option value="03" selected>Mar</option>
+                                        @else
+                                            <option value="01">Mar</option>
+                                        @endif
+                                        @if($birth[0] == '04')
+                                            <option value="04" selected>Apr</option>
+                                        @else
+                                            <option value="04">Apr</option>
+                                        @endif
+                                        @if($birth[0] == '05')
+                                            <option value="05" selected>May</option>
+                                        @else
+                                            <option value="05">May</option>
+                                        @endif
+                                        @if($birth[0] == '06')
+                                            <option value="06" selected>Jun</option>
+                                        @else
+                                            <option value="06">Jun</option>
+                                        @endif
+                                        @if($birth[0] == '07')
+                                            <option value="07" selected>Jul</option>
+                                        @else
+                                            <option value="07">Jul</option>
+                                        @endif
+                                        @if($birth[0] == '08')
+                                            <option value="08" selected>Aug</option>
+                                        @else
+                                            <option value="08">Aug</option>
+                                        @endif
+                                        @if($birth[0] == '09')
+                                            <option value="09" selected>Sep</option>
+                                        @else
+                                            <option value="09">Sep</option>
+                                        @endif
+                                        @if($birth[0] == '10')
+                                            <option value="10" selected>Oct</option>
+                                        @else
+                                            <option value="10">Oct</option>
+                                        @endif
+                                        @if($birth[0] == '11')
+                                            <option value="11" selected>Nov</option>
+                                        @else
+                                            <option value="11">Nov</option>
+                                        @endif
+                                        @if($birth[0] == '12')
+                                            <option value="12" selected>Dec</option>
+                                        @else
+                                            <option value="12">Dec</option>
+                                        @endif
+                                      </select>
+                                    </div>
+                                    <div class="col-xs-4 col-md-4">
+                                      <select name="day" class="form-control input-lg">
+                                        <option value="">Day</option>
+                                        @for($i=1;$i<=31;$i++)
+                                            @if($birth[1] == $i || $birth[1] == '0'.$i)
+                                                <option value="{{$i}}" selected>{{$i}}</option>
+                                            @else
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endif
+                                        @endfor
+                                      </select>
+                                    </div>
+                                    <div class="col-xs-4 col-md-4">
+                                      <select name="year" class="form-control input-lg">
+                                        <option value="">Year</option>
+                                        @for($i=1950; $i < 2019; $i++)
+                                            @if($birth[2] == $i)
+                                                <option value="{{$i}}" selected>{{$i}}</option>
+                                            @else
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endif
+                                        @endfor
+                                      </select>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                         <div class="form-group">
