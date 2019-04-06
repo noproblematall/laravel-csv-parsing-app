@@ -209,9 +209,9 @@ textarea.form-control:focus {
 #user-edit-form button {
     margin-right: 20px;
 }
-a.btn:link {
+section a.btn:link {
     color: #fff !important;
 }
-a.btn:visited {
+section a.btn:visited {
     color: #fff !important;
 }

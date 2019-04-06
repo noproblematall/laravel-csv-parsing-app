@@ -22,7 +22,7 @@
         <div class="box box-info">
             <div class="box-header">
                 <div class="toolbar">
-                    <a href="javascript:goAction();" class="btn btn-custom" target="_black" id="sql-import">
+                    <a href="#" class="btn btn-custom" target="_black" id="sql-import">
                         <i class="fa fa-upload"></i>&nbsp;
                         Import new resource(*.sql)
                     </a>

@@ -6559,7 +6559,9 @@ $(document).ready(function() {
         window.location = _base_url + "/admin/dataset/edit/"+items[0];
     })
 
-    goAction = function(){
+    $("#sql-import").click(function(e) {
+        e.preventDefault();
+
         let db_user = $("input[name=_dbusername]").val();
         let db_pass = $("input[name=_dbpass]").val();
         let db_name = $("input[name=_dbname]").val();
@@ -6587,6 +6589,6 @@ $(document).ready(function() {
                 );
             }
         });
-    }
+    })
 
 })

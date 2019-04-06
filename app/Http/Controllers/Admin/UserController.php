@@ -54,21 +54,13 @@ class UserController extends Controller
             $result['data'][$i][6] = $user->mobile;
             $result['data'][$i][7] = $user->birthday;
             $result['data'][$i][8] = $user->location;
-            if($user->gender=='M') {
-                $result['data'][$i][9] = 'Male';
-            }
-            else if($user->gender=='F') {
-                $result['data'][$i][9] = 'Female';
-            }
-            else {
-                $result['data'][$i][9] = '';
-            }
-            $result['data'][$i][10] = date($user->created_at);
+
+            $result['data'][$i][9] = date($user->created_at);
             if($user->active) {
-                $result['data'][$i][11] = "<span class='label label-success inactive'>Active</span>";
+                $result['data'][$i][10] = "<span class='label label-success inactive'>Active</span>";
             }
             else {
-                $result['data'][$i][11] = "<span class='label label-danger inactive'>Inactive</span>";
+                $result['data'][$i][10] = "<span class='label label-danger inactive'>Inactive</span>";
             }
             
             $i++;

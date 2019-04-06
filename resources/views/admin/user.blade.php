@@ -51,7 +51,6 @@
                             <th>Mobile</th>
                             <th>Birthday</th>
                             <th>Location</th>
-                            <th>Gender</th>
                             <th>Member since</th>
                             <th>Status</th>
                         </tr>
