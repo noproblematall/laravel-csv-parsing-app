@@ -212,3 +212,6 @@ textarea.form-control:focus {
 a.btn:link {
     color: #fff !important;
 }
+a.btn:visited {
+    color: #fff !important;
+}
