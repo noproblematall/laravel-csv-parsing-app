@@ -133,12 +133,21 @@ class UserController extends Controller
         }
 
         $user = User::where('id','=',Auth::user()->id)->first();
+
+        if($user->birthday == "") {
+            $birth[0] = "";
+            $birth[1] = "";
+            $birth[2] = "";
+        }
+        else {
+            $birth = explode('/',$user->birthday);
+        }
         
         $active = 'chang_pwd';
         $menu = 'dashboard';
         $subpage = 'User Dashboard';
 
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage'));
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage','birth'));
     }
 
     public function payment_history() {
@@ -166,12 +175,21 @@ class UserController extends Controller
             $processable_rows = 0;
         }
         $user = User::where('id','=',Auth::user()->id)->first();
+
+        if($user->birthday == "") {
+            $birth[0] = "";
+            $birth[1] = "";
+            $birth[2] = "";
+        }
+        else {
+            $birth = explode('/',$user->birthday);
+        }
         
         $active = 'payment';
         $menu = 'dashboard';
         $subpage = 'User Dashboard';
         
-        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage'));
+        return view('user.index', compact('active','processing_files_count','completed_files_count','menu','current_plan','processable_rows','user','subpage','birth'));
     }
 
     public function getProcessingList() {
