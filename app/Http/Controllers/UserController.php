@@ -122,7 +122,7 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
-        if(null !== Auth::user()->pricing) {
+        if(null !== Auth::user()->pricing && 0 !== Auth::user()->pricing) {
             $current_plan = Auth::user()->package->rows;
             if(null !== Auth::user()->processed) {
                 $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
@@ -166,7 +166,7 @@ class UserController extends Controller
             ['status','=',1]
         ])->count();
 
-        if(null !== Auth::user()->pricing) {
+        if(null !== Auth::user()->pricing && 0 !== Auth::user()->pricing) {
             $current_plan = Auth::user()->package->rows;
             if(null !== Auth::user()->processed) {
                 $processable_rows = Auth::user()->package->rows - Auth::user()->processed;
