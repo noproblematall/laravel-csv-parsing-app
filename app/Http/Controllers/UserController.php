@@ -247,7 +247,8 @@ class UserController extends Controller
     public function getMobileProcessingList() {
         $filelist = Filelist::where([
             ['user_id','=',Auth::user()->id],
-            ['status','=',0]
+            ['status','=',0],
+            ['table_name','!=',null]
         ])->get();
 
         $result = [];

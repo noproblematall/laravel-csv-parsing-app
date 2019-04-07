@@ -9,7 +9,7 @@
         @csrf
         <input type="hidden" id="_page" value="main_process" />
         <input type="hidden" id="_base_url" value="{{asset('/')}}" />
-        <div class="row justify-content-center text-center mb100">
+        <div class="row justify-content-center text-center mb100" style="padding: 0 10px;">
         <div class="col-md-12 probootstrap-section-heading">
                 <div class="form-group color">
                     <h3 class="text-left mytext-dark-blue underline">2. Get contact information</h3>

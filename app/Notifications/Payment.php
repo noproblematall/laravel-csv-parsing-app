@@ -61,7 +61,7 @@ class Payment extends Notification
                     ->line('Total Price: $'.round($total_price, 2))
                     ->line('Currency: CAD')
                     ->line('Purchase Date: '.$this->data->created_at)
-                    ->line('Thank you for using our application!');
+                    ->line(env('MAIL_FOOTER_PAYMENT'));
     }
 
     /**

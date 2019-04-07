@@ -502,6 +502,12 @@ footer {
     }
 }
 @media (max-width: 500px) {
+    nav.navbar.navbar-default.probootstrap-navbar {
+        min-height: 65px;
+    }
+    .navbar-header {
+        min-height: 65px;
+    }
     #signup-modal .modal-header {
         padding-left: 10px;
     }
@@ -571,6 +577,9 @@ footer {
         margin-top: 0;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+    }
+    #dashboard-area {
+        margin-top: 30px;
     }
 }
 #mobile-completed-list-table tr td:last-child {
@@ -681,6 +690,7 @@ footer {
     line-height: 7px !important;
     font-size: 14px;
     position: relative;
+    width: 100%;
 }
 .info_tab {
     margin-top: 0 !important;

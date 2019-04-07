@@ -6,7 +6,7 @@
 @section('content')
 <section class="probootstrap-section" id="working-area" data-section="working-area">
     <div class="container">
-        <div class="row justify-content-center text-center mb100">
+        <div class="row justify-content-center text-center mb100" style="padding: 0 10px;">
             <div class="col-md-12 col-xs-12 probootstrap-section-heading">
                 <form method="POST" action="#">
                     @csrf
