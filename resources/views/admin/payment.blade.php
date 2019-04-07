@@ -38,7 +38,7 @@
                             <th>Currency</th>
                             <th>Status</th>
                             <th>Date</th>
-                            <th>PDF</th>
+                            <th width="80px">PDF</th>
                         </tr>
                     </thead>
                 </table>
