@@ -36,7 +36,7 @@ class PaymentController extends Controller
             $result['data'][$i][2] = $pay->user->f_name.' '.$pay->user->l_name;
             $result['data'][$i][3] = strtoupper($pay->package->name);
             $tax_rate = (Settings::first()->tax_rate)/100;
-            $result['data'][$i][4] = $pay->package->price + $pay->package->price * $tax_rate;
+            $result['data'][$i][4] = round($pay->package->price + $pay->package->price * $tax_rate, 2);
             $result['data'][$i][5] = 'CAD';
             if($pay->status == "succeeded") {
                 $result['data'][$i][6] = "<span class='label label-success inactive'>Succeeded</span>";

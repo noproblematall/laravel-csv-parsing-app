@@ -150,7 +150,7 @@
                     <tbody style="border-top: 1px solid #ccc !important;">
                         <tr class="strong">
                             <td style="padding: 10px;" class="text-left">Total</td>
-                            <td style="padding: 10px;" class="text-right">${{$payment->package->price + $payment->package->price * ($settings->tax_rate)/100}}</td>
+                            <td style="padding: 10px;" class="text-right">${{round($payment->package->price + $payment->package->price * ($settings->tax_rate)/100, 2)}}</td>
                         </tr>
                     </tbody>
                 </table>

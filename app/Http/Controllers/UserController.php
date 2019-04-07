@@ -299,7 +299,7 @@ class UserController extends Controller
             $result['data'][$i][2] = strtoupper($item->package->name).' package purchase payment.';
             $result['data'][$i][3] = 'CAD';
             $tax_rate = (Settings::first()->tax_rate)/100;
-            $result['data'][$i][4] = $item->package->price + $item->package->price * $tax_rate;
+            $result['data'][$i][4] = round($item->package->price + $item->package->price * $tax_rate, 2);
             $result['data'][$i][5] = '<a href="#" class="btn btn-primary download-btn" onclick="event.preventDefault();document.getElementById(\'invoice-form-'.$item->id.'\').submit();">Download</a>'.
             '<form method="POST" id="invoice-form-'.$item->id.'" action="'.route('invoice').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
             '" /><input type="text" name="_payment_id" value="'.$item->id.'" /></form>';

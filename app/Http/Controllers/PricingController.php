@@ -25,7 +25,7 @@ class PricingController extends Controller
 
         $pricing = Pricing::where('id','=',$pricing_id)->first();
         $tax_rate = (Settings::first()->tax_rate)/100;
-        $total_price = $pricing->price + $pricing->price * $tax_rate;
+        $total_price = round($pricing->price + $pricing->price * $tax_rate, 2);
 
         $menu = 'package';
         $subpage = 'Payment';
@@ -38,7 +38,7 @@ class PricingController extends Controller
 
         $pricing = Pricing::where('id','=',$pricing_id)->first();
         $tax_rate = (Settings::first()->tax_rate)/100;
-        $total_price = $pricing->price + $pricing->price * $tax_rate;
+        $total_price = round($pricing->price + $pricing->price * $tax_rate, 2);
 
         $customer = Auth::user()->f_name.' '.Auth::user()->l_name.' - '.Auth::user()->email;
 
