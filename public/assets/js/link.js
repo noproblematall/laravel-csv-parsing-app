@@ -29,4 +29,9 @@ $(document).ready(function() {
         e.preventDefault();
         window.location = _base_url+'user/manage_membership';
     })
+
+   
+        $("#verified").modal('show');
+
+
 })

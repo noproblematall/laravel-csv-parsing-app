@@ -822,3 +822,7 @@ footer {
     height: 28px;
     width: 48px;
 }
+
+#verified a.btn {
+    width: auto;
+}

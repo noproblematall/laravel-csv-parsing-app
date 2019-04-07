@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Session;
 
 class VerificationController extends Controller
 {
@@ -25,8 +26,11 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/packages';
 
+    public function redirectTo(){
+        Session::flash('verified', 'success');
+        return url('/packages');
+    }
     /**
      * Create a new controller instance.
      *

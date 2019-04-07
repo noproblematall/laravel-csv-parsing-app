@@ -47,9 +47,29 @@
             @endforeach
 
         </div>
-
     </div>
+@if(Session::has('verified'))
+    <div class="modal fade" id="verified" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title mytext-dark-blue">Verified</h4>
+            </div>
+            <div class="modal-body">
+                <br />
+                <p class="mytext-dark-blue">Your email address is verified successfully!</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{route('user.dashboard')}}" class="btn btn-primary">Go to dashboard</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+@endif
 </section>
+
 @endsection
 
 @section('scripts')
