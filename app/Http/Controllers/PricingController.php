@@ -11,6 +11,7 @@ use App\User;
 use App\Payments;
 use App\Settings;
 use App\Notifications\Payment;
+use PDF;
 
 class PricingController extends Controller
 {
@@ -73,7 +74,17 @@ class PricingController extends Controller
         return redirect('/packages');
     }
 
+    public function download(Request $request) {
+        $id = $request->get('_payment_id');
+        $payment = Payments::where('id','=',$id)->first();
+
+        $pdf = PDF::loadView('user.invoice', compact('payment'));
+        return $pdf->download('Invoice.pdf');
+    }
+
     public function test() {
-        return response()->json(Auth::user()->package->rows);
+        $payment = Payments::first();
+
+        return view('user.invoice', compact('payment'));
     }
 }

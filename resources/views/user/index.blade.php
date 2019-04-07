@@ -345,6 +345,7 @@
                                 <th>Transaction</th>
                                 <th>Currency</th>
                                 <th>Amount</th>
+                                <th>PDF</th>
                             </tr>
                         </thead>
                     </table>

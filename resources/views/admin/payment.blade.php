@@ -38,6 +38,7 @@
                             <th>Currency</th>
                             <th>Status</th>
                             <th>Date</th>
+                            <th>PDF</th>
                         </tr>
                     </thead>
                 </table>

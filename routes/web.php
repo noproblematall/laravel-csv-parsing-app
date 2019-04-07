@@ -49,9 +49,11 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::post('payment','PricingController@index')->name('get_stripe_form')->middleware('checkActive');
 Route::post('stripe', 'PricingController@stripePost')->name('stripe.post')->middleware('checkActive');
+Route::post('invoice', 'PricingController@download')->name('invoice')->middleware('checkActive');
 
 
 
 
 Route::get('test','WorkingendController@test1');
+Route::get('invoice','PricingController@test');
 Route::get('info','HomeController@info');

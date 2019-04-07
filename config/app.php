@@ -177,6 +177,7 @@ return [
         \Pion\Laravel\ChunkUpload\Providers\ChunkUploadServiceProvider::class,
         Spatie\Geocoder\GeocoderServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Geocoder' => Spatie\Geocoder\Facades\Geocoder::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
