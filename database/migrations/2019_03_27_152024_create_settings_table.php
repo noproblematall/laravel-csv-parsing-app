@@ -32,6 +32,8 @@ class CreateSettingsTable extends Migration
             $table->text('md_text')->nullable();
             $table->text('foot_text')->nullable();
             $table->text('terms_text')->nullable();
+            $table->string('tax_id')->nullable();
+            $table->float('tax_rate')->nullable();
             $table->timestamps();
         });
     }

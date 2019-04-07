@@ -121,7 +121,7 @@
                             <div class="col-xs-12">
                                 <button class="btn btn-primary btn-lg btn-block" id="pay-now-btn" type="submit">
                                     <i class="fas fa-credit-card"></i>&nbsp;
-                                    <strong>Pay Now  ${{$pricing->price}} CAD </strong>
+                                    <strong>Pay Now  ${{$total_price}} CAD </strong>
                                 </button>
                             </div>
                         </div>

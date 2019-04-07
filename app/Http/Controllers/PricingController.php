@@ -9,6 +9,8 @@ use Session;
 use App\Pricing;
 use App\User;
 use App\Payments;
+use App\Settings;
+use App\Notifications\Payment;
 
 class PricingController extends Controller
 {
@@ -21,21 +23,27 @@ class PricingController extends Controller
         $pricing_id = $request->get('_id');
 
         $pricing = Pricing::where('id','=',$pricing_id)->first();
+        $tax_rate = (Settings::first()->tax_rate)/100;
+        $total_price = $pricing->price + $pricing->price * $tax_rate;
+
         $menu = 'package';
         $subpage = 'Payment';
 
-        return view('stripe', compact('index','pricing','menu','subpage'));
+        return view('stripe', compact('index','pricing','menu','subpage','total_price'));
     }
 
     public function stripePost(Request $request) {
         $pricing_id = $request->get('_id');
 
         $pricing = Pricing::where('id','=',$pricing_id)->first();
+        $tax_rate = (Settings::first()->tax_rate)/100;
+        $total_price = $pricing->price + $pricing->price * $tax_rate;
+
         $customer = Auth::user()->f_name.' '.Auth::user()->l_name.' - '.Auth::user()->email;
 
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $paid = Stripe\Charge::create ([
-            "amount" => 100 * $pricing->price,
+            "amount" => 100 * $total_price,
             "currency" => "cad",
             "source" => $request->stripeToken,
             "description" => "Package(".$pricing->name.") purchase payment from ".$customer." customer."
@@ -52,6 +60,9 @@ class PricingController extends Controller
             $payment->pricing_id = $pricing_id;
             $payment->status = $paid->status;
             $payment->save();
+
+            $user = Auth::user();
+            $user->notify(new Payment($payment));
 
             Session::flash('success', 'Payment successful!');
         }

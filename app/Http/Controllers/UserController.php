@@ -24,7 +24,8 @@ class UserController extends Controller
 
         $processing_files_count = Filelist::where([
             ['user_id','=',Auth::user()->id],
-            ['status','=',0]
+            ['status','=',0],
+            ['table_name','!=',null]
         ])->count();
 
         $completed_files_count = Filelist::where([
@@ -67,7 +68,8 @@ class UserController extends Controller
     public function personal_info() {
         $processing_files_count = Filelist::where([
             ['user_id','=',Auth::user()->id],
-            ['status','=',0]
+            ['status','=',0],
+            ['table_name','!=',null]
         ])->count();
 
         $completed_files_count = Filelist::where([
@@ -110,7 +112,8 @@ class UserController extends Controller
     public function change_pwd() {
         $processing_files_count = Filelist::where([
             ['user_id','=',Auth::user()->id],
-            ['status','=',0]
+            ['status','=',0],
+            ['table_name','!=',null]
         ])->count();
 
         $completed_files_count = Filelist::where([
@@ -153,7 +156,8 @@ class UserController extends Controller
     public function payment_history() {
         $processing_files_count = Filelist::where([
             ['user_id','=',Auth::user()->id],
-            ['status','=',0]
+            ['status','=',0],
+            ['table_name','!=',null]
         ])->count();
 
         $completed_files_count = Filelist::where([

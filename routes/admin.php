@@ -54,6 +54,7 @@ Route::post('process/delete', 'ProcessController@delete')->name('admin.delete_pr
 Route::get('settings', 'SettingController@index')->name('admin.setting');
 Route::post('settings/seo', 'SettingController@addSeo')->name('admin.seo');
 Route::post('settings/contact', 'SettingController@addContact')->name('admin.contact');
+Route::post('settings/tax', 'SettingController@addTax')->name('admin.tax');
 Route::post('settings/other', 'SettingController@addOther')->name('admin.other');
 
 Route::post('admin/download', 'IndexController@download')->name('admin.download');

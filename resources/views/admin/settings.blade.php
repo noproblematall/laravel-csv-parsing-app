@@ -27,6 +27,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="{{ $tab==='seo' ? 'active' : null }}"><a href="#seo" data-toggle="tab">SEO Settings</a></li>
                                 <li class="{{ $tab==='contact' ? 'active' : null }}"><a href="#contact" data-toggle="tab">Contact Settings</a></li>
+                                <li class="{{ $tab==='tax' ? 'active' : null }}"><a href="#tax" data-toggle="tab">Tax Settings</a></li>
                                 <li class="{{ $tab==='other' ? 'active' : null }}"><a href="#other" data-toggle="tab">Other Settings</a></li>
                                 <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                             </ul>
@@ -131,6 +132,34 @@
                                             <div class="col-md-1 text-right"><b>Address</b></div>
                                             <div class="col-md-11">
                                                 <textarea type="text" class="form-control" name="address" id="address" rows=3 placeholder="Address">{{$settings->address}}</textarea>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-11">
+                                                <button class="btn btn-custom btn-square pull-left btn-lg">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane {{ $tab==='tax' ? 'active' : null }}" id="tax">
+                                    <form action="{{ route('admin.tax') }}" method="post">
+                                        @csrf
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-1 text-right"><b>TAX #</b></div>
+                                            <div class="col-md-11">
+                                                <input type="text" class="form-control" name="tax_id" id="tax_id" value="{{$settings->tax_id}}" placeholder="TAX #" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-1 text-right"><b>TAX RATE (%)</b></div>
+                                            <div class="col-md-11">
+                                                <input type="text" class="form-control" name="tax_rate" id="tax_rate" value="{{$settings->tax_rate}}" placeholder="TAX RATE" />
                                             </div>
                                         </div>
                                         <br />

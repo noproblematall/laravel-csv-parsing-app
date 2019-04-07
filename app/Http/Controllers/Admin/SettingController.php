@@ -105,6 +105,26 @@ class SettingController extends Controller
         return view('admin.settings', compact('index','tab','title','settings'));
     }
 
+    public function addTax(Request $request) {
+        if(null !== $request->get('tax_id')) {
+            $setting = Settings::where('id',1)->first();
+            $setting->tax_id = $request->get('tax_id');
+            $setting->save();
+        }
+        if(null !== $request->get('tax_rate')) {
+            $setting = Settings::where('id',1)->first();
+            $setting->tax_rate = $request->get('tax_rate');
+            $setting->save();
+        }
+
+        $index = 'setting';
+        $title = 'Settings management';
+        $tab = 'tax';
+        $settings = Settings::first();
+
+        return view('admin.settings', compact('index','tab','title','settings'));
+    }
+
     public function addOther(Request $request) {
         if(null !== $request->get('banner')) {
             $setting = Settings::where('id',1)->first();
