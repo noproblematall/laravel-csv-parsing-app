@@ -20,6 +20,7 @@ class CreateDatasetsTable extends Migration
             $table->string('first_keyword');
             $table->string('second_table');
             $table->string('second_keyword');
+            $table->integer('active');
             $table->timestamps();
         });
     }
