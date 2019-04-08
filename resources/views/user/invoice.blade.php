@@ -48,6 +48,10 @@
         .text-center {
             text-align: center;
         }
+        .paid {
+            position: absolute;
+            bottom: 0;
+        }
     </style>
   </head>
   <body>
@@ -78,7 +82,7 @@
             <div class="right">
                 <table class="pull-right" style="width: 300px;">
                     <tr>
-                        <td class="strong">TAX #</td>
+                        <td class="strong">TAX(HST) #</td>
                         <td class="strong">TAX RATE</td>
                     </tr>
                     <tr>
@@ -149,11 +153,29 @@
                 <table style="width: 100%;">
                     <tbody style="border-top: 1px solid #ccc !important;">
                         <tr class="strong">
+                            <td style="padding: 10px;" class="text-left">Tax amount</td>
+                            <td style="padding: 10px;" class="text-right">${{round($payment->package->price * ($settings->tax_rate)/100, 2)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="width: 100%;">
+                    <tbody style="border-top: 1px solid #ccc !important;">
+                        <tr class="strong">
                             <td style="padding: 10px;" class="text-left">Total</td>
                             <td style="padding: 10px;" class="text-right">${{round($payment->package->price + $payment->package->price * ($settings->tax_rate)/100, 2)}}</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="paid strong">
+            <div class="right">
+                <p class="text-right">PAID - {{$payment->created_at->format('m/d/Y')}} ({{$payment->created_at->format('m')}}{{$payment->created_at->format('d')}}{{$payment->id}})</p>
             </div>
         </div>
     </div>
