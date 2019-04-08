@@ -9,7 +9,9 @@
   <meta name="description" content="{{$settings->meta_description}}" />
   <meta name="keywords" content="{{$settings->meta_keywords}}" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  @if(null !== $settings->fav_icon)
   <link rel="shortcut icon" href="{{asset('assets/favicon').'/'.$settings->fav_icon}}" type="image/x-icon">
+  @endif
   <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-free-5.7.2-web/css/all.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/styles-merged.css') }}" />
