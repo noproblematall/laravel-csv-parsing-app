@@ -57,7 +57,7 @@ class Payment extends Notification
                     ->line('Package Name: '.strtoupper($this->data->package->name))
                     ->line('Price: $'.$this->data->package->price)
                     ->line('TAX #: '.$tax_id)
-                    ->line('TAX RATE: '.$tax_rate.'%')
+                    ->line('TAX RATE: '.($tax_rate*100).'%')
                     ->line('Total Price: $'.round($total_price, 2))
                     ->line('Currency: CAD')
                     ->line('Purchase Date: '.$this->data->created_at)
