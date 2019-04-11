@@ -37,8 +37,7 @@ class IndexController extends Controller
         $data['phone'] = $request->get('phone');
         $data['message'] = $request->get('message');
 
-        $user = User::where('role','=','admin')->first();
-        $user->notify(new ContactUs($data));
+        Settings::first()->notify(new ContactUs($data));
 
         Session::flash('success', 'Your message sent successfully!');
 

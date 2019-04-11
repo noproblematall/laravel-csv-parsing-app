@@ -11,13 +11,13 @@
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-3 mobile-hide">
-            <div class="text-center" id="brand-img">
-                <img src="{{asset('assets/logo').'/'.$settings->logo}}" width="202" height="101" style="margin-top: -15px;" alt="logo">
+            <div class="text-center" id="brand-img" style="width:202px; height: 202px;">
+                
             </div>
             <hr><br>
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Website</strong> <i class="fas fa-link"></i></div>
-                <div class="panel-body text-center"><a href="{{config('app.url')}}">{{$settings->app_name}}</a></div>
+                <div class="panel-body text-center"><a href="{{asset('/')}}">{{$settings->app_name}}</a></div>
             </div>
             <ul class="list-group mytext-dark-blue">
                 <li class="list-group-item text-muted mytext-dark-blue"><strong>Activity</strong> <i class="fas fa-tachometer-alt"></i></li>
@@ -69,7 +69,8 @@
                                 <th>Processed rows</th>
                                 <th>Dataset</th>
                                 <th>Completed date</th>
-                                <th>Download</th>
+                                <th>Result</th>
+                                <th>Report</th>
                             </tr>
                         </thead>
                     </table>

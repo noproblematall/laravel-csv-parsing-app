@@ -37,10 +37,14 @@ class ProcessController extends Controller
                     $result['data'][$i][8] = '<a href="#" class="btn btn-custom btn-square download-btn" onclick="event.preventDefault();document.getElementById(\'download-form-'.$item->id.'\').submit();">Download</a>'.
                     '<form method="POST" id="download-form-'.$item->id.'" action="'.route('admin.download').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
                     '" /><input type="text" name="_download_token" value="'.$item->table_name.'" /></form>';
+                    $result['data'][$i][9] = '<a href="#" class="btn btn-custom btn-square download-btn" onclick="event.preventDefault();document.getElementById(\'report-form-'.$item->id.'\').submit();">Download</a>'.
+                    '<form method="POST" id="report-form-'.$item->id.'" action="'.route('admin.report').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
+                    '" /><input type="text" name="_download_token" value="'.$item->table_name.'" /></form>';
                 }
                 else {
                     $result['data'][$i][6] = "<span class='label label-primary inactive'>In progress</span>";
                     $result['data'][$i][8] = "";
+                    $result['data'][$i][9] = "";
                 }
             }
             else {
@@ -50,10 +54,14 @@ class ProcessController extends Controller
                     $result['data'][$i][8] = '<a href="#" class="btn btn-primary download-btn" onclick="event.preventDefault();document.getElementById(\'download-form-'.$item->id.'\').submit();">Download</a>'.
                     '<form method="POST" id="download-form-'.$item->id.'" action="'.route('admin.download').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
                     '" /><input type="text" name="_download_token" value="'.$item->table_name.'" /></form>';
+                    $result['data'][$i][9] = '<a href="#" class="btn btn-custom btn-square download-btn" onclick="event.preventDefault();document.getElementById(\'report-form-'.$item->id.'\').submit();">Download</a>'.
+                    '<form method="POST" id="report-form-'.$item->id.'" action="'.route('admin.report').'" style="display:none;"><input type="hidden" name="_token" value="'.csrf_token().
+                    '" /><input type="text" name="_download_token" value="'.$item->table_name.'" /></form>';
                 }
                 else {
                     $result['data'][$i][6] = "<span class='label label-danger inactive'>Failed</span>";
                     $result['data'][$i][8] = "";
+                    $result['data'][$i][9] = "";
                 }
             }
             $result['data'][$i][7] = date($item->created_at);

@@ -18,6 +18,7 @@ use File;
 use App\Notifications\ProcessCompleted;
 use Route;
 use Geocoder;
+use Illuminate\Support\Arr;
 
 class WorkingendController extends Controller
 {
@@ -73,10 +74,99 @@ class WorkingendController extends Controller
 
         Filelist::where('id',$filelist->id)->update(['status' => '1']);
 
+        self::report($filelist);
+
         Schema::dropIfExists($filelist->table_name);
 
         File::delete(storage_path().'/app/upload/'.$filelist->user->email.'/'.$filelist->filename);
 
+    }
+
+    private function report($filelist) {
+        $table = $filelist->table_name;
+
+        $result = [];
+        
+        $i = 0;
+        while(DB::table($table)->count()) {
+            $temp = DB::table($table)->first();
+            $cons_temp = $temp->ConstituencyName;
+
+            $frequency = DB::table($table)->where('ConstituencyName','=',$cons_temp)->count();
+            $result[$i]['frequency'] = $frequency;
+            $result[$i]['salutation'] = $temp->SalutationEng;
+            $result[$i]['f_name'] = $temp->ParlFirstName;
+            $result[$i]['l_name'] = $temp->ParlLastName;
+            $result[$i]['constituency'] = $temp->ConstituencyName;
+            $result[$i]['party'] = $temp->PartyShortTitle;
+            $frequency = DB::table($table)->where('ConstituencyName','=',$cons_temp)->delete();
+            $i++;
+        }
+
+        $sorted = array_reverse(Arr::sort($result));
+
+        $path = storage_path().'/app/report/'.$filelist->user->email;
+        File::makeDirectory($path, $mode = 0777, true, true);
+
+        $encoder = (new CharsetConverter())
+        ->inputEncoding('utf-8')
+        ->outputEncoding('iso-8859-15');
+
+        $writer = Writer::createFromPath(storage_path('app/report/').$filelist->user->email.'/'.$filelist->table_name.'.csv', 'w+');
+        $writer->addFormatter($encoder);
+
+        $header = ['Salutation','First Name','Last Name','Constituency Name','Party','Totals'];
+
+        $writer->insertOne($header);
+
+        for($i=0; $i<count($sorted); $i++) {
+            $arr = $sorted[$i];
+            $writer->insertOne([ $arr['salutation'],$arr['f_name'],$arr['l_name'],$arr['constituency'],$arr['party'],$arr['frequency'] ]);
+        }
+    }
+
+    public function test() {
+        $filelist = Filelist::first();
+        $table = $filelist->table_name;
+
+        $result = [];
+        
+        $i = 0;
+        while(DB::table($table)->count()) {
+            $temp = DB::table($table)->first();
+            $cons_temp = $temp->ConstituencyName;
+
+            $frequency = DB::table($table)->where('ConstituencyName','=',$cons_temp)->count();
+            $result[$i]['frequency'] = $frequency;
+            $result[$i]['salutation'] = $temp->SalutationEng;
+            $result[$i]['f_name'] = $temp->ParlFirstName;
+            $result[$i]['l_name'] = $temp->ParlLastName;
+            $result[$i]['constituency'] = $temp->ConstituencyName;
+            $result[$i]['party'] = $temp->PartyShortTitle;
+            $frequency = DB::table($table)->where('ConstituencyName','=',$cons_temp)->delete();
+            $i++;
+        }
+
+        $sorted = array_reverse(Arr::sort($result));
+
+        $path = storage_path().'/app/report/'.$filelist->user->email;
+        File::makeDirectory($path, $mode = 0777, true, true);
+
+        $encoder = (new CharsetConverter())
+        ->inputEncoding('utf-8')
+        ->outputEncoding('iso-8859-15');
+
+        $writer = Writer::createFromPath(storage_path('app/report/').$filelist->user->email.'/'.$filelist->table_name.'.csv', 'w+');
+        $writer->addFormatter($encoder);
+
+        $header = ['Salutation','First Name','Last Name','Constituency Name','Party','Totals'];
+
+        $writer->insertOne($header);
+
+        for($i=0; $i<count($sorted); $i++) {
+            $arr = $sorted[$i];
+            $writer->insertOne([ $arr['salutation'],$arr['f_name'],$arr['l_name'],$arr['constituency'],$arr['party'],$arr['frequency'] ]);
+        }
     }
 
     public function download(Request $request) {
@@ -96,32 +186,21 @@ class WorkingendController extends Controller
         return abort(404);
     }
 
-    public function test() {
-        $table = '76b4b33633da7e29b9012d9d2f851db3';
+    public function report_download(Request $request) {
+        $download_token = $request->get('_download_token');
 
-        $results = DB::table($table)->get();
+        $filelist = Filelist::where([
+            ['user_id','=',Auth::user()->id],
+            ['status','=',1]
+        ])->get();
 
-        $results = $results->toArray();
-
-        $path = storage_path().'/app/processed/david1213117@gmail.com';
-        File::makeDirectory($path, $mode = 0777, true, true);
-
-        $encoder = (new CharsetConverter())
-        ->inputEncoding('utf-8')
-        ->outputEncoding('iso-8859-15');
-
-        $writer = Writer::createFromPath(storage_path('app/processed/david1213117@gmail.com/').'76b4b33633da7e29b9012d9d2f851db3.csv', 'w+');
-
-        $writer->insertOne((array)self::get_table_columnName($table));
-        $writer->addFormatter($encoder);
-
-        for($i=0; $i<count($results); $i++) {
-            $arr = (array)$results[$i];
-            array_shift($arr);
-            $writer->insertOne($arr);
+        foreach($filelist as $file) {
+            if($download_token == $file['table_name']) {
+                return response()->download(storage_path('app/report/'.Auth::user()->email.'/'.$file['table_name'].'.csv'));
+            }
         }
-
-        Filelist::where('id',60)->update(['status' => '1']);
+        
+        return abort(404);
     }
 
     public function test1() {

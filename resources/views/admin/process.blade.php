@@ -42,7 +42,8 @@
                             <th>Dataset</th>
                             <th>Status</th>
                             <th>Start date</th>
-                            <th>Download</th>
+                            <th>Result</th>
+                            <th>Report</th>
                         </tr>
                     </thead>
                 </table>

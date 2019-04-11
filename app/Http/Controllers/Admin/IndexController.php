@@ -67,6 +67,22 @@ class IndexController extends Controller
         return abort(404);
     }
 
+    public function report_download(Request $request) {
+        $download_token = $request->get('_download_token');
+
+        $filelist = Filelist::where([
+            ['status','=',1]
+        ])->get();
+
+        foreach($filelist as $file) {
+            if($download_token == $file['table_name']) {
+                return response()->download(storage_path('app/report/'.$file->user->email.'/'.$file['table_name'].'.csv'));
+            }
+        }
+        
+        return abort(404);
+    }
+
     public function test() {
         $load = sys_getloadavg();
         return $load[0];

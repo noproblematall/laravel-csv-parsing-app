@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="right">
-                <h1 class="strong pull-right" style="font-size: 2.5rem;">TAX INVOICE</h1>
+                <h1 class="strong pull-right" style="font-size: 2.5rem;">INVOICE</h1>
             </div>    
             <div class="clear"></div>
         </div>
@@ -137,7 +137,7 @@
                 <tbody style="border-bottom: 1px solid #ccc !important;">
                     <tr>
                         <td style="padding: 10px;">{{strtoupper($payment->package->name)}} package purchase payment.</td>
-                        <td style="padding: 10px;" class="text-right">${{$payment->package->price}}</td>
+                        <td style="padding: 10px;" class="text-right">${{number_format($payment->package->price, 2)}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -154,7 +154,7 @@
                     <tbody style="border-top: 1px solid #ccc !important;">
                         <tr class="strong">
                             <td style="padding: 10px;" class="text-left">Tax amount</td>
-                            <td style="padding: 10px;" class="text-right">${{round($payment->package->price * ($settings->tax_rate)/100, 2)}}</td>
+                            <td style="padding: 10px;" class="text-right">${{number_format(round($payment->package->price * ($settings->tax_rate)/100, 2), 2)}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -162,7 +162,7 @@
                     <tbody style="border-top: 1px solid #ccc !important;">
                         <tr class="strong">
                             <td style="padding: 10px;" class="text-left">Total</td>
-                            <td style="padding: 10px;" class="text-right">${{round($payment->package->price + $payment->package->price * ($settings->tax_rate)/100, 2)}}</td>
+                            <td style="padding: 10px;" class="text-right">${{number_format(round($payment->package->price + $payment->package->price * ($settings->tax_rate)/100, 2), 2)}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -175,7 +175,7 @@
         <br />
         <div class="paid strong">
             <div class="right">
-                <p class="text-right">PAID - {{$payment->created_at->format('m/d/Y')}} ({{$payment->created_at->format('m')}}{{$payment->created_at->format('d')}}{{$payment->id}})</p>
+                <p class="text-right">PAID - {{$payment->created_at->format('m/d/Y')}} (#{{$payment->created_at->format('m')}}{{$payment->created_at->format('d')}}{{$payment->id}})</p>
             </div>
         </div>
     </div>

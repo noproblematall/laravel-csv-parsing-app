@@ -28,6 +28,7 @@ Route::post('processor', 'HomeController@processor')->name('processor');
 Route::post('upload', 'FileController@fileUploadPost')->name('fileUploadPost');
 Route::get('process_cancel', 'HomeController@processCancel')->name('process_cancel');
 Route::post('download', 'WorkingendController@download')->name('download');
+Route::post('report', 'WorkingendController@report_download')->name('report');
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('dashboard', 'UserController@index')->name('user.dashboard');
@@ -54,6 +55,6 @@ Route::post('invoice', 'PricingController@download')->name('invoice')->middlewar
 
 
 
-Route::get('test','WorkingendController@test1');
+Route::get('test','WorkingendController@test');
 Route::get('invoice','PricingController@test');
 Route::get('info','HomeController@info');

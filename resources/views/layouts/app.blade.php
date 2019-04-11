@@ -57,7 +57,7 @@
             <li class="guest"><a href="#" id="signin">Sign in</a></li>
             <li class="guest"><a href="#" id="signup">Sign up</a></li>
           @else
-            <li class="<?php if($menu == 'working_area'){ echo 'active'; }?>"><a href="{{ route('working_area') }}" id="working_area">UPLOAD DATA</a></li>
+            <li class="<?php if($menu == 'working_area'){ echo 'active'; }?>"><a href="{{ route('working_area') }}" id="working_area"><b>UPLOAD DATA</b></a></li>
             <li class="<?php if($menu == 'dashboard'){ echo 'active'; }?>"><a href="{{ route('user.dashboard') }}" id="dashboard">DASHBOARD</a></li>
             <li class="dropdown" id="avatar" data-toggle="dropdown">
                 <a href="#" id="profile-btn" class="dropdown-toggle external" data-toggle="dropdown">

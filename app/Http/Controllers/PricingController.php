@@ -79,7 +79,7 @@ class PricingController extends Controller
         $payment = Payments::where('id','=',$id)->first();
 
         $pdf = PDF::loadView('user.invoice', compact('payment'));
-        return $pdf->download('TAX INVOICE.pdf');
+        return $pdf->download('PushPolitics-Invoice-'.$payment->created_at->format('mdy').'.pdf');
     }
 
     public function test() {

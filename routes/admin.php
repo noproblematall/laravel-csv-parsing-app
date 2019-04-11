@@ -58,6 +58,7 @@ Route::post('settings/tax', 'SettingController@addTax')->name('admin.tax');
 Route::post('settings/other', 'SettingController@addOther')->name('admin.other');
 
 Route::post('admin/download', 'IndexController@download')->name('admin.download');
+Route::post('admin/report', 'IndexController@report_download')->name('admin.report');
 
 
 
